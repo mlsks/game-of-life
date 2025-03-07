@@ -11,32 +11,32 @@
     <div class="container">
         <h1>Community Simulation <i class="fas fa-home"></i></h1>
         <div class="controls">
-            <button id="start"><i class="fas fa-play"></i> Start Simulation</button>
+            <button id="start"><i class="fas fa-play"></i> Start Adventure!</button>
             <button id="clear"><i class="fas fa-trash"></i> Clear Town</button>
-            <button id="random"><i class="fas fa-random"></i> Random Population</button>
+            <button id="random"><i class="fas fa-random"></i> Magic Town</button>
         </div>
         <div class="grid-container">
             <canvas id="grid"></canvas>
             <div class="grid-overlay">
                 <div class="stats">
-                    <div class="stat-item">
-                        <span class="stat-label">Population:</span>
+                    <div class="stat-item" data-tooltip="The number of happy friends in town">
+                        <span class="stat-label">Friends:</span>
                         <span id="population-count">0</span>
                     </div>
-                    <div class="stat-item">
-                        <span class="stat-label">Generation:</span>
+                    <div class="stat-item" data-tooltip="Each step is a magical moment when the town changes">
+                        <span class="stat-label">Time:</span>
                         <span id="generation-count">0</span>
                     </div>
                 </div>
             </div>
         </div>
         <div class="info">
-            <p>Click on homes to add or remove residents. <span class="keyboard-tip">Keyboard shortcuts: S (start/pause), C (clear), R (random)</span></p>
+            <p>Click on homes to add or remove residents. <span class="keyboard-tip">Magic Keys: S (start), C (clear), R (magic)</span></p>
             <div class="color-legend">
-                <h3><i class="fas fa-info-circle"></i> Community Status:</h3>
+                <h3><i class="fas fa-info-circle"></i> Who Lives Here?</h3>
                 <div class="legend-item">
                     <div class="color-box alive">😊</div>
-                    <span>Happy Resident</span>
+                    <span>Happy Friend</span>
                 </div>
                 <div class="legend-item">
                     <div class="color-box dead">🏠</div>
@@ -44,11 +44,11 @@
                 </div>
                 <div class="legend-item">
                     <div class="color-box underpopulated">😢</div>
-                    <span>Leaving due to Loneliness</span>
+                    <span>Lonely Friend</span>
                 </div>
                 <div class="legend-item">
                     <div class="color-box overpopulated">😫</div>
-                    <span>Leaving due to Overcrowding</span>
+                    <span>Too Many Friends!</span>
                 </div>
                 <div class="legend-item">
                     <div class="color-box reproduction">👨‍👩‍👧</div>
@@ -56,17 +56,28 @@
                 </div>
             </div>
             <div class="rules-section">
-                <h3><i class="fas fa-book"></i> Community Rules:</h3>
+                <h3><i class="fas fa-book"></i> Magic Town Rules:</h3>
                 <ul>
-                    <li><i class="fas fa-heart-broken"></i> Residents with fewer than 2 neighbors leave due to loneliness</li>
-                    <li><i class="fas fa-heart"></i> Residents with 2-3 neighbors are happy and stay</li>
-                    <li><i class="fas fa-users"></i> Residents with more than 3 neighbors leave due to overcrowding</li>
+                    <li><i class="fas fa-heart-broken"></i> Friends with fewer than 2 neighbors get lonely and leave</li>
+                    <li><i class="fas fa-heart"></i> Friends with 2-3 neighbors are happy and stay</li>
+                    <li><i class="fas fa-users"></i> Friends with more than 3 neighbors feel crowded and leave</li>
                     <li><i class="fas fa-home"></i> Empty homes with exactly 3 neighbors attract new families</li>
                 </ul>
             </div>
+            
+            <div class="rules-section time-explanation">
+                <h3><i class="fas fa-clock"></i> Time in Magic Town</h3>
+                <p>Each time step is like magic! When you press "Start Adventure", time moves forward one step at a time. Each step:</p>
+                <ul>
+                    <li><i class="fas fa-magic"></i> All friends decide if they want to stay or leave</li>
+                    <li><i class="fas fa-door-open"></i> New families might move into empty homes</li>
+                    <li><i class="fas fa-sync"></i> The town changes all at once!</li>
+                </ul>
+                <p>The "Time" counter shows how many magical changes have happened in your town!</p>
+            </div>
         </div>
         <footer>
-            <p>Based on Conway's Game of Life - A cellular automaton where simple rules create complex patterns</p>
+            <p>A fun community game based on Conway's Game of Life</p>
         </footer>
     </div>
     <script src="script.js"></script>
