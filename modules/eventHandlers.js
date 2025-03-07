@@ -111,6 +111,12 @@ window.EventHandlers = {
         if (generation % 3 === 0) {
           window.AnimationModule.showTimeAnimation(statsContainer);
         }
+        
+        // Trigger four-season animation when Time reaches 24 and every multiple of 24
+        if (generation % 24 === 0 && generation > 0) {
+          const gridContainer = document.querySelector(".grid-container");
+          window.AnimationModule.triggerSeasonAnimation(gridContainer);
+        }
       }
 
       generationCount.textContent = generation;

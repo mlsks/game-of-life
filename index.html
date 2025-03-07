@@ -23,6 +23,8 @@
     <link rel="stylesheet" href="style.css" />
     <!-- Helper text styles -->
     <link rel="stylesheet" href="helper-text.css" />
+    <!-- Four Seasons Animation styles -->
+    <link rel="stylesheet" href="season-animation.css" />
     <!-- Font Awesome fixes -->
     <link rel="stylesheet" href="font-awesome-fix.css" />
     <!-- Updated Font Awesome to stable version -->
@@ -45,10 +47,14 @@
           <i class="fas fa-volume-up"></i>
         </button>
         <div id="empty-grid-message" class="helper-text hidden">
-          <i class="fas fa-info-circle"></i> Adventure needs at least one happy friend to start!
+          <i class="fas fa-info-circle"></i> Adventure needs at least one happy
+          friend to start!
         </div>
       </div>
       <div class="grid-container">
+        <div class="season-environment" id="season-environment">
+          <!-- Season elements will be added here dynamically -->
+        </div>
         <canvas id="grid"></canvas>
         <div class="grid-overlay">
           <div class="stats">
@@ -65,6 +71,13 @@
             >
               <span class="stat-label">Time:</span>
               <span id="generation-count">0</span>
+            </div>
+            <div
+              class="stat-item season-indicator"
+              data-tooltip="Current season in the town"
+            >
+              <span class="stat-label">Season:</span>
+              <span id="season-display">🌸</span>
             </div>
           </div>
         </div>

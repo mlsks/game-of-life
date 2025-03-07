@@ -211,5 +211,111 @@ window.SoundEffects = {
 
     oscillator.start(startTime);
     oscillator.stop(startTime + duration);
+  },
+  
+  /**
+   * Play a sound effect for season change
+   * @param {number} seasonIndex - Index of the season (0: Spring, 1: Summer, 2: Autumn, 3: Winter)
+   */
+  playSeasonSound: function(seasonIndex) {
+    try {
+      // Create audio context
+      const AudioContext = window.AudioContext || window.webkitAudioContext;
+      const audioCtx = new AudioContext();
+
+      // Make sure the context is running
+      if (audioCtx.state === "suspended") {
+        audioCtx.resume().then(() => {
+          this.playSeasonSoundWithContext(audioCtx, seasonIndex);
+        });
+      } else {
+        this.playSeasonSoundWithContext(audioCtx, seasonIndex);
+      }
+    } catch (e) {
+      console.log(
+        "Web Audio API not supported or user interaction required:",
+        e
+      );
+    }
+  },
+
+  /**
+   * Helper function to play season sound with a valid context
+   * @param {AudioContext} audioCtx - Audio context
+   * @param {number} seasonIndex - Index of the season (0: Spring, 1: Summer, 2: Autumn, 3: Winter)
+   */
+  playSeasonSoundWithContext: function(audioCtx, seasonIndex) {
+    // Different melodies for each season
+    const seasonMelodies = [
+      // Spring - light and cheerful
+      [
+        { note: 523.25, duration: 0.2 }, // C5
+        { note: 587.33, duration: 0.2 }, // D5
+        { note: 659.25, duration: 0.2 }, // E5
+        { note: 698.46, duration: 0.2 }, // F5
+        { note: 783.99, duration: 0.4 }, // G5
+        { note: 659.25, duration: 0.2 }, // E5
+        { note: 587.33, duration: 0.2 }, // D5
+        { note: 523.25, duration: 0.4 }, // C5
+      ],
+      // Summer - bright and energetic
+      [
+        { note: 659.25, duration: 0.2 }, // E5
+        { note: 659.25, duration: 0.2 }, // E5
+        { note: 783.99, duration: 0.4 }, // G5
+        { note: 783.99, duration: 0.4 }, // G5
+        { note: 880.00, duration: 0.2 }, // A5
+        { note: 783.99, duration: 0.2 }, // G5
+        { note: 659.25, duration: 0.4 }, // E5
+      ],
+      // Autumn - warm and slightly melancholic
+      [
+        { note: 587.33, duration: 0.3 }, // D5
+        { note: 523.25, duration: 0.3 }, // C5
+        { note: 493.88, duration: 0.3 }, // B4
+        { note: 440.00, duration: 0.6 }, // A4
+        { note: 493.88, duration: 0.3 }, // B4
+        { note: 523.25, duration: 0.6 }, // C5
+      ],
+      // Winter - mysterious and gentle
+      [
+        { note: 392.00, duration: 0.4 }, // G4
+        { note: 440.00, duration: 0.2 }, // A4
+        { note: 493.88, duration: 0.4 }, // B4
+        { note: 523.25, duration: 0.4 }, // C5
+        { note: 493.88, duration: 0.2 }, // B4
+        { note: 440.00, duration: 0.4 }, // A4
+        { note: 392.00, duration: 0.6 }, // G4
+      ]
+    ];
+
+    // Get the melody for the current season
+    const melody = seasonMelodies[seasonIndex];
+    
+    // Different instrument types for each season
+    const waveforms = ["sine", "square", "triangle", "sawtooth"];
+    const waveform = waveforms[seasonIndex];
+
+    let time = audioCtx.currentTime;
+    
+    // Play the melody
+    melody.forEach((noteInfo) => {
+      const oscillator = audioCtx.createOscillator();
+      const gainNode = audioCtx.createGain();
+
+      oscillator.type = waveform;
+      oscillator.frequency.value = noteInfo.note;
+
+      gainNode.gain.setValueAtTime(0.2, time);
+      gainNode.gain.exponentialRampToValueAtTime(0.01, time + noteInfo.duration);
+
+      oscillator.connect(gainNode);
+      gainNode.connect(audioCtx.destination);
+
+      oscillator.start(time);
+      oscillator.stop(time + noteInfo.duration);
+      
+      time += noteInfo.duration;
+    });
   }
 };

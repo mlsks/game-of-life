@@ -577,6 +577,246 @@ window.AnimationModule = {
         }, 1000);
       }, 7000);
     }, 25);
+  },
+  
+  /**
+   * Trigger four-season animation when Time reaches multiples of 24
+   * @param {HTMLElement} gridContainer - Grid container element
+   */
+  triggerSeasonAnimation: function(gridContainer) {
+    // Create season animation container
+    const seasonContainer = document.createElement("div");
+    seasonContainer.className = "season-container";
+    gridContainer.appendChild(seasonContainer);
+    
+    // Determine which season to show based on the current generation
+    const generation = window.GameLogic.getGeneration();
+    const seasonIndex = Math.floor((generation / 24) % 4);
+    
+    // Update the persistent season environment
+    this.updateSeasonEnvironment(seasonIndex);
+    
+    // Season data
+    const seasons = [
+      { 
+        name: "Spring", 
+        emoji: "🌸", 
+        color: "#F8BBD0", 
+        bgColor: "#E8F5E9",
+        elements: ["🌱", "🌷", "🌻", "🦋", "🐝", "🐞", "🌈", "☔"],
+        message: "Spring has arrived! New life blooms! 🌱"
+      },
+      { 
+        name: "Summer", 
+        emoji: "☀️", 
+        color: "#FFEB3B", 
+        bgColor: "#FFF9C4",
+        elements: ["🏖️", "🌊", "🍦", "🍉", "🏊", "🌴", "⛱️", "🌞"],
+        message: "Summer is here! Time for fun in the sun! 🌞"
+      },
+      { 
+        name: "Autumn", 
+        emoji: "🍂", 
+        color: "#FF9800", 
+        bgColor: "#FFF3E0",
+        elements: ["🍁", "🍄", "🌰", "🎃", "🦊", "🍎", "🥮", "🌫️"],
+        message: "Autumn leaves are falling! 🍁"
+      },
+      { 
+        name: "Winter", 
+        emoji: "❄️", 
+        color: "#90CAF9", 
+        bgColor: "#E3F2FD",
+        elements: ["☃️", "⛄", "🧣", "🧤", "🎿", "🏂", "🎄", "🎁"],
+        message: "Winter wonderland has arrived! ❄️"
+      }
+    ];
+    
+    const currentSeason = seasons[seasonIndex];
+    
+    // Create season message
+    const message = document.createElement("div");
+    message.className = "season-message";
+    message.innerHTML = `${currentSeason.emoji} ${currentSeason.message}`;
+    message.style.backgroundColor = `${currentSeason.color}B3`; // Added B3 for 70% opacity in hex
+    seasonContainer.appendChild(message);
+    
+    // Create falling elements
+    const numElements = 40;
+    
+    for (let i = 0; i < numElements; i++) {
+      const element = document.createElement("div");
+      element.className = "season-element";
+      
+      // Random element from the season's elements array
+      const randomElement = currentSeason.elements[Math.floor(Math.random() * currentSeason.elements.length)];
+      element.innerHTML = randomElement;
+      
+      // Random position, size, and animation duration
+      const size = Math.floor(Math.random() * 20) + 20;
+      element.style.fontSize = `${size}px`;
+      
+      // Position randomly across the width of the container
+      const left = Math.random() * 100;
+      element.style.left = `${left}%`;
+      
+      // Animation parameters
+      element.style.setProperty("--fall-duration", `${Math.random() * 5 + 3}s`);
+      element.style.setProperty("--fall-delay", `${Math.random() * 3}s`);
+      element.style.setProperty("--sway-amount", `${Math.random() * 30 + 10}px`);
+      
+      seasonContainer.appendChild(element);
+    }
+    
+    // Create season background overlay
+    const overlay = document.createElement("div");
+    overlay.className = "season-overlay";
+    overlay.style.backgroundColor = currentSeason.bgColor;
+    seasonContainer.appendChild(overlay);
+    
+    // Play season sound if available
+    if (window.SoundEffects && window.SoundEffects.playSeasonSound) {
+      window.SoundEffects.playSeasonSound(seasonIndex);
+    }
+    
+    // Remove animation after 5 seconds
+    setTimeout(() => {
+      seasonContainer.classList.add("fade-out");
+      setTimeout(() => {
+        seasonContainer.remove();
+      }, 1000);
+    }, 5000); // Changed from 8000 to 5000 (5 seconds)
+  },
+  
+  /**
+   * Initialize the season environment
+   * Sets up the initial season (Spring) when the game starts
+   */
+  initializeSeasonEnvironment: function() {
+    // Set initial season to Spring (index 0)
+    this.updateSeasonEnvironment(0);
+  },
+  
+  /**
+   * Update the persistent season environment
+   * @param {number} seasonIndex - Index of the season (0: Spring, 1: Summer, 2: Autumn, 3: Winter)
+   */
+  updateSeasonEnvironment: function(seasonIndex) {
+    // Season data
+    const seasons = [
+      { 
+        name: "Spring", 
+        emoji: "🌸", 
+        displayClass: "spring-display",
+        environmentClass: "season-spring",
+        elements: ["🌱", "🌷", "🌻", "🦋", "🐝", "🐞", "🌈", "☔"]
+      },
+      { 
+        name: "Summer", 
+        emoji: "☀️", 
+        displayClass: "summer-display",
+        environmentClass: "season-summer",
+        elements: ["🏖️", "🌊", "🍦", "🍉", "🏊", "🌴", "⛱️", "🌞"]
+      },
+      { 
+        name: "Autumn", 
+        emoji: "🍂", 
+        displayClass: "autumn-display",
+        environmentClass: "season-autumn",
+        elements: ["🍁", "🍄", "🌰", "🎃", "🦊", "🍎", "🥮", "🌫️"]
+      },
+      { 
+        name: "Winter", 
+        emoji: "❄️", 
+        displayClass: "winter-display",
+        environmentClass: "season-winter",
+        elements: ["☃️", "⛄", "🧣", "🧤", "🎿", "🏂", "🎄", "🎁"]
+      }
+    ];
+    
+    const currentSeason = seasons[seasonIndex];
+    
+    // Update season display in stats
+    const seasonDisplay = document.getElementById("season-display");
+    if (seasonDisplay) {
+      // Remove all season classes
+      seasonDisplay.classList.remove("spring-display", "summer-display", "autumn-display", "winter-display");
+      // Add current season class
+      seasonDisplay.classList.add(currentSeason.displayClass);
+      // Update text to show only the emoji
+      seasonDisplay.textContent = currentSeason.emoji;
+    }
+    
+    // Update season environment
+    const seasonEnvironment = document.getElementById("season-environment");
+    if (seasonEnvironment) {
+      // Clear previous season elements
+      seasonEnvironment.innerHTML = "";
+      
+      // Remove all season classes
+      seasonEnvironment.classList.remove("season-spring", "season-summer", "season-autumn", "season-winter");
+      // Add current season class
+      seasonEnvironment.classList.add(currentSeason.environmentClass);
+      
+      // Add persistent season elements
+      const numElements = 12; // Fewer elements for persistent display
+      
+      for (let i = 0; i < numElements; i++) {
+        const element = document.createElement("div");
+        element.className = "persistent-element";
+        
+        // Random element from the season's elements array
+        const randomElement = currentSeason.elements[Math.floor(Math.random() * currentSeason.elements.length)];
+        element.innerHTML = randomElement;
+        
+        // Random position around the edges
+        const position = Math.random();
+        const size = Math.floor(Math.random() * 15) + 15;
+        element.style.fontSize = `${size}px`;
+        
+        // Position elements around the edges of the container
+        if (position < 0.25) {
+          // Top edge
+          element.style.top = "5%";
+          element.style.left = `${Math.random() * 90 + 5}%`;
+        } else if (position < 0.5) {
+          // Right edge
+          element.style.top = `${Math.random() * 90 + 5}%`;
+          element.style.right = "5%";
+          element.style.left = "auto";
+        } else if (position < 0.75) {
+          // Bottom edge
+          element.style.bottom = "5%";
+          element.style.top = "auto";
+          element.style.left = `${Math.random() * 90 + 5}%`;
+        } else {
+          // Left edge
+          element.style.top = `${Math.random() * 90 + 5}%`;
+          element.style.left = "5%";
+        }
+        
+        // Animation parameters for floating around
+        const moveX = Math.random() * 30 - 15;
+        const moveY = Math.random() * 30 - 15;
+        const moveX2 = Math.random() * 30 - 15;
+        const moveY2 = Math.random() * 30 - 15;
+        const moveX3 = Math.random() * 30 - 15;
+        const moveY3 = Math.random() * 30 - 15;
+        const rotateDeg = Math.random() * 180 - 90;
+        
+        element.style.setProperty("--move-x", `${moveX}px`);
+        element.style.setProperty("--move-y", `${moveY}px`);
+        element.style.setProperty("--move-x2", `${moveX2}px`);
+        element.style.setProperty("--move-y2", `${moveY2}px`);
+        element.style.setProperty("--move-x3", `${moveX3}px`);
+        element.style.setProperty("--move-y3", `${moveY3}px`);
+        element.style.setProperty("--rotate-deg", `${rotateDeg}deg`);
+        element.style.animationDelay = `${Math.random() * 5}s`;
+        element.style.animationDuration = `${Math.random() * 10 + 10}s`;
+        
+        seasonEnvironment.appendChild(element);
+      }
+    }
   }
 };
 

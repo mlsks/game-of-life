@@ -50,6 +50,9 @@ window.initGame = function() {
   window.GridModule.addGlider(10, 10);
   drawGrid();
   
+  // Initialize the season environment
+  window.AnimationModule.initializeSeasonEnvironment();
+  
   // Initialize audio context if available
   if (window.gameMusicPlayer) {
     // Don't initialize audio yet - wait for user interaction
