@@ -1,0 +1,93 @@
+/* Custom styles to improve readability for kids */
+
+.info p {
+  margin-bottom: 20px !important;
+  font-size: 22px !important;
+  line-height: 1.5 !important;
+  font-family: "Comic Neue", cursive !important;
+  color: #5d4037 !important;
+  text-align: center !important;
+  background-color: #fff8e1 !important;
+  padding: 15px !important;
+  border-radius: 15px !important;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1) !important;
+  border: 3px dashed #ffc107 !important;
+  font-weight: bold !important;
+  animation: gentle-bounce 3s infinite !important;
+}
+
+.keyboard-tip {
+  background-color: #e8f5e9 !important;
+  padding: 8px 15px !important;
+  border-radius: 50px !important;
+  font-size: 20px !important;
+  color: #4caf50 !important;
+  margin-left: 10px !important;
+  border: 3px solid #81c784 !important;
+  font-weight: bold !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15) !important;
+  display: inline-block !important;
+  margin-top: 10px !important;
+}
+
+@keyframes gentle-bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+/* Make the rules section more kid-friendly */
+.rules-section {
+  margin-top: 25px !important;
+}
+
+.rules-section h3 {
+  font-size: 28px !important;
+  text-align: center !important;
+  margin-bottom: 20px !important;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.1) !important;
+}
+
+.rules-section li {
+  font-size: 20px !important;
+  margin-bottom: 18px !important;
+  background-color: rgba(255, 255, 255, 0.7) !important;
+  padding: 12px 12px 12px 45px !important;
+  border-radius: 10px !important;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1) !important;
+  transition: transform 0.3s !important;
+}
+
+.rules-section li:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15) !important;
+}
+
+.rules-section li i {
+  font-size: 28px !important;
+  top: 10px !important;
+  left: 10px !important;
+}
+
+/* Add some fun icons to the info section */
+.info::after {
+  content: "🎮";
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  font-size: 40px;
+  opacity: 0.5;
+  animation: spin 10s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
