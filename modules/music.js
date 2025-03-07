@@ -342,65 +342,45 @@ class GameMusicPlayer {
   }
 
   setupEventListeners() {
-    document.addEventListener("DOMContentLoaded", () => {
-      // Mute button functionality
-      const muteButton = document.getElementById("mute-toggle");
-      if (muteButton) {
-        muteButton.addEventListener("click", () => {
-          // Initialize audio on first user interaction
-          if (!this.isAudioInitialized) {
-            this.unlockAudio();
-          }
-          this.toggleMute();
-        });
-      }
-
-      // Connect music control to game start/pause button
-      const startButton = document.getElementById("start");
-      if (startButton) {
-        startButton.addEventListener("click", () => {
-          // Initialize audio on first user interaction
-          if (!this.isAudioInitialized) {
-            this.unlockAudio();
-          }
-
-          // Play or pause based on game state after button is clicked
-          setTimeout(() => {
-            // We use a small timeout to let the game state update first
-            const isGameRunning = document
-              .getElementById("start")
-              .innerHTML.includes("Pause");
-            if (isGameRunning) {
-              this.play();
-            } else {
-              this.pause();
-            }
-          }, 50);
-        });
-      }
-
-      // Stop music if clear button is clicked
-      const clearButton = document.getElementById("clear");
-      if (clearButton) {
-        clearButton.addEventListener("click", () => {
-          // Initialize audio on first user interaction
-          if (!this.isAudioInitialized) {
-            this.unlockAudio();
-          }
-          this.stop();
-        });
-      }
-
-      // Initialize audio on any user interaction
-      ["touchstart", "touchend", "mousedown", "keydown", "click"].forEach((event) => {
-        document.addEventListener(
-          event,
-          () => {
-            this.unlockAudio();
-          },
-          { once: true }
-        );
+    // Immediately set up event listeners without waiting for DOMContentLoaded
+    // since this script is loaded after the DOM is already loaded
+    
+    // Mute button functionality
+    const muteButton = document.getElementById("mute-toggle");
+    if (muteButton) {
+      muteButton.addEventListener("click", () => {
+        // Initialize audio on first user interaction
+        if (!this.isAudioInitialized) {
+          this.unlockAudio();
+        }
+        this.toggleMute();
+        console.log("Mute toggled, isMuted:", this.isMuted);
       });
+    } else {
+      console.error("Mute button not found in the DOM");
+    }
+
+    // Stop music if clear button is clicked
+    const clearButton = document.getElementById("clear");
+    if (clearButton) {
+      clearButton.addEventListener("click", () => {
+        // Initialize audio on first user interaction
+        if (!this.isAudioInitialized) {
+          this.unlockAudio();
+        }
+        this.stop();
+      });
+    }
+
+    // Initialize audio on any user interaction
+    ["touchstart", "touchend", "mousedown", "keydown", "click"].forEach((event) => {
+      document.addEventListener(
+        event,
+        () => {
+          this.unlockAudio();
+        },
+        { once: true }
+      );
     });
   }
 
@@ -433,7 +413,13 @@ class GameMusicPlayer {
 
   // Toggle mute state
   toggleMute() {
+    // Make sure audio is initialized
+    if (!this.isAudioInitialized) {
+      this.unlockAudio();
+    }
+    
     this.isMuted = !this.isMuted;
+    console.log("Mute state toggled:", this.isMuted);
 
     const muteButton = document.getElementById("mute-toggle");
     if (muteButton) {
@@ -460,6 +446,8 @@ class GameMusicPlayer {
           );
         }
       }
+    } else {
+      console.error("Mute button not found when toggling mute state");
     }
   }
 
@@ -670,13 +658,21 @@ class GameMusicPlayer {
           "triangle",
           0.5
         );
-        console.log("Initial note played");
+        console.log("Initial note played, muted:", this.isMuted);
+      } else {
+        console.log("Playback started in muted state");
       }
     }
 
-    // Start from the beginning
-    this.currentNote = 0;
-    this.nextNoteTime = this.audioContext.currentTime;
+    // Only reset to beginning if we're not resuming from a pause
+    // If nextNoteTime is 0, it means we're starting fresh, not resuming
+    if (this.nextNoteTime === 0) {
+      this.currentNote = 0;
+      this.nextNoteTime = this.audioContext.currentTime;
+    } else {
+      // When resuming, just update the nextNoteTime to continue from current position
+      this.nextNoteTime = this.audioContext.currentTime;
+    }
 
     // Start scheduling notes
     this.scheduler();
@@ -708,6 +704,8 @@ class GameMusicPlayer {
       }, 500);
     }
 
+    // We don't reset nextNoteTime or currentNote here to allow resuming from this position
+
     console.log("Adventure music paused.");
   }
 
@@ -715,6 +713,7 @@ class GameMusicPlayer {
   stop() {
     this.pause();
     this.currentNote = 0;
+    this.nextNoteTime = 0; // Reset nextNoteTime to indicate a fresh start
 
     console.log("Adventure music stopped.");
   }
