@@ -65,7 +65,7 @@ button {
     font-weight: 600;
     transition: all 0.3s;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    min-width: 120px;
+    min-width: 180px;
     letter-spacing: 0.5px;
 }
 
@@ -80,6 +80,14 @@ button:active {
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
 }
 
+.pause-button {
+    background: linear-gradient(to bottom, #f44336, #d32f2f);
+}
+
+.pause-button:hover {
+    background: linear-gradient(to bottom, #e53935, #c62828);
+}
+
 .keyboard-activated {
     animation: button-flash 0.2s ease-in-out;
 }
@@ -88,14 +96,6 @@ button:active {
     0% { transform: translateY(0); box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); }
     50% { transform: translateY(-5px); box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); }
     100% { transform: translateY(0); box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); }
-}
-
-#stop {
-    background: linear-gradient(to bottom, #f44336, #d32f2f);
-}
-
-#stop:hover {
-    background: linear-gradient(to bottom, #e53935, #c62828);
 }
 
 #clear {

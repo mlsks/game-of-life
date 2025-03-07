@@ -16,7 +16,6 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Get buttons
     const startButton = document.getElementById('start');
-    const stopButton = document.getElementById('stop');
     const clearButton = document.getElementById('clear');
     const randomButton = document.getElementById('random');
     
@@ -65,7 +64,6 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Button event listeners
         startButton.addEventListener('click', toggleSimulation);
-        stopButton.addEventListener('click', stopGame);
         clearButton.addEventListener('click', clearGrid);
         randomButton.addEventListener('click', randomizeGrid);
         
@@ -218,7 +216,8 @@ document.addEventListener('DOMContentLoaded', () => {
     function startGame() {
         if (!isRunning) {
             isRunning = true;
-            startButton.innerHTML = '<i class="fas fa-pause"></i> Pause';
+            startButton.innerHTML = '<i class="fas fa-pause"></i> Pause Simulation';
+            startButton.classList.add('pause-button');
             animate();
         }
     }
@@ -227,6 +226,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function stopGame() {
         isRunning = false;
         startButton.innerHTML = '<i class="fas fa-play"></i> Start Simulation';
+        startButton.classList.remove('pause-button');
         if (animationId) {
             cancelAnimationFrame(animationId);
             animationId = null;
