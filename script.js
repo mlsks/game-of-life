@@ -44,8 +44,8 @@ document.addEventListener('DOMContentLoaded', () => {
     function init() {
         // Set canvas size to fit the container
         const container = document.querySelector('.grid-container');
-        width = Math.min(container.clientWidth, 600);
-        height = Math.min(width, 400);
+        width = Math.min(container.clientWidth - 30, 600);
+        height = Math.min(width * 0.7, 400);
         
         canvas.width = width;
         canvas.height = height;
@@ -62,10 +62,50 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Add event listeners
         canvas.addEventListener('click', handleCanvasClick);
-        startButton.addEventListener('click', startGame);
+        
+        // Button event listeners
+        startButton.addEventListener('click', toggleSimulation);
         stopButton.addEventListener('click', stopGame);
         clearButton.addEventListener('click', clearGrid);
         randomButton.addEventListener('click', randomizeGrid);
+        
+        // Add keyboard shortcuts
+        document.addEventListener('keydown', handleKeyPress);
+        
+        // Add some initial patterns
+        addGlider(10, 10);
+        drawGrid();
+    }
+    
+    // Add a glider pattern
+    function addGlider(x, y) {
+        if (x + 2 < cols && y + 2 < rows) {
+            grid[x][y+1] = 1;
+            grid[x+1][y+2] = 1;
+            grid[x+2][y] = 1;
+            grid[x+2][y+1] = 1;
+            grid[x+2][y+2] = 1;
+        }
+    }
+    
+    // Handle keyboard shortcuts
+    function handleKeyPress(e) {
+        if (e.key.toLowerCase() === 's') { // S key for start/pause
+            toggleSimulation();
+        } else if (e.key.toLowerCase() === 'c') {
+            clearGrid();
+        } else if (e.key.toLowerCase() === 'r') {
+            randomizeGrid();
+        }
+    }
+    
+    // Toggle simulation (start/stop)
+    function toggleSimulation() {
+        if (isRunning) {
+            stopGame();
+        } else {
+            startGame();
+        }
     }
     
     // Create an empty grid
@@ -178,6 +218,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function startGame() {
         if (!isRunning) {
             isRunning = true;
+            startButton.innerHTML = '<i class="fas fa-pause"></i> Pause';
             animate();
         }
     }
@@ -185,6 +226,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Stop the game
     function stopGame() {
         isRunning = false;
+        startButton.innerHTML = '<i class="fas fa-play"></i> Start Simulation';
         if (animationId) {
             cancelAnimationFrame(animationId);
             animationId = null;
@@ -216,10 +258,10 @@ document.addEventListener('DOMContentLoaded', () => {
         // Update grid (this now includes drawing with colors)
         updateGrid();
         
-        // Schedule next frame with a delay to match our setTimeout in updateGrid
+        // Schedule next frame with a delay
         setTimeout(() => {
             animationId = requestAnimationFrame(animate);
-        }, 400); // Slightly longer delay for better visualization
+        }, 300); // Slightly longer delay for better visualization
     }
     
     // Update grid based on Game of Life rules
@@ -269,7 +311,7 @@ document.addEventListener('DOMContentLoaded', () => {
             grid = nextGrid;
             generation++;
             updateCounters();
-        }, 300);
+        }, 200);
     }
     
     // Count live neighbors for a cell
