@@ -1,0 +1,67 @@
+/* Font Awesome fix for glyph bbox issues */
+.fas {
+  font-display: swap; /* Improve font loading performance */
+  text-rendering: optimizeLegibility; /* Improve text rendering */
+}
+
+/* Fix for specific icons with bbox issues */
+.fas.fa-home,
+.fas.fa-play,
+.fas.fa-pause,
+.fas.fa-trash,
+.fas.fa-random,
+.fas.fa-volume-up,
+.fas.fa-volume-mute,
+.fas.fa-info-circle,
+.fas.fa-heart-broken,
+.fas.fa-heart,
+.fas.fa-users,
+.fas.fa-home,
+.fas.fa-book,
+.fas.fa-clock,
+.fas.fa-magic,
+.fas.fa-door-open,
+.fas.fa-sync,
+.fas.fa-calculator,
+.fas.fa-equals,
+.fas.fa-plus,
+.fas.fa-not-equal,
+.fas.fa-leaf,
+.fas.fa-paw,
+.fas.fa-brain,
+.fas.fa-robot,
+.fas.fa-star {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  line-height: 1;
+  vertical-align: middle;
+  text-align: center;
+}
+
+/* Emoji fallbacks if Font Awesome fails to load */
+.font-awesome-failed .fas.fa-home:before { content: "🏠"; }
+.font-awesome-failed .fas.fa-play:before { content: "▶️"; }
+.font-awesome-failed .fas.fa-pause:before { content: "⏸️"; }
+.font-awesome-failed .fas.fa-trash:before { content: "🗑️"; }
+.font-awesome-failed .fas.fa-random:before { content: "🔀"; }
+.font-awesome-failed .fas.fa-volume-up:before { content: "🔊"; }
+.font-awesome-failed .fas.fa-volume-mute:before { content: "🔇"; }
+.font-awesome-failed .fas.fa-info-circle:before { content: "ℹ️"; }
+.font-awesome-failed .fas.fa-heart-broken:before { content: "💔"; }
+.font-awesome-failed .fas.fa-heart:before { content: "❤️"; }
+.font-awesome-failed .fas.fa-users:before { content: "👥"; }
+.font-awesome-failed .fas.fa-book:before { content: "📚"; }
+.font-awesome-failed .fas.fa-clock:before { content: "🕒"; }
+.font-awesome-failed .fas.fa-magic:before { content: "✨"; }
+.font-awesome-failed .fas.fa-door-open:before { content: "🚪"; }
+.font-awesome-failed .fas.fa-sync:before { content: "🔄"; }
+.font-awesome-failed .fas.fa-calculator:before { content: "🧮"; }
+.font-awesome-failed .fas.fa-equals:before { content: "="; }
+.font-awesome-failed .fas.fa-plus:before { content: "+"; }
+.font-awesome-failed .fas.fa-not-equal:before { content: "≠"; }
+.font-awesome-failed .fas.fa-leaf:before { content: "🍃"; }
+.font-awesome-failed .fas.fa-paw:before { content: "🐾"; }
+.font-awesome-failed .fas.fa-brain:before { content: "🧠"; }
+.font-awesome-failed .fas.fa-robot:before { content: "🤖"; }
+.font-awesome-failed .fas.fa-star:before { content: "⭐"; }

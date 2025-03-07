@@ -1,0 +1,29 @@
+/* Font Awesome fallback styles */
+.fa-home:before { content: "🏠"; }
+.fa-play:before { content: "▶️"; }
+.fa-pause:before { content: "⏸️"; }
+.fa-trash:before { content: "🗑️"; }
+.fa-random:before { content: "🔀"; }
+.fa-volume-up:before { content: "🔊"; }
+.fa-volume-mute:before { content: "🔇"; }
+.fa-info-circle:before { content: "ℹ️"; }
+.fa-heart-broken:before { content: "💔"; }
+.fa-heart:before { content: "❤️"; }
+.fa-users:before { content: "👥"; }
+.fa-book:before { content: "📚"; }
+.fa-clock:before { content: "🕒"; }
+.fa-magic:before { content: "✨"; }
+.fa-door-open:before { content: "🚪"; }
+.fa-sync:before { content: "🔄"; }
+.fa-calculator:before { content: "🧮"; }
+.fa-equals:before { content: "="; }
+.fa-plus:before { content: "+"; }
+.fa-not-equal:before { content: "≠"; }
+.fa-leaf:before { content: "🍃"; }
+.fa-paw:before { content: "🐾"; }
+.fa-brain:before { content: "🧠"; }
+.fa-robot:before { content: "🤖"; }
+.fa-star:before { content: "⭐"; }
+
+/* Add a class to detect Font Awesome loading failure */
+.fontawesome-i2svg-active .fa-home:before { content: ""; }
