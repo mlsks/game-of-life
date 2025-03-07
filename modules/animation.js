@@ -709,28 +709,32 @@ window.AnimationModule = {
         emoji: "🌸", 
         displayClass: "spring-display",
         environmentClass: "season-spring",
-        elements: ["🌱", "🌷", "🌻", "🦋", "🐝", "🐞", "🌈", "☔"]
+        elements: ["🌱", "🌷", "🌻", "🦋", "🐝", "🐞", "🌈", "☔"],
+        weather: "rain-rainbow" // Light rain with rainbows
       },
       { 
         name: "Summer", 
         emoji: "☀️", 
         displayClass: "summer-display",
         environmentClass: "season-summer",
-        elements: ["🏖️", "🌊", "🍦", "🍉", "🏊", "🌴", "⛱️", "🌞"]
+        elements: ["🏖️", "🌊", "🍦", "🍉", "🏊", "🌴", "⛱️", "🌞"],
+        weather: "sunshine-clouds" // Sunshine with occasional clouds
       },
       { 
         name: "Autumn", 
         emoji: "🍂", 
         displayClass: "autumn-display",
         environmentClass: "season-autumn",
-        elements: ["🍁", "🍄", "🌰", "🎃", "🦊", "🍎", "🥮", "🌫️"]
+        elements: ["🍁", "🍄", "🌰", "🎃", "🦊", "🍎", "🥮", "🌫️"],
+        weather: "leaves-fog" // Falling leaves with light fog
       },
       { 
         name: "Winter", 
         emoji: "❄️", 
         displayClass: "winter-display",
         environmentClass: "season-winter",
-        elements: ["☃️", "⛄", "🧣", "🧤", "🎿", "🏂", "🎄", "🎁"]
+        elements: ["☃️", "⛄", "🧣", "🧤", "🎿", "🏂", "🎄", "🎁"],
+        weather: "snow" // Snowfall
       }
     ];
     
@@ -757,6 +761,9 @@ window.AnimationModule = {
       seasonEnvironment.classList.remove("season-spring", "season-summer", "season-autumn", "season-winter");
       // Add current season class
       seasonEnvironment.classList.add(currentSeason.environmentClass);
+      
+      // Add weather effects
+      this.createWeatherEffects(seasonEnvironment, currentSeason.weather);
       
       // Add persistent season elements
       const numElements = 12; // Fewer elements for persistent display
@@ -825,7 +832,6 @@ window.AnimationModule = {
  * and should not be exported separately
  */
 // This function is already implemented in the AnimationModule object above
-// So we're removing the export version to fix the error
 
 // This function is already implemented in the AnimationModule object above
 
@@ -842,3 +848,292 @@ window.AnimationModule = {
 // This function is already implemented in the AnimationModule object above
 
 // This function is already implemented in the AnimationModule object above
+
+// Add weather effect functions to the AnimationModule
+window.AnimationModule.createWeatherEffects = function(container, weatherType) {
+  // Create a weather container
+  const weatherContainer = document.createElement("div");
+  weatherContainer.className = "weather-container";
+  container.appendChild(weatherContainer);
+  
+  switch (weatherType) {
+    case "rain-rainbow":
+      // Spring - Only light clouds
+      this.createClouds(weatherContainer, 3, 'light');
+      break;
+      
+    case "sunshine-clouds":
+      // Summer - Only sunshine, no clouds
+      const sunRay = document.createElement("div");
+      sunRay.className = "sun-ray";
+      weatherContainer.appendChild(sunRay);
+      break;
+      
+    case "leaves-fog":
+      // Autumn - Falling leaves with rain from clouds
+      this.createFallingLeaves(weatherContainer, 15);
+      this.createClouds(weatherContainer, 4, 'dark');
+      this.createRainEffect(weatherContainer, 25, 'medium');
+      
+      // Add fog effect
+      const fog = document.createElement("div");
+      fog.className = "fog";
+      weatherContainer.appendChild(fog);
+      break;
+      
+    case "snow":
+      // Winter - Clouds sending snow
+      this.createClouds(weatherContainer, 5, 'white');
+      this.createSnowEffect(weatherContainer, 30);
+      
+      // Add some light fog
+      const winterFog = document.createElement("div");
+      winterFog.className = "fog";
+      winterFog.style.opacity = "0.1";
+      weatherContainer.appendChild(winterFog);
+      break;
+  }
+};
+
+/**
+ * Trigger a big rainbow effect at Time 60, 120, 180, 240
+ * @param {HTMLElement} container - The container to add the rainbow to
+ */
+window.AnimationModule.triggerBigRainbow = function(container) {
+  // Create the big rainbow
+  const rainbow = document.createElement("div");
+  rainbow.className = "big-rainbow";
+  container.appendChild(rainbow);
+  
+  // Add clouds at the ends of the rainbow
+  const leftCloud = document.createElement("div");
+  leftCloud.className = "rainbow-cloud left-cloud";
+  leftCloud.innerHTML = "☁️";
+  leftCloud.style.position = "absolute";
+  leftCloud.style.fontSize = "50px";
+  leftCloud.style.left = "5%";
+  leftCloud.style.top = "calc(10% + 300px - 25px)";
+  leftCloud.style.zIndex = "16";
+  container.appendChild(leftCloud);
+  
+  const rightCloud = document.createElement("div");
+  rightCloud.className = "rainbow-cloud right-cloud";
+  rightCloud.innerHTML = "☁️";
+  rightCloud.style.position = "absolute";
+  rightCloud.style.fontSize = "50px";
+  rightCloud.style.right = "5%";
+  rightCloud.style.top = "calc(10% + 300px - 25px)";
+  rightCloud.style.zIndex = "16";
+  container.appendChild(rightCloud);
+  
+  // Add a sun near the rainbow
+  const sun = document.createElement("div");
+  sun.className = "rainbow-sun";
+  sun.innerHTML = "☀️";
+  sun.style.position = "absolute";
+  sun.style.fontSize = "60px";
+  sun.style.left = "calc(50% - 30px)";
+  sun.style.top = "5%";
+  sun.style.zIndex = "16";
+  sun.style.animation = "sun-spin 10s linear infinite";
+  container.appendChild(sun);
+  
+  // Play a special sound if available
+  if (window.SoundEffects && window.SoundEffects.playRainbowSound) {
+    window.SoundEffects.playRainbowSound();
+  }
+  
+  // Remove the rainbow and decorations after animation completes
+  setTimeout(() => {
+    rainbow.remove();
+    leftCloud.remove();
+    rightCloud.remove();
+    sun.remove();
+  }, 10000); // 10 seconds matches the animation duration
+};
+
+window.AnimationModule.createRainEffect = function(container, count, type) {
+  for (let i = 0; i < count; i++) {
+    const raindrop = document.createElement("div");
+    raindrop.className = "rain-drop";
+    
+    // Random position
+    raindrop.style.left = `${Math.random() * 100}%`;
+    
+    // Random speed based on type
+    let speed, opacity, size;
+    
+    switch(type) {
+      case 'light':
+        speed = Math.random() * 3 + 2;
+        opacity = 0.4 + Math.random() * 0.3;
+        size = 1 + Math.random();
+        break;
+      case 'medium':
+        speed = Math.random() * 2.5 + 3;
+        opacity = 0.5 + Math.random() * 0.3;
+        size = 1.5 + Math.random();
+        break;
+      case 'heavy':
+      default:
+        speed = Math.random() * 2 + 4;
+        opacity = 0.6 + Math.random() * 0.3;
+        size = 2 + Math.random();
+    }
+    
+    raindrop.style.animationDuration = `${speed}s`;
+    raindrop.style.opacity = opacity;
+    
+    // Random delay
+    raindrop.style.animationDelay = `${Math.random() * 5}s`;
+    
+    // Set size
+    raindrop.style.width = `${size}px`;
+    raindrop.style.height = `${10 + Math.random() * 10}px`;
+    
+    // For autumn, make the rain start from the clouds
+    if (type === 'medium') {
+      // Position rain to start from random positions in the top 50% of the container
+      raindrop.style.top = `${Math.random() * 50}%`;
+    }
+    
+    container.appendChild(raindrop);
+  }
+};
+
+window.AnimationModule.createSnowEffect = function(container, count) {
+  const snowflakes = ["❄", "❅", "❆", "•"];
+  
+  for (let i = 0; i < count; i++) {
+    const snowflake = document.createElement("div");
+    snowflake.className = "snowflake";
+    
+    // Random snowflake character
+    snowflake.textContent = snowflakes[Math.floor(Math.random() * snowflakes.length)];
+    
+    // Random position - make snow start from the top 50% to appear from clouds
+    snowflake.style.left = `${Math.random() * 100}%`;
+    snowflake.style.top = `${Math.random() * 50}%`;
+    
+    // Random speed
+    const fallSpeed = Math.random() * 10 + 10;
+    snowflake.style.animationDuration = `${fallSpeed}s, ${fallSpeed / 2}s`;
+    
+    // Random delay
+    snowflake.style.animationDelay = `${Math.random() * 5}s, 0s`;
+    
+    // Random size
+    const size = 10 + Math.random() * 15;
+    snowflake.style.fontSize = `${size}px`;
+    
+    // Random sway amount
+    snowflake.style.setProperty("--sway-amount", `${Math.random() * 50 - 25}px`);
+    
+    container.appendChild(snowflake);
+  }
+};
+
+window.AnimationModule.createFallingLeaves = function(container, count) {
+  const leaves = ["🍁", "🍂", "🍃"];
+  
+  for (let i = 0; i < count; i++) {
+    const leaf = document.createElement("div");
+    leaf.className = "leaf";
+    
+    // Random leaf character
+    leaf.textContent = leaves[Math.floor(Math.random() * leaves.length)];
+    
+    // Random position
+    leaf.style.left = `${Math.random() * 100}%`;
+    
+    // Random speeds for different animations
+    const fallSpeed = Math.random() * 15 + 10;
+    const swaySpeed = Math.random() * 5 + 3;
+    const spinSpeed = Math.random() * 10 + 10;
+    leaf.style.animationDuration = `${fallSpeed}s, ${swaySpeed}s, ${spinSpeed}s`;
+    
+    // Random delays
+    leaf.style.animationDelay = `${Math.random() * 10}s, 0s, 0s`;
+    
+    // Random size
+    const size = 15 + Math.random() * 10;
+    leaf.style.fontSize = `${size}px`;
+    
+    // Random sway amount
+    leaf.style.setProperty("--sway-amount", `${Math.random() * 100 - 50}px`);
+    
+    container.appendChild(leaf);
+  }
+};
+
+window.AnimationModule.createClouds = function(container, count, type) {
+  for (let i = 0; i < count; i++) {
+    const cloud = document.createElement("div");
+    cloud.className = "cloud";
+    
+    // Set cloud color based on type
+    let cloudColor;
+    switch (type) {
+      case 'light':
+        cloudColor = "rgba(255, 255, 255, 0.6)";
+        break;
+      case 'dark':
+        cloudColor = "rgba(100, 100, 100, 0.7)";
+        break;
+      default: // white
+        cloudColor = "rgba(255, 255, 255, 0.8)";
+    }
+    
+    cloud.style.background = cloudColor;
+    
+    // Random position - different for each season
+    if (type === 'light') {
+      // Spring - higher, lighter clouds
+      cloud.style.top = `${Math.random() * 30}%`;
+    } else if (type === 'dark') {
+      // Autumn - lower, darker clouds for rain
+      cloud.style.top = `${Math.random() * 20 + 10}%`;
+    } else {
+      // Winter - mid-level clouds for snow
+      cloud.style.top = `${Math.random() * 20 + 5}%`;
+    }
+    
+    // Random size
+    const size = 30 + Math.random() * 40;
+    cloud.style.width = `${size}px`;
+    cloud.style.height = `${size * 0.6}px`;
+    
+    // Random cloud shape using box-shadow
+    cloud.style.setProperty("--cloud-shadow-x1", `${Math.random() * 20 - 10}px`);
+    cloud.style.setProperty("--cloud-shadow-y1", `${Math.random() * 10 - 5}px`);
+    cloud.style.setProperty("--cloud-shadow-size1", `${15 + Math.random() * 10}px`);
+    
+    cloud.style.setProperty("--cloud-shadow-x2", `${Math.random() * 20 - 10}px`);
+    cloud.style.setProperty("--cloud-shadow-y2", `${Math.random() * 10 - 5}px`);
+    cloud.style.setProperty("--cloud-shadow-size2", `${15 + Math.random() * 10}px`);
+    
+    cloud.style.setProperty("--cloud-shadow-x3", `${Math.random() * 20 - 10}px`);
+    cloud.style.setProperty("--cloud-shadow-y3", `${Math.random() * 10 - 5}px`);
+    cloud.style.setProperty("--cloud-shadow-size3", `${15 + Math.random() * 10}px`);
+    
+    // Random speed - different for each season
+    let speed;
+    if (type === 'light') {
+      // Spring - faster moving clouds
+      speed = 20 + Math.random() * 40;
+    } else if (type === 'dark') {
+      // Autumn - slower, heavier clouds
+      speed = 40 + Math.random() * 60;
+    } else {
+      // Winter - medium speed clouds
+      speed = 30 + Math.random() * 50;
+    }
+    
+    cloud.style.animationDuration = `${speed}s`;
+    
+    // Random delay
+    cloud.style.animationDelay = `${Math.random() * -30}s`;
+    
+    container.appendChild(cloud);
+  }
+};

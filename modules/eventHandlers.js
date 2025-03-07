@@ -117,6 +117,12 @@ window.EventHandlers = {
           const gridContainer = document.querySelector(".grid-container");
           window.AnimationModule.triggerSeasonAnimation(gridContainer);
         }
+        
+        // Trigger big rainbow at Time 60, 120, 180, 240
+        if (generation % 60 === 0 && generation > 0) {
+          const gridContainer = document.querySelector(".grid-container");
+          window.AnimationModule.triggerBigRainbow(gridContainer);
+        }
       }
 
       generationCount.textContent = generation;
