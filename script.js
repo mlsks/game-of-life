@@ -96,6 +96,10 @@ document.addEventListener('DOMContentLoaded', () => {
             // Directly call the appropriate music method based on the running state
             if (window.gameMusicPlayer) {
                 if (isRunning) {
+                    // Make sure audio is initialized first
+                    if (!window.gameMusicPlayer.isAudioInitialized) {
+                        window.gameMusicPlayer.unlockAudio();
+                    }
                     window.gameMusicPlayer.play();
                 } else {
                     window.gameMusicPlayer.pause();
@@ -466,39 +470,50 @@ document.addEventListener('DOMContentLoaded', () => {
             const AudioContext = window.AudioContext || window.webkitAudioContext;
             const audioCtx = new AudioContext();
             
-            // Play a triumphant melody
-            const notes = [
-                { note: 523.25, duration: 0.2 }, // C5
-                { note: 587.33, duration: 0.2 }, // D5
-                { note: 659.25, duration: 0.4 }, // E5
-                { note: 659.25, duration: 0.4 }, // E5
-                { note: 698.46, duration: 0.2 }, // F5
-                { note: 783.99, duration: 0.2 }, // G5
-                { note: 880.00, duration: 0.8 }  // A5
-            ];
-            
-            let time = audioCtx.currentTime;
-            
-            // Play a triumphant chord
-            playChord(audioCtx, [523.25, 659.25, 783.99], time, 1.0);
-            
-            // Play the melody
-            setTimeout(() => {
-                time = audioCtx.currentTime;
-                notes.forEach(noteInfo => {
-                    playTriumphNote(audioCtx, noteInfo.note, time, noteInfo.duration);
-                    time += noteInfo.duration;
+            // Make sure the context is running
+            if (audioCtx.state === "suspended") {
+                audioCtx.resume().then(() => {
+                    playStablePatternSoundWithContext(audioCtx);
                 });
-            }, 500);
-            
-            // Final chord
-            setTimeout(() => {
-                playChord(audioCtx, [523.25, 659.25, 783.99, 1046.50], audioCtx.currentTime, 1.5);
-            }, 2500);
-            
+            } else {
+                playStablePatternSoundWithContext(audioCtx);
+            }
         } catch (e) {
-            console.log('Web Audio API not supported or user interaction required');
+            console.log('Web Audio API not supported or user interaction required:', e);
         }
+    }
+    
+    // Helper function to play the stable pattern sound with a valid context
+    function playStablePatternSoundWithContext(audioCtx) {
+        // Play a triumphant melody
+        const notes = [
+            { note: 523.25, duration: 0.2 }, // C5
+            { note: 587.33, duration: 0.2 }, // D5
+            { note: 659.25, duration: 0.4 }, // E5
+            { note: 659.25, duration: 0.4 }, // E5
+            { note: 698.46, duration: 0.2 }, // F5
+            { note: 783.99, duration: 0.2 }, // G5
+            { note: 880.00, duration: 0.8 }  // A5
+        ];
+        
+        let time = audioCtx.currentTime;
+        
+        // Play a triumphant chord
+        playChord(audioCtx, [523.25, 659.25, 783.99], time, 1.0);
+        
+        // Play the melody
+        setTimeout(() => {
+            time = audioCtx.currentTime;
+            notes.forEach(noteInfo => {
+                playTriumphNote(audioCtx, noteInfo.note, time, noteInfo.duration);
+                time += noteInfo.duration;
+            });
+        }, 500);
+        
+        // Final chord
+        setTimeout(() => {
+            playChord(audioCtx, [523.25, 659.25, 783.99, 1046.50], audioCtx.currentTime, 1.5);
+        }, 2500);
     }
     
     // Helper function to play a triumphant note
@@ -546,47 +561,58 @@ document.addEventListener('DOMContentLoaded', () => {
             const AudioContext = window.AudioContext || window.webkitAudioContext;
             const audioCtx = new AudioContext();
             
-            // Create oscillator for fun sound
-            const oscillator = audioCtx.createOscillator();
-            const gainNode = audioCtx.createGain();
-            
-            oscillator.type = 'sine';
-            oscillator.frequency.setValueAtTime(587.33, audioCtx.currentTime); // D5
-            oscillator.frequency.exponentialRampToValueAtTime(
-                69.30, // C2
-                audioCtx.currentTime + 1
-            );
-            
-            gainNode.gain.setValueAtTime(0.3, audioCtx.currentTime);
-            gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 1);
-            
-            oscillator.connect(gainNode);
-            gainNode.connect(audioCtx.destination);
-            
-            oscillator.start();
-            oscillator.stop(audioCtx.currentTime + 1.5);
-            
-            // Play some cheerful notes after the explosion
-            setTimeout(() => {
-                const notes = [
-                    { note: 523.25, duration: 0.2 }, // C5
-                    { note: 587.33, duration: 0.2 }, // D5
-                    { note: 659.25, duration: 0.2 }, // E5
-                    { note: 698.46, duration: 0.2 }, // F5
-                    { note: 783.99, duration: 0.2 }, // G5
-                    { note: 880.00, duration: 0.4 }  // A5
-                ];
-                
-                let time = audioCtx.currentTime;
-                notes.forEach(noteInfo => {
-                    playNote(audioCtx, noteInfo.note, time, noteInfo.duration);
-                    time += noteInfo.duration;
+            // Make sure the context is running
+            if (audioCtx.state === "suspended") {
+                audioCtx.resume().then(() => {
+                    playExplosionSoundWithContext(audioCtx);
                 });
-            }, 1000);
-            
+            } else {
+                playExplosionSoundWithContext(audioCtx);
+            }
         } catch (e) {
-            console.log('Web Audio API not supported or user interaction required');
+            console.log('Web Audio API not supported or user interaction required:', e);
         }
+    }
+    
+    // Helper function to play explosion sound with a valid context
+    function playExplosionSoundWithContext(audioCtx) {
+        // Create oscillator for fun sound
+        const oscillator = audioCtx.createOscillator();
+        const gainNode = audioCtx.createGain();
+        
+        oscillator.type = 'sine';
+        oscillator.frequency.setValueAtTime(587.33, audioCtx.currentTime); // D5
+        oscillator.frequency.exponentialRampToValueAtTime(
+            69.30, // C2
+            audioCtx.currentTime + 1
+        );
+        
+        gainNode.gain.setValueAtTime(0.3, audioCtx.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 1);
+        
+        oscillator.connect(gainNode);
+        gainNode.connect(audioCtx.destination);
+        
+        oscillator.start();
+        oscillator.stop(audioCtx.currentTime + 1.5);
+        
+        // Play some cheerful notes after the explosion
+        setTimeout(() => {
+            const notes = [
+                { note: 523.25, duration: 0.2 }, // C5
+                { note: 587.33, duration: 0.2 }, // D5
+                { note: 659.25, duration: 0.2 }, // E5
+                { note: 698.46, duration: 0.2 }, // F5
+                { note: 783.99, duration: 0.2 }, // G5
+                { note: 880.00, duration: 0.4 }  // A5
+            ];
+            
+            let time = audioCtx.currentTime;
+            notes.forEach(noteInfo => {
+                playNote(audioCtx, noteInfo.note, time, noteInfo.duration);
+                time += noteInfo.duration;
+            });
+        }, 1000);
     }
     
     // Helper function to play a note

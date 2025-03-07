@@ -338,7 +338,7 @@ class GameMusicPlayer {
     window.gameMusicPlayer = this;
 
     this.setupEventListeners();
-    this.initAudio(); // Initialize audio immediately
+    // Don't initialize audio immediately - wait for user interaction
   }
 
   setupEventListeners() {
@@ -347,6 +347,10 @@ class GameMusicPlayer {
       const muteButton = document.getElementById("mute-toggle");
       if (muteButton) {
         muteButton.addEventListener("click", () => {
+          // Initialize audio on first user interaction
+          if (!this.isAudioInitialized) {
+            this.unlockAudio();
+          }
           this.toggleMute();
         });
       }
@@ -355,9 +359,9 @@ class GameMusicPlayer {
       const startButton = document.getElementById("start");
       if (startButton) {
         startButton.addEventListener("click", () => {
-          // Just to be safe, re-init audio on first click
+          // Initialize audio on first user interaction
           if (!this.isAudioInitialized) {
-            this.initAudio();
+            this.unlockAudio();
           }
 
           // Play or pause based on game state after button is clicked
@@ -379,12 +383,16 @@ class GameMusicPlayer {
       const clearButton = document.getElementById("clear");
       if (clearButton) {
         clearButton.addEventListener("click", () => {
+          // Initialize audio on first user interaction
+          if (!this.isAudioInitialized) {
+            this.unlockAudio();
+          }
           this.stop();
         });
       }
 
-      // Play a test sound to unlock audio on iOS and other mobile browsers
-      ["touchstart", "touchend", "mousedown", "keydown"].forEach((event) => {
+      // Initialize audio on any user interaction
+      ["touchstart", "touchend", "mousedown", "keydown", "click"].forEach((event) => {
         document.addEventListener(
           event,
           () => {
@@ -399,21 +407,27 @@ class GameMusicPlayer {
   // Unlock audio on mobile devices
   unlockAudio() {
     if (!this.isAudioInitialized) {
-      this.initAudio();
+      const initialized = this.initAudio();
+      
+      if (initialized && this.audioContext) {
+        // Play a silent sound to unlock audio
+        const oscillator = this.audioContext.createOscillator();
+        const gainNode = this.audioContext.createGain();
 
-      // Play a silent sound to unlock audio
-      const oscillator = this.audioContext.createOscillator();
-      const gainNode = this.audioContext.createGain();
+        gainNode.gain.value = 0;
+        oscillator.connect(gainNode);
+        gainNode.connect(this.audioContext.destination);
 
-      gainNode.gain.value = 0;
-      oscillator.connect(gainNode);
-      gainNode.connect(this.audioContext.destination);
+        oscillator.start(0);
+        oscillator.stop(0.001);
 
-      oscillator.start(0);
-      oscillator.stop(0.001);
-
-      console.log("Audio unlocked for mobile");
-      this.isAudioInitialized = true;
+        console.log("Audio unlocked for playback");
+      }
+    } else if (this.audioContext && this.audioContext.state === "suspended") {
+      // If already initialized but suspended, just resume
+      this.audioContext.resume().then(() => {
+        console.log("Audio context resumed after user interaction");
+      });
     }
   }
 
@@ -467,13 +481,18 @@ class GameMusicPlayer {
       }
 
       // Resume audio context if suspended
-      if (this.audioContext.state === "suspended") {
+      if (this.audioContext && this.audioContext.state === "suspended") {
         this.audioContext.resume().then(() => {
-          console.log("Audio context resumed");
+          console.log("Audio context resumed successfully");
+        }).catch(err => {
+          console.error("Failed to resume audio context:", err);
         });
       }
+      
+      return true;
     } catch (e) {
       console.error("Failed to initialize audio:", e);
+      return false;
     }
   }
 
@@ -559,6 +578,15 @@ class GameMusicPlayer {
   // Play a tone optimized for arpeggiated patterns
   playTone(frequency, startTime, duration, type = "sine", volume = 0.3) {
     if (!this.audioContext || frequency === 0) return null;
+    
+    // Check if audio context is in suspended state
+    if (this.audioContext.state === "suspended") {
+      // Try to resume the context
+      this.audioContext.resume().catch(err => {
+        console.error("Failed to resume audio context in playTone:", err);
+        return null;
+      });
+    }
 
     try {
       const oscillator = this.audioContext.createOscillator();
@@ -592,14 +620,34 @@ class GameMusicPlayer {
 
   // Play the music
   play() {
-    // Always ensure audio is initialized
-    this.initAudio();
-
     // Don't restart if already playing
     if (this.isPlaying) return;
 
     console.log("Attempting to play music");
 
+    // Always ensure audio is initialized and resumed
+    if (!this.isAudioInitialized) {
+      const initialized = this.initAudio();
+      if (!initialized) {
+        console.error("Cannot play music - audio initialization failed");
+        return;
+      }
+    }
+
+    // Make sure the audio context is resumed
+    if (this.audioContext && this.audioContext.state === "suspended") {
+      this.audioContext.resume().then(() => {
+        this.startPlayback();
+      }).catch(err => {
+        console.error("Failed to resume audio context:", err);
+      });
+    } else {
+      this.startPlayback();
+    }
+  }
+
+  // Start actual playback after audio context is ready
+  startPlayback() {
     // Set playing flag
     this.isPlaying = true;
 
