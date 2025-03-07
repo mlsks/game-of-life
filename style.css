@@ -149,6 +149,49 @@ button:active {
     box-shadow: 0 8px 0 #4A148C, 0 10px 15px rgba(0, 0, 0, 0.2);
 }
 
+.music-button {
+    background: linear-gradient(to bottom, #00BCD4, #0097A7);
+    box-shadow: 0 5px 0 #006064, 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+.music-button:hover {
+    background: linear-gradient(to bottom, #26C6DA, #00ACC1);
+    box-shadow: 0 8px 0 #006064, 0 10px 15px rgba(0, 0, 0, 0.2);
+}
+
+.music-button.music-active {
+    background: linear-gradient(to bottom, #009688, #00796B);
+    box-shadow: 0 5px 0 #004D40, 0 6px 10px rgba(0, 0, 0, 0.2);
+    animation: pulse-glow 2s infinite;
+}
+
+.mute-button {
+    background: linear-gradient(to bottom, #4CAF50, #388E3C);
+    box-shadow: 0 5px 0 #1B5E20, 0 6px 10px rgba(0, 0, 0, 0.2);
+    min-width: 50px;
+    width: 50px;
+}
+
+.mute-button:hover {
+    background: linear-gradient(to bottom, #66BB6A, #43A047);
+    box-shadow: 0 8px 0 #1B5E20, 0 10px 15px rgba(0, 0, 0, 0.2);
+}
+
+.mute-button.muted {
+    background: linear-gradient(to bottom, #E53935, #C62828);
+    box-shadow: 0 5px 0 #B71C1C, 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+.mute-button.muted:hover {
+    background: linear-gradient(to bottom, #EF5350, #D32F2F);
+    box-shadow: 0 8px 0 #B71C1C, 0 10px 15px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 5px 0 #004D40, 0 6px 10px rgba(0, 0, 0, 0.2); }
+    50% { box-shadow: 0 5px 0 #004D40, 0 6px 20px rgba(0, 188, 212, 0.6); }
+}
+
 .grid-container {
     display: flex;
     justify-content: flex-start;

@@ -93,6 +93,14 @@ document.addEventListener('DOMContentLoaded', () => {
     function handleKeyPress(e) {
         if (e.key.toLowerCase() === 's') { // S key for start/pause
             toggleSimulation();
+            // Directly call the appropriate music method based on the running state
+            if (window.gameMusicPlayer) {
+                if (isRunning) {
+                    window.gameMusicPlayer.play();
+                } else {
+                    window.gameMusicPlayer.pause();
+                }
+            }
         } else if (e.key.toLowerCase() === 'c') {
             clearGrid();
         } else if (e.key.toLowerCase() === 'r') {
@@ -216,219 +224,239 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Function to trigger rainbow explosion when Friends count reaches zero
     function triggerRainbowExplosion() {
+        // Stop music 10ms before the explosion
+        if (window.gameMusicPlayer) {
+            setTimeout(() => {
+                window.gameMusicPlayer.stop();
+            }, 0);
+        }
+        
         // Pause the game to appreciate the explosion
         if (isRunning) {
             stopGame();
         }
         
-        // Create explosion container
-        const explosionContainer = document.createElement('div');
-        explosionContainer.className = 'explosion-container';
-        document.querySelector('.grid-container').appendChild(explosionContainer);
-        
-        // Add colorful particles
-        const numParticles = 200;
-        const colors = [
-            '#FF5252', '#FF4081', '#E040FB', '#7C4DFF', 
-            '#536DFE', '#448AFF', '#40C4FF', '#18FFFF', 
-            '#64FFDA', '#69F0AE', '#B2FF59', '#EEFF41', 
-            '#FFFF00', '#FFD740', '#FFAB40', '#FF6E40'
-        ];
-        
-        // Add a funny message at the bottom
-        const message = document.createElement('div');
-        message.className = 'explosion-message';
-        message.innerHTML = 'BOOM! Everyone left! 🎉';
-        explosionContainer.appendChild(message);
-        
-        // Create and position the particles
-        for (let i = 0; i < numParticles; i++) {
-            const particle = document.createElement('div');
-            particle.className = 'explosion-particle';
-            
-            // Random position, size, and color
-            const size = Math.floor(Math.random() * 20) + 10;
-            const color = colors[Math.floor(Math.random() * colors.length)];
-            
-            // Shape variation
-            const shape = Math.random() > 0.7 ? 'star' : (Math.random() > 0.5 ? 'circle' : 'heart');
-            
-            particle.style.width = size + 'px';
-            particle.style.height = size + 'px';
-            particle.style.backgroundColor = color;
-            particle.style.boxShadow = `0 0 ${size/2}px ${color}`;
-            
-            if (shape === 'star') {
-                particle.innerHTML = '★';
-                particle.style.background = 'transparent';
-                particle.style.color = color;
-                particle.style.fontSize = (size * 1.5) + 'px';
-                particle.style.textAlign = 'center';
-                particle.style.lineHeight = size + 'px';
-            } else if (shape === 'heart') {
-                particle.innerHTML = '❤';
-                particle.style.background = 'transparent';
-                particle.style.color = color;
-                particle.style.fontSize = (size * 1.5) + 'px';
-                particle.style.textAlign = 'center';
-                particle.style.lineHeight = size + 'px';
-            } else {
-                particle.style.borderRadius = '50%';
-            }
-            
-            // Animation parameters - adjust to favor upward and sideways trajectories
-            // to keep most particles away from the message at the bottom
-            let angle;
-            if (Math.random() < 0.7) {
-                // More particles go upward and to sides
-                angle = Math.random() * Math.PI * 1.5 - Math.PI * 0.75; // -135° to +135° (favoring up and sides)
-            } else {
-                // Fewer particles go downward
-                angle = Math.random() * Math.PI * 2; // Full 360°
-            }
-            
-            const speed = Math.random() * 15 + 5;
-            const distance = Math.random() * 150 + 50;
-            
-            // Calculate final position
-            const x = Math.cos(angle) * distance;
-            const y = Math.sin(angle) * distance;
-            
-            // Set animation
-            particle.style.setProperty('--end-x', x + 'px');
-            particle.style.setProperty('--end-y', y + 'px');
-            particle.style.setProperty('--rotation', Math.random() * 720 - 360 + 'deg');
-            particle.style.setProperty('--delay', Math.random() * 0.5 + 's');
-            particle.style.setProperty('--duration', (Math.random() * 1.5 + 1) + 's');
-            
-            explosionContainer.appendChild(particle);
-        }
-        
-        // Remove explosion after animation completes
+        // Wait 25ms before starting the animation
         setTimeout(() => {
-            explosionContainer.classList.add('fade-out');
+            // Create explosion container
+            const explosionContainer = document.createElement('div');
+            explosionContainer.className = 'explosion-container';
+            document.querySelector('.grid-container').appendChild(explosionContainer);
+            
+            // Add colorful particles
+            const numParticles = 200;
+            const colors = [
+                '#FF5252', '#FF4081', '#E040FB', '#7C4DFF', 
+                '#536DFE', '#448AFF', '#40C4FF', '#18FFFF', 
+                '#64FFDA', '#69F0AE', '#B2FF59', '#EEFF41', 
+                '#FFFF00', '#FFD740', '#FFAB40', '#FF6E40'
+            ];
+            
+            // Add a funny message at the bottom
+            const message = document.createElement('div');
+            message.className = 'explosion-message';
+            message.innerHTML = 'BOOM! Everyone left! 🎉';
+            explosionContainer.appendChild(message);
+            
+            // Create and position the particles
+            for (let i = 0; i < numParticles; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'explosion-particle';
+                
+                // Random position, size, and color
+                const size = Math.floor(Math.random() * 20) + 10;
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                
+                // Shape variation
+                const shape = Math.random() > 0.7 ? 'star' : (Math.random() > 0.5 ? 'circle' : 'heart');
+                
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                particle.style.backgroundColor = color;
+                particle.style.boxShadow = `0 0 ${size/2}px ${color}`;
+                
+                if (shape === 'star') {
+                    particle.innerHTML = '★';
+                    particle.style.background = 'transparent';
+                    particle.style.color = color;
+                    particle.style.fontSize = (size * 1.5) + 'px';
+                    particle.style.textAlign = 'center';
+                    particle.style.lineHeight = size + 'px';
+                } else if (shape === 'heart') {
+                    particle.innerHTML = '❤';
+                    particle.style.background = 'transparent';
+                    particle.style.color = color;
+                    particle.style.fontSize = (size * 1.5) + 'px';
+                    particle.style.textAlign = 'center';
+                    particle.style.lineHeight = size + 'px';
+                } else {
+                    particle.style.borderRadius = '50%';
+                }
+                
+                // Animation parameters - adjust to favor upward and sideways trajectories
+                // to keep most particles away from the message at the bottom
+                let angle;
+                if (Math.random() < 0.7) {
+                    // More particles go upward and to sides
+                    angle = Math.random() * Math.PI * 1.5 - Math.PI * 0.75; // -135° to +135° (favoring up and sides)
+                } else {
+                    // Fewer particles go downward
+                    angle = Math.random() * Math.PI * 2; // Full 360°
+                }
+                
+                const speed = Math.random() * 15 + 5;
+                const distance = Math.random() * 150 + 50;
+                
+                // Calculate final position
+                const x = Math.cos(angle) * distance;
+                const y = Math.sin(angle) * distance;
+                
+                // Set animation
+                particle.style.setProperty('--end-x', x + 'px');
+                particle.style.setProperty('--end-y', y + 'px');
+                particle.style.setProperty('--rotation', Math.random() * 720 - 360 + 'deg');
+                particle.style.setProperty('--delay', Math.random() * 0.5 + 's');
+                particle.style.setProperty('--duration', (Math.random() * 1.5 + 1) + 's');
+                
+                explosionContainer.appendChild(particle);
+            }
+            
+            // Remove explosion after animation completes
             setTimeout(() => {
-                explosionContainer.remove();
-            }, 1000);
-        }, 4000);
-        
-        // Play explosion sound
-        playExplosionSound();
+                explosionContainer.classList.add('fade-out');
+                setTimeout(() => {
+                    explosionContainer.remove();
+                }, 1000);
+            }, 4000);
+            
+            // Play explosion sound
+            playExplosionSound();
+        }, 25);
     }
     
     // Function to trigger animation when pattern becomes stable
     function triggerStablePatternAnimation() {
+        // Stop music 10ms before the animation
+        if (window.gameMusicPlayer) {
+            setTimeout(() => {
+                window.gameMusicPlayer.stop();
+            }, 0);
+        }
+        
         // Pause the game to appreciate the stable pattern
         if (isRunning) {
             stopGame();
         }
         
-        // Create animation container
-        const stableContainer = document.createElement('div');
-        stableContainer.className = 'stable-container';
-        document.querySelector('.grid-container').appendChild(stableContainer);
-        
-        // Add sparkling stars around the stable pattern
-        const numStars = 150;
-        const colors = [
-            '#FFD700', '#F0E68C', '#FFFF00', '#FFFACD', 
-            '#FAFAD2', '#FFFFE0', '#FFF8DC', '#EEE8AA'
-        ];
-        
-        for (let i = 0; i < numStars; i++) {
-            const star = document.createElement('div');
-            star.className = 'stable-star';
-            
-            // Random size and color
-            const size = Math.floor(Math.random() * 10) + 5;
-            const color = colors[Math.floor(Math.random() * colors.length)];
-            
-            star.style.width = size + 'px';
-            star.style.height = size + 'px';
-            star.style.backgroundColor = color;
-            star.style.boxShadow = `0 0 ${size/2}px ${color}`;
-            
-            // Random position around the grid
-            const gridRect = canvas.getBoundingClientRect();
-            const containerRect = document.querySelector('.grid-container').getBoundingClientRect();
-            
-            const gridX = gridRect.left - containerRect.left + gridRect.width / 2;
-            const gridY = gridRect.top - containerRect.top + gridRect.height / 2;
-            
-            const angle = Math.random() * Math.PI * 2;
-            const distance = Math.random() * 100 + (gridRect.width / 2);
-            
-            const x = gridX + Math.cos(angle) * distance;
-            const y = gridY + Math.sin(angle) * distance;
-            
-            star.style.left = x + 'px';
-            star.style.top = y + 'px';
-            
-            // Animation parameters
-            star.style.setProperty('--delay', Math.random() * 2 + 's');
-            star.style.setProperty('--duration', (Math.random() * 3 + 2) + 's');
-            
-            stableContainer.appendChild(star);
-        }
-        
-        // Create crown animation at the top
-        const crown = document.createElement('div');
-        crown.className = 'stable-crown';
-        crown.innerHTML = '👑';
-        stableContainer.appendChild(crown);
-        
-        // Add message
-        const message = document.createElement('div');
-        message.className = 'stable-message';
-        message.innerHTML = 'Perfect Balance Achieved! ✨';
-        stableContainer.appendChild(message);
-        
-        // Add trophy
-        const trophy = document.createElement('div');
-        trophy.className = 'stable-trophy';
-        trophy.innerHTML = '🏆';
-        stableContainer.appendChild(trophy);
-        
-        // Frame the stable pattern with a glowing border
-        const frame = document.createElement('div');
-        frame.className = 'stable-frame';
-        
-        // Position frame around the canvas
-        const canvasRect = canvas.getBoundingClientRect();
-        const containerRect2 = document.querySelector('.grid-container').getBoundingClientRect();
-        
-        frame.style.left = (canvasRect.left - containerRect2.left - 10) + 'px';
-        frame.style.top = (canvasRect.top - containerRect2.top - 10) + 'px';
-        frame.style.width = (canvasRect.width + 20) + 'px';
-        frame.style.height = (canvasRect.height + 20) + 'px';
-        
-        stableContainer.appendChild(frame);
-        
-        // Add a badge to the population counter
-        const badge = document.createElement('div');
-        badge.className = 'stable-badge';
-        badge.innerHTML = '⭐';
-        badge.setAttribute('title', 'Perfect Balance Achieved!');
-        populationCount.parentNode.appendChild(badge);
-        
-        // Play success sound
-        playStablePatternSound();
-        
-        // Remove animation after some time
+        // Wait 25ms before starting the animation
         setTimeout(() => {
-            stableContainer.classList.add('fade-out');
-            // Also fade out the badge
-            if (badge) {
-                badge.classList.add('fade-out');
+            // Create animation container
+            const stableContainer = document.createElement('div');
+            stableContainer.className = 'stable-container';
+            document.querySelector('.grid-container').appendChild(stableContainer);
+            
+            // Add sparkling stars around the stable pattern
+            const numStars = 150;
+            const colors = [
+                '#FFD700', '#F0E68C', '#FFFF00', '#FFFACD', 
+                '#FAFAD2', '#FFFFE0', '#FFF8DC', '#EEE8AA'
+            ];
+            
+            for (let i = 0; i < numStars; i++) {
+                const star = document.createElement('div');
+                star.className = 'stable-star';
+                
+                // Random size and color
+                const size = Math.floor(Math.random() * 10) + 5;
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                
+                star.style.width = size + 'px';
+                star.style.height = size + 'px';
+                star.style.backgroundColor = color;
+                star.style.boxShadow = `0 0 ${size/2}px ${color}`;
+                
+                // Random position around the grid
+                const gridRect = canvas.getBoundingClientRect();
+                const containerRect = document.querySelector('.grid-container').getBoundingClientRect();
+                
+                const gridX = gridRect.left - containerRect.left + gridRect.width / 2;
+                const gridY = gridRect.top - containerRect.top + gridRect.height / 2;
+                
+                const angle = Math.random() * Math.PI * 2;
+                const distance = Math.random() * 100 + (gridRect.width / 2);
+                
+                const x = gridX + Math.cos(angle) * distance;
+                const y = gridY + Math.sin(angle) * distance;
+                
+                star.style.left = x + 'px';
+                star.style.top = y + 'px';
+                
+                // Animation parameters
+                star.style.setProperty('--delay', Math.random() * 2 + 's');
+                star.style.setProperty('--duration', (Math.random() * 3 + 2) + 's');
+                
+                stableContainer.appendChild(star);
             }
+            
+            // Create crown animation at the top
+            const crown = document.createElement('div');
+            crown.className = 'stable-crown';
+            crown.innerHTML = '👑';
+            stableContainer.appendChild(crown);
+            
+            // Add message
+            const message = document.createElement('div');
+            message.className = 'stable-message';
+            message.innerHTML = 'Perfect Balance Achieved! ✨';
+            stableContainer.appendChild(message);
+            
+            // Add trophy
+            const trophy = document.createElement('div');
+            trophy.className = 'stable-trophy';
+            trophy.innerHTML = '🏆';
+            stableContainer.appendChild(trophy);
+            
+            // Frame the stable pattern with a glowing border
+            const frame = document.createElement('div');
+            frame.className = 'stable-frame';
+            
+            // Position frame around the canvas
+            const canvasRect = canvas.getBoundingClientRect();
+            const containerRect2 = document.querySelector('.grid-container').getBoundingClientRect();
+            
+            frame.style.left = (canvasRect.left - containerRect2.left - 10) + 'px';
+            frame.style.top = (canvasRect.top - containerRect2.top - 10) + 'px';
+            frame.style.width = (canvasRect.width + 20) + 'px';
+            frame.style.height = (canvasRect.height + 20) + 'px';
+            
+            stableContainer.appendChild(frame);
+            
+            // Add a badge to the population counter
+            const badge = document.createElement('div');
+            badge.className = 'stable-badge';
+            badge.innerHTML = '⭐';
+            badge.setAttribute('title', 'Perfect Balance Achieved!');
+            populationCount.parentNode.appendChild(badge);
+            
+            // Play success sound
+            playStablePatternSound();
+            
+            // Remove animation after some time
             setTimeout(() => {
-                stableContainer.remove();
-                // Also remove the badge
-                if (badge && badge.parentNode) {
-                    badge.parentNode.removeChild(badge);
+                stableContainer.classList.add('fade-out');
+                // Also fade out the badge
+                if (badge) {
+                    badge.classList.add('fade-out');
                 }
-            }, 1000);
-        }, 7000);
+                setTimeout(() => {
+                    stableContainer.remove();
+                    // Also remove the badge
+                    if (badge && badge.parentNode) {
+                        badge.parentNode.removeChild(badge);
+                    }
+                }, 1000);
+            }, 7000);
+        }, 25);
     }
     
     // Play a celebratory sound when stable pattern is achieved
