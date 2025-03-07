@@ -14,19 +14,26 @@ window.EventHandlers = {
   handleKeyPress: function(e, toggleSimulation, clearGrid, randomizeGrid) {
     if (e.key === "1") {
       // 1 key for start/pause (previously S)
-      toggleSimulation();
-      // Directly call the appropriate music method based on the running state
+      // First ensure audio is initialized on user interaction
       if (window.gameMusicPlayer) {
-        if (window.GameLogic.isGameRunning()) {
-          // Make sure audio is initialized first
-          if (!window.gameMusicPlayer.isAudioInitialized) {
-            window.gameMusicPlayer.unlockAudio();
-          }
-          window.gameMusicPlayer.play();
-        } else {
-          window.gameMusicPlayer.pause();
-        }
+        window.gameMusicPlayer.unlockAudio();
       }
+      
+      // Check if the grid has any living cells before starting the game
+      const population = window.GameLogic.countPopulation();
+      if (!window.GameLogic.isGameRunning() && population === 0) {
+        // Don't start the game if there are no living cells
+        // Show helper text
+        const emptyGridMessage = document.getElementById("empty-grid-message");
+        emptyGridMessage.classList.remove("hidden");
+        setTimeout(() => {
+          emptyGridMessage.classList.add("hidden");
+        }, 3000); // Hide after 3 seconds
+        return;
+      }
+      
+      // Then toggle the simulation
+      toggleSimulation();
     } else if (e.key === "2") {
       // 2 key for clear (previously C)
       clearGrid();

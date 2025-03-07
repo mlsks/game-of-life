@@ -52,8 +52,8 @@ window.initGame = function() {
   
   // Initialize audio context if available
   if (window.gameMusicPlayer) {
-    // Just initialize the audio context, don't play yet
-    window.gameMusicPlayer.unlockAudio();
+    // Don't initialize audio yet - wait for user interaction
+    console.log("Audio will be initialized on user interaction");
   }
 
   /**
@@ -72,6 +72,28 @@ window.initGame = function() {
    * Toggle simulation (start/stop)
    */
   function toggleSimulation() {
+    // Ensure audio is initialized on user interaction
+    if (window.gameMusicPlayer) {
+      window.gameMusicPlayer.unlockAudio();
+    }
+    
+    // Check if the grid has any living cells before starting the game
+    const population = window.GameLogic.countPopulation();
+    const emptyGridMessage = document.getElementById("empty-grid-message");
+    
+    if (!window.GameLogic.isGameRunning() && population === 0) {
+      // Don't start the game if there are no living cells
+      // Show helper text
+      emptyGridMessage.classList.remove("hidden");
+      setTimeout(() => {
+        emptyGridMessage.classList.add("hidden");
+      }, 3000); // Hide after 3 seconds
+      return;
+    }
+    
+    // Hide helper text if it's visible
+    emptyGridMessage.classList.add("hidden");
+    
     if (window.GameLogic.isGameRunning()) {
       stopGame();
       // Handle music when stopping the game
@@ -80,12 +102,8 @@ window.initGame = function() {
       }
     } else {
       startGame();
-      // Handle music when starting the game - same as pressing key "1"
+      // Handle music when starting the game
       if (window.gameMusicPlayer) {
-        // Make sure audio is initialized first
-        if (!window.gameMusicPlayer.isAudioInitialized) {
-          window.gameMusicPlayer.unlockAudio();
-        }
         window.gameMusicPlayer.play();
       }
     }

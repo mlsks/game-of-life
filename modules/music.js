@@ -342,73 +342,77 @@ class GameMusicPlayer {
   }
 
   setupEventListeners() {
-    // Immediately set up event listeners without waiting for DOMContentLoaded
-    // since this script is loaded after the DOM is already loaded
+    // Set up a single event listener for the first user interaction
+    const handleFirstInteraction = () => {
+      this.unlockAudio();
+      // Remove all event listeners once audio is initialized
+      ["touchstart", "touchend", "mousedown", "keydown", "click"].forEach(event => {
+        document.removeEventListener(event, handleFirstInteraction);
+      });
+    };
+
+    // Add event listeners for the first user interaction
+    ["touchstart", "touchend", "mousedown", "keydown", "click"].forEach(event => {
+      document.addEventListener(event, handleFirstInteraction, { once: false });
+    });
     
     // Mute button functionality
     const muteButton = document.getElementById("mute-toggle");
     if (muteButton) {
       muteButton.addEventListener("click", () => {
-        // Initialize audio on first user interaction
-        if (!this.isAudioInitialized) {
-          this.unlockAudio();
-        }
         this.toggleMute();
-        console.log("Mute toggled, isMuted:", this.isMuted);
       });
-    } else {
-      console.error("Mute button not found in the DOM");
     }
 
     // Stop music if clear button is clicked
     const clearButton = document.getElementById("clear");
     if (clearButton) {
       clearButton.addEventListener("click", () => {
-        // Initialize audio on first user interaction
-        if (!this.isAudioInitialized) {
-          this.unlockAudio();
-        }
         this.stop();
       });
     }
-
-    // Initialize audio on any user interaction
-    ["touchstart", "touchend", "mousedown", "keydown", "click"].forEach((event) => {
-      document.addEventListener(
-        event,
-        () => {
-          this.unlockAudio();
-        },
-        { once: true }
-      );
-    });
   }
 
   // Unlock audio on mobile devices
   unlockAudio() {
+    // Only proceed if we haven't initialized audio yet or if it's suspended
     if (!this.isAudioInitialized) {
-      const initialized = this.initAudio();
-      
-      if (initialized && this.audioContext) {
+      try {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        this.audioContext = new AudioContext();
+        
+        // Create main gain node for volume control
+        this.mainGainNode = this.audioContext.createGain();
+        this.mainGainNode.gain.value = this.isMuted ? 0 : this.originalVolume;
+        this.mainGainNode.connect(this.audioContext.destination);
+        
         // Play a silent sound to unlock audio
         const oscillator = this.audioContext.createOscillator();
         const gainNode = this.audioContext.createGain();
-
+        
         gainNode.gain.value = 0;
         oscillator.connect(gainNode);
         gainNode.connect(this.audioContext.destination);
-
+        
         oscillator.start(0);
         oscillator.stop(0.001);
-
-        console.log("Audio unlocked for playback");
+        
+        console.log("Audio context initialized and unlocked for playback");
+        this.isAudioInitialized = true;
+        return true;
+      } catch (e) {
+        console.error("Failed to initialize audio:", e);
+        return false;
       }
     } else if (this.audioContext && this.audioContext.state === "suspended") {
       // If already initialized but suspended, just resume
       this.audioContext.resume().then(() => {
         console.log("Audio context resumed after user interaction");
+      }).catch(err => {
+        console.error("Failed to resume audio context:", err);
       });
     }
+    return this.isAudioInitialized;
   }
 
   // Toggle mute state
@@ -448,39 +452,6 @@ class GameMusicPlayer {
       }
     } else {
       console.error("Mute button not found when toggling mute state");
-    }
-  }
-
-  // Initialize audio context and gain node
-  initAudio() {
-    try {
-      // Create audio context if it doesn't exist
-      if (!this.audioContext) {
-        const AudioContext = window.AudioContext || window.webkitAudioContext;
-        this.audioContext = new AudioContext();
-
-        // Create main gain node for volume control
-        this.mainGainNode = this.audioContext.createGain();
-        this.mainGainNode.gain.value = this.isMuted ? 0 : this.originalVolume;
-        this.mainGainNode.connect(this.audioContext.destination);
-
-        console.log("Audio context initialized");
-        this.isAudioInitialized = true;
-      }
-
-      // Resume audio context if suspended
-      if (this.audioContext && this.audioContext.state === "suspended") {
-        this.audioContext.resume().then(() => {
-          console.log("Audio context resumed successfully");
-        }).catch(err => {
-          console.error("Failed to resume audio context:", err);
-        });
-      }
-      
-      return true;
-    } catch (e) {
-      console.error("Failed to initialize audio:", e);
-      return false;
     }
   }
 
@@ -567,13 +538,13 @@ class GameMusicPlayer {
   playTone(frequency, startTime, duration, type = "sine", volume = 0.3) {
     if (!this.audioContext || frequency === 0) return null;
     
-    // Check if audio context is in suspended state
+    // Check if audio context is in suspended state and try to resume it
     if (this.audioContext.state === "suspended") {
-      // Try to resume the context
       this.audioContext.resume().catch(err => {
         console.error("Failed to resume audio context in playTone:", err);
-        return null;
       });
+      // If we can't resume immediately, we'll still try to create the oscillator
+      // Modern browsers will queue this until the context is resumed
     }
 
     try {
@@ -615,7 +586,8 @@ class GameMusicPlayer {
 
     // Always ensure audio is initialized and resumed
     if (!this.isAudioInitialized) {
-      const initialized = this.initAudio();
+      // Try to initialize audio now (this should happen after a user interaction)
+      const initialized = this.unlockAudio();
       if (!initialized) {
         console.error("Cannot play music - audio initialization failed");
         return;
@@ -625,6 +597,7 @@ class GameMusicPlayer {
     // Make sure the audio context is resumed
     if (this.audioContext && this.audioContext.state === "suspended") {
       this.audioContext.resume().then(() => {
+        console.log("Audio context resumed, starting playback");
         this.startPlayback();
       }).catch(err => {
         console.error("Failed to resume audio context:", err);
