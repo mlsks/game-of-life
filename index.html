@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Simulation</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Community Simulation <i class="fas fa-home"></i></h1>
+        <div class="controls">
+            <button id="start"><i class="fas fa-play"></i> Start Simulation</button>
+            <button id="stop"><i class="fas fa-pause"></i> Pause</button>
+            <button id="clear"><i class="fas fa-trash"></i> Clear Town</button>
+            <button id="random"><i class="fas fa-random"></i> Random Population</button>
+        </div>
+        <div class="grid-container">
+            <canvas id="grid"></canvas>
+            <div class="grid-overlay">
+                <div class="stats">
+                    <div class="stat-item">
+                        <span class="stat-label">Population:</span>
+                        <span id="population-count">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Generation:</span>
+                        <span id="generation-count">0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="info">
+            <p>Click on homes to add or remove residents. <span class="keyboard-tip">Keyboard shortcuts: Space (start/pause), C (clear), R (random)</span></p>
+            <div class="color-legend">
+                <h3><i class="fas fa-info-circle"></i> Community Status:</h3>
+                <div class="legend-item">
+                    <div class="color-box alive">😊</div>
+                    <span>Happy Resident</span>
+                </div>
+                <div class="legend-item">
+                    <div class="color-box dead">🏠</div>
+                    <span>Empty Home</span>
+                </div>
+                <div class="legend-item">
+                    <div class="color-box underpopulated">😢</div>
+                    <span>Leaving due to Loneliness</span>
+                </div>
+                <div class="legend-item">
+                    <div class="color-box overpopulated">😫</div>
+                    <span>Leaving due to Overcrowding</span>
+                </div>
+                <div class="legend-item">
+                    <div class="color-box reproduction">👨‍👩‍👧</div>
+                    <span>New Family Moving In</span>
+                </div>
+            </div>
+            <div class="rules-section">
+                <h3><i class="fas fa-book"></i> Community Rules:</h3>
+                <ul>
+                    <li><i class="fas fa-heart-broken"></i> Residents with fewer than 2 neighbors leave due to loneliness</li>
+                    <li><i class="fas fa-heart"></i> Residents with 2-3 neighbors are happy and stay</li>
+                    <li><i class="fas fa-users"></i> Residents with more than 3 neighbors leave due to overcrowding</li>
+                    <li><i class="fas fa-home"></i> Empty homes with exactly 3 neighbors attract new families</li>
+                </ul>
+            </div>
+        </div>
+        <footer>
+            <p>Based on Conway's Game of Life - A cellular automaton where simple rules create complex patterns</p>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
