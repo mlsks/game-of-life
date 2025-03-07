@@ -16,7 +16,7 @@ class GameMusicPlayer {
     this.scheduleAheadTime = 0.1; // How far ahead to schedule audio (in seconds)
     this.currentNote = 0;
     this.timerID = null;
-    this.originalVolume = 0.28; // Increased volume as requested
+    this.originalVolume = 0.35; // Increased volume as requested
     this.isAudioInitialized = false;
 
     // Arpeggiated Nintendo-style melody with Bach influences
