@@ -20,6 +20,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const clearButton = document.getElementById('clear');
     const randomButton = document.getElementById('random');
     
+    // Get counter elements
+    const populationCount = document.getElementById('population-count');
+    const generationCount = document.getElementById('generation-count');
+    
     // Game variables
     let width, height;
     let cols, rows;
@@ -27,6 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let cellStates = []; // To track special states for coloring
     let animationId = null;
     let isRunning = false;
+    let generation = 0;
     
     // Emoji icons for different states
     const HAPPY_RESIDENT = '😊';
@@ -71,6 +76,22 @@ document.addEventListener('DOMContentLoaded', () => {
             grid[i] = new Array(rows).fill(0);
             cellStates[i] = new Array(rows).fill(0); // 0: normal, 1: underpopulated, 2: overpopulated, 3: reproduction
         }
+        generation = 0;
+        updateCounters();
+    }
+    
+    // Update population and generation counters
+    function updateCounters() {
+        let population = 0;
+        for (let i = 0; i < cols; i++) {
+            for (let j = 0; j < rows; j++) {
+                if (grid[i][j] === 1) {
+                    population++;
+                }
+            }
+        }
+        populationCount.textContent = population;
+        generationCount.textContent = generation;
     }
     
     // Draw the grid
@@ -131,6 +152,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 ctx.fillText(emoji, x + CELL_SIZE / 2, y + CELL_SIZE / 2);
             }
         }
+        
+        // Update counters
+        updateCounters();
     }
     
     // Handle canvas click
@@ -243,6 +267,8 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
             // Update the grid
             grid = nextGrid;
+            generation++;
+            updateCounters();
         }, 300);
     }
     
