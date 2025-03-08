@@ -4,25 +4,26 @@
     "footer": "Un jeu communautaire amusant basé sur le Jeu de la Vie de Conway"
   },
   "controls": {
-    "start": "Démarrer l'Aventure !",
-    "clear": "Effacer la Ville",
+    "start": "Commencer l'Aventure !",
+    "clear": "Vider la Ville",
     "random": "Ville Magique",
     "emptyGridMessage": "L'aventure a besoin d'au moins un ami heureux pour commencer !"
   },
   "language": {
-    "changeLanguage": "Changer de Langue"
+    "changeLanguage": "Changer de Langue",
+    "languageName": "Français (French)"
   },
   "stats": {
     "friends": "Amis :",
     "time": "Temps :",
     "season": "Saison :",
     "friendsTooltip": "Le nombre d'amis heureux dans la ville",
-    "timeTooltip": "Chaque étape est un moment magique quand la ville change",
+    "timeTooltip": "Chaque étape est un moment magique où la ville change",
     "seasonTooltip": "Saison actuelle dans la ville"
   },
   "instructions": {
-    "clickHomes": "👆 Cliquez sur les maisons pour ajouter ou supprimer des résidents ! 👆",
-    "magicKeys": "✨ Touches Magiques : 1 (démarrer), 2 (effacer), 3 (magie) ✨"
+    "clickHomes": "👆 Cliquez sur les maisons pour ajouter ou retirer des résidents ! 👆",
+    "magicKeys": "✨ Touches Magiques : 1 (démarrer), 2 (vider), 3 (magique) ✨"
   },
   "legend": {
     "title": "Qui Vit Ici ?",
@@ -41,20 +42,20 @@
   },
   "timeExplanation": {
     "title": "Le Temps dans la Ville Magique",
-    "intro": "Chaque étape du temps est comme de la magie ! Quand vous appuyez sur \"Démarrer l'Aventure\", le temps avance pas à pas. Chaque étape :",
+    "intro": "Chaque pas de temps est comme de la magie ! Quand vous appuyez sur \"Commencer l'Aventure\", le temps avance pas à pas. Chaque étape :",
     "step1": "Tous les amis décident s'ils veulent rester ou partir",
     "step2": "De nouvelles familles peuvent emménager dans des maisons vides",
-    "step3": "La ville change toute en même temps !",
-    "counter": "Le compteur de \"Temps\" montre combien de changements magiques ont eu lieu dans votre ville !"
+    "step3": "La ville change d'un seul coup !",
+    "counter": "Le compteur \"Temps\" montre combien de changements magiques ont eu lieu dans votre ville !"
   },
   "mathExplanation": {
     "title": "Les Mathématiques Derrière Mini Explorateurs de Vie",
     "intro1": "Le Jeu de la Vie de Conway est comme un puzzle mathématique spécial ! Il a été créé par un mathématicien nommé John Conway en 1970.",
     "intro2": "La ville magique fonctionne sur une grille où chaque maison suit des règles mathématiques simples :",
-    "rule1": "Chaque maison peut être soit vide, soit avoir un ami y vivant",
+    "rule1": "Chaque maison peut être soit vide, soit avoir un ami qui y vit",
     "rule2": "Nous comptons combien d'amis vivent dans les 8 maisons autour de chaque maison",
-    "rule3": "Selon ce nombre, nous décidons si un ami reste, part, ou si un nouvel ami emménage",
-    "automaton": "Cela s'appelle un automate cellulaire - une façon élégante de dire \"cellules de grille qui suivent des règles pour changer au fil du temps\" !",
+    "rule3": "En fonction de ce nombre, nous décidons si un ami reste, part, ou si un nouvel ami emménage",
+    "automaton": "C'est ce qu'on appelle un automate cellulaire - une façon sophistiquée de dire \"cellules de grille qui suivent des règles pour changer au fil du temps\" !",
     "patterns": "Même si les règles sont super simples, elles peuvent créer des motifs étonnants qui semblent vivants ! Les scientifiques utilisent des mathématiques similaires pour étudier :",
     "study1": "Comment les plantes poussent",
     "study2": "Les taches et rayures des animaux",

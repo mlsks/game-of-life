@@ -1,28 +1,29 @@
 {
   "general": {
     "title": "Mini Esploratori della Vita",
-    "footer": "Un divertente gioco comunitario basato sul Gioco della Vita di Conway"
+    "footer": "Un gioco comunitario divertente basato sul Gioco della Vita di Conway"
   },
   "controls": {
     "start": "Inizia l'Avventura!",
-    "clear": "Cancella Città",
+    "clear": "Pulisci la Città",
     "random": "Città Magica",
     "emptyGridMessage": "L'avventura ha bisogno di almeno un amico felice per iniziare!"
   },
   "language": {
-    "changeLanguage": "Cambia lingua"
+    "changeLanguage": "Cambia Lingua",
+    "languageName": "Italiano (Italian)"
   },
   "stats": {
     "friends": "Amici:",
     "time": "Tempo:",
     "season": "Stagione:",
-    "friendsTooltip": "Il numero di amici felici in città",
+    "friendsTooltip": "Il numero di amici felici nella città",
     "timeTooltip": "Ogni passo è un momento magico quando la città cambia",
-    "seasonTooltip": "Stagione attuale in città"
+    "seasonTooltip": "Stagione attuale nella città"
   },
   "instructions": {
-    "clickHomes": "👆 Clicca sulle case per aggiungere o rimuovere residenti! 👆",
-    "magicKeys": "✨ Tasti Magici: 1 (inizia), 2 (cancella), 3 (magia) ✨"
+    "clickHomes": "👆 Clicca sulle case per aggiungere o rimuovere abitanti! 👆",
+    "magicKeys": "✨ Tasti Magici: 1 (inizia), 2 (pulisci), 3 (magia) ✨"
   },
   "legend": {
     "title": "Chi Vive Qui?",
@@ -41,43 +42,43 @@
   },
   "timeExplanation": {
     "title": "Il Tempo nella Città Magica",
-    "intro": "Ogni passo temporale è come magia! Quando premi \"Inizia l'Avventura\", il tempo avanza passo dopo passo. Ogni passo:",
-    "step1": "Tutti gli amici decidono se vogliono restare o andarsene",
-    "step2": "Nuove famiglie potrebbero trasferirsi in case vuote",
-    "step3": "La città cambia tutta in una volta!",
+    "intro": "Ogni passo del tempo è come la magia! Quando premi \"Inizia l'Avventura\", il tempo avanza passo dopo passo. Ogni passo:",
+    "step1": "Tutti gli amici decidono se vogliono rimanere o andarsene",
+    "step2": "Nuove famiglie possono trasferirsi in case vuote",
+    "step3": "La città cambia in un istante!",
     "counter": "Il contatore \"Tempo\" mostra quanti cambiamenti magici sono avvenuti nella tua città!"
   },
   "mathExplanation": {
-    "title": "La Matematica Dietro Mini Esploratori della Vita",
+    "title": "La Matematica Dietro i Mini Esploratori della Vita",
     "intro1": "Il Gioco della Vita di Conway è come un puzzle matematico speciale! È stato creato da un matematico di nome John Conway nel 1970.",
     "intro2": "La città magica funziona su una griglia dove ogni casa segue semplici regole matematiche:",
-    "rule1": "Ogni casa può essere vuota o avere un amico che ci vive",
+    "rule1": "Ogni casa può essere vuota o ospitare un amico",
     "rule2": "Contiamo quanti amici vivono nelle 8 case intorno a ogni casa",
-    "rule3": "In base a quel numero, decidiamo se un amico resta, se ne va, o se un nuovo amico si trasferisce",
-    "automaton": "Questo si chiama automa cellulare - un modo elegante per dire \"celle di griglia che seguono regole per cambiare nel tempo\"!",
-    "patterns": "Anche se le regole sono super semplici, possono creare modelli sorprendenti che sembrano vivi! Gli scienziati usano matematica simile per studiare:",
+    "rule3": "In base a questo numero, decidiamo se un amico rimane, se ne va o arriva un nuovo amico",
+    "automaton": "Questo si chiama automa cellulare - un modo fantasioso per dire \"celle della griglia che seguono regole per cambiare nel tempo\"!",
+    "patterns": "Anche se le regole sono estremamente semplici, possono creare schemi sorprendenti che sembrano vivi! Gli scienziati usano una matematica simile per studiare:",
     "study1": "Come crescono le piante",
     "study2": "Macchie e strisce degli animali",
     "study3": "Come funzionano i cervelli",
-    "study4": "Costruzione di computer intelligenti"
+    "study4": "Costruire computer intelligenti"
   },
   "patterns": {
     "stillLife": {
-      "title": "Modelli di Natura Morta",
-      "description": "Questi modelli non cambiano mai!"
+      "title": "Schemi di Vita Statica",
+      "description": "Questi schemi non cambiano mai!"
     },
     "oscillator": {
-      "title": "Modelli Oscillatori",
-      "description": "Questi modelli si ripetono ancora e ancora!"
+      "title": "Schemi Oscillanti",
+      "description": "Questi schemi si ripetono ancora e ancora!"
     },
     "spaceship": {
-      "title": "Modelli di Astronave",
-      "description": "Questi modelli si muovono attraverso la griglia!"
+      "title": "Schemi di Astronave",
+      "description": "Questi schemi si muovono attraverso la griglia!"
     },
     "gliderGun": {
-      "title": "Modelli di Cannone Aliante",
-      "description": "Questi incredibili modelli creano nuovi modelli per sempre!",
-      "badge": "Super Figo!"
+      "title": "Schemi di Pistola Aliante",
+      "description": "Questi straordinari schemi creano nuovi schemi per sempre!",
+      "badge": "Super Cool!"
     }
   },
   "emojis": {

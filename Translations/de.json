@@ -1,31 +1,32 @@
 {
   "general": {
-    "title": "Mini Lebenserforscher",
-    "footer": "Ein unterhaltsames Gemeinschaftsspiel basierend auf Conways Spiel des Lebens"
+    "title": "Mini Lebensforscher",
+    "footer": "Ein lustiges Gemeinschaftsspiel basierend auf Conways Spiel des Lebens"
   },
   "controls": {
     "start": "Abenteuer starten!",
-    "clear": "Stadt löschen",
+    "clear": "Stadt leeren",
     "random": "Magische Stadt",
-    "emptyGridMessage": "Das Abenteuer braucht mindestens einen glücklichen Freund zum Starten!"
+    "emptyGridMessage": "Das Abenteuer benötigt mindestens einen glücklichen Freund, um zu beginnen!"
   },
   "language": {
-    "changeLanguage": "Sprache ändern"
+    "changeLanguage": "Sprache ändern",
+    "languageName": "Deutsch (German)"
   },
   "stats": {
     "friends": "Freunde:",
     "time": "Zeit:",
     "season": "Jahreszeit:",
     "friendsTooltip": "Die Anzahl der glücklichen Freunde in der Stadt",
-    "timeTooltip": "Jeder Schritt ist ein magischer Moment, wenn sich die Stadt verändert",
+    "timeTooltip": "Jeder Schritt ist ein magischer Moment, in dem sich die Stadt verändert",
     "seasonTooltip": "Aktuelle Jahreszeit in der Stadt"
   },
   "instructions": {
     "clickHomes": "👆 Klicke auf Häuser, um Bewohner hinzuzufügen oder zu entfernen! 👆",
-    "magicKeys": "✨ Magische Tasten: 1 (starten), 2 (löschen), 3 (Magie) ✨"
+    "magicKeys": "✨ Magische Tasten: 1 (starten), 2 (leeren), 3 (magisch) ✨"
   },
   "legend": {
-    "title": "Wer lebt hier?",
+    "title": "Wer wohnt hier?",
     "happyFriend": "Glücklicher Freund",
     "emptyHome": "Leeres Haus",
     "lonelyFriend": "Einsamer Freund",
@@ -34,28 +35,28 @@
   },
   "rules": {
     "title": "Regeln der magischen Stadt:",
-    "rule1": "Freunde mit weniger als 2 Nachbarn werden einsam und gehen",
+    "rule1": "Freunde mit weniger als 2 Nachbarn fühlen sich einsam und gehen",
     "rule2": "Freunde mit 2-3 Nachbarn sind glücklich und bleiben",
-    "rule3": "Freunde mit mehr als 3 Nachbarn fühlen sich überfüllt und gehen",
+    "rule3": "Freunde mit mehr als 3 Nachbarn fühlen sich überfordert und gehen",
     "rule4": "Leere Häuser mit genau 3 Nachbarn ziehen neue Familien an"
   },
   "timeExplanation": {
     "title": "Zeit in der magischen Stadt",
-    "intro": "Jeder Zeitschritt ist wie Magie! Wenn du auf \"Abenteuer starten\" drückst, bewegt sich die Zeit Schritt für Schritt vorwärts. Jeder Schritt:",
+    "intro": "Jeder Zeitschritt ist wie Magie! Wenn du auf \"Abenteuer starten\" klickst, schreitet die Zeit Schritt für Schritt voran. Jeder Schritt:",
     "step1": "Alle Freunde entscheiden, ob sie bleiben oder gehen wollen",
     "step2": "Neue Familien könnten in leere Häuser einziehen",
     "step3": "Die Stadt verändert sich auf einmal!",
-    "counter": "Der \"Zeit\"-Zähler zeigt, wie viele magische Veränderungen in deiner Stadt passiert sind!"
+    "counter": "Der \"Zeit\"-Zähler zeigt, wie viele magische Veränderungen in deiner Stadt stattgefunden haben!"
   },
   "mathExplanation": {
-    "title": "Die Mathematik hinter Mini Lebenserforschern",
-    "intro1": "Conways Spiel des Lebens ist wie ein besonderes mathematisches Rätsel! Es wurde 1970 von einem Mathematiker namens John Conway erschaffen.",
-    "intro2": "Die magische Stadt funktioniert auf einem Raster, wo jedes Haus einfachen mathematischen Regeln folgt:",
-    "rule1": "Jedes Haus kann entweder leer sein oder einen Freund haben, der darin wohnt",
-    "rule2": "Wir zählen, wie viele Freunde in den 8 Häusern um jedes Haus herum leben",
+    "title": "Die Mathematik hinter Mini Lebensforscher",
+    "intro1": "Conways Spiel des Lebens ist wie ein besonderes mathematisches Puzzle! Es wurde 1970 von einem Mathematiker namens John Conway erfunden.",
+    "intro2": "Die magische Stadt funktioniert auf einem Raster, in dem jedes Haus einfachen mathematischen Regeln folgt:",
+    "rule1": "Jedes Haus kann entweder leer sein oder einen Freund beherbergen",
+    "rule2": "Wir zählen, wie viele Freunde in den 8 Häusern um jedes Haus leben",
     "rule3": "Basierend auf dieser Zahl entscheiden wir, ob ein Freund bleibt, geht oder ein neuer Freund einzieht",
-    "automaton": "Das nennt man einen zellulären Automaten - eine ausgefallene Art zu sagen \"Rasterzellen, die Regeln folgen, um sich im Laufe der Zeit zu verändern\"!",
-    "patterns": "Obwohl die Regeln super einfach sind, können sie erstaunliche Muster erzeugen, die lebendig aussehen! Wissenschaftler verwenden ähnliche Mathematik, um zu untersuchen:",
+    "automaton": "Dies nennt man einen zellulären Automaten - eine schicke Art zu sagen \"Rasterzellen, die Regeln folgen, um sich im Laufe der Zeit zu verändern\"!",
+    "patterns": "Obwohl die Regeln super einfach sind, können sie erstaunliche Muster erzeugen, die lebendig erscheinen! Wissenschaftler verwenden ähnliche Mathematik, um zu untersuchen:",
     "study1": "Wie Pflanzen wachsen",
     "study2": "Tierflecken und -streifen",
     "study3": "Wie Gehirne funktionieren",
@@ -64,20 +65,20 @@
   "patterns": {
     "stillLife": {
       "title": "Stillleben-Muster",
-      "description": "Diese Muster ändern sich nie!"
+      "description": "Diese Muster verändern sich nie!"
     },
     "oscillator": {
-      "title": "Oszillator-Muster",
+      "title": "Oszillierende Muster",
       "description": "Diese Muster wiederholen sich immer wieder!"
     },
     "spaceship": {
       "title": "Raumschiff-Muster",
-      "description": "Diese Muster bewegen sich über das Raster!"
+      "description": "Diese Muster bewegen sich durch das Raster!"
     },
     "gliderGun": {
-      "title": "Gleiter-Kanonen-Muster",
+      "title": "Gleiterkanonen-Muster",
       "description": "Diese erstaunlichen Muster erzeugen für immer neue Muster!",
-      "badge": "Super Cool!"
+      "badge": "Super cool!"
     }
   },
   "emojis": {

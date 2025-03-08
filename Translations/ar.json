@@ -10,7 +10,8 @@
     "emptyGridMessage": "تحتاج المغامرة إلى صديق سعيد واحد على الأقل للبدء!"
   },
   "language": {
-    "changeLanguage": "تغيير اللغة"
+    "changeLanguage": "تغيير اللغة",
+    "languageName": "العربية (Arabic)"
   },
   "stats": {
     "friends": "الأصدقاء:",

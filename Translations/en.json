@@ -10,7 +10,8 @@
     "emptyGridMessage": "Adventure needs at least one happy friend to start!"
   },
   "language": {
-    "changeLanguage": "Change Language"
+    "changeLanguage": "Change Language",
+    "languageName": "English"
   },
   "stats": {
     "friends": "Friends:",

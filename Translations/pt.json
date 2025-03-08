@@ -1,16 +1,17 @@
 {
   "general": {
     "title": "Mini Exploradores da Vida",
-    "footer": "Um divertido jogo comunitário baseado no Jogo da Vida de Conway"
+    "footer": "Um jogo comunitário divertido baseado no Jogo da Vida de Conway"
   },
   "controls": {
-    "start": "Iniciar Aventura!",
-    "clear": "Limpar Cidade",
+    "start": "Comece a Aventura!",
+    "clear": "Limpe a Cidade",
     "random": "Cidade Mágica",
     "emptyGridMessage": "A aventura precisa de pelo menos um amigo feliz para começar!"
   },
   "language": {
-    "changeLanguage": "Alterar idioma"
+    "changeLanguage": "Mudar Idioma",
+    "languageName": "Português (Portuguese)"
   },
   "stats": {
     "friends": "Amigos:",
@@ -21,62 +22,62 @@
     "seasonTooltip": "Estação atual na cidade"
   },
   "instructions": {
-    "clickHomes": "👆 Clique nas casas para adicionar ou remover residentes! 👆",
-    "magicKeys": "✨ Teclas Mágicas: 1 (iniciar), 2 (limpar), 3 (magia) ✨"
+    "clickHomes": "👆 Clique nas casas para adicionar ou remover moradores! 👆",
+    "magicKeys": "✨ Teclas Mágicas: 1 (iniciar), 2 (limpar), 3 (mágica) ✨"
   },
   "legend": {
-    "title": "Quem Vive Aqui?",
+    "title": "Quem Mora Aqui?",
     "happyFriend": "Amigo Feliz",
     "emptyHome": "Casa Vazia",
     "lonelyFriend": "Amigo Solitário",
     "tooManyFriends": "Muitos Amigos!",
-    "newFamily": "Nova Família se Mudando"
+    "newFamily": "Nova Família Chegando"
   },
   "rules": {
     "title": "Regras da Cidade Mágica:",
-    "rule1": "Amigos com menos de 2 vizinhos ficam solitários e vão embora",
-    "rule2": "Amigos com 2-3 vizinhos estão felizes e ficam",
+    "rule1": "Amigos com menos de 2 vizinhos se sentem sozinhos e vão embora",
+    "rule2": "Amigos com 2-3 vizinhos são felizes e ficam",
     "rule3": "Amigos com mais de 3 vizinhos se sentem apertados e vão embora",
     "rule4": "Casas vazias com exatamente 3 vizinhos atraem novas famílias"
   },
   "timeExplanation": {
-    "title": "Tempo na Cidade Mágica",
-    "intro": "Cada passo do tempo é como mágica! Quando você pressiona \"Iniciar Aventura\", o tempo avança passo a passo. Cada passo:",
+    "title": "O Tempo na Cidade Mágica",
+    "intro": "Cada passo do tempo é como mágica! Quando você pressiona \"Comece a Aventura\", o tempo avança passo a passo. Cada passo:",
     "step1": "Todos os amigos decidem se querem ficar ou ir embora",
     "step2": "Novas famílias podem se mudar para casas vazias",
-    "step3": "A cidade muda toda de uma vez!",
-    "counter": "O contador de \"Tempo\" mostra quantas mudanças mágicas aconteceram na sua cidade!"
+    "step3": "A cidade muda num instante!",
+    "counter": "O contador \"Tempo\" mostra quantas mudanças mágicas aconteceram na sua cidade!"
   },
   "mathExplanation": {
     "title": "A Matemática por Trás dos Mini Exploradores da Vida",
     "intro1": "O Jogo da Vida de Conway é como um quebra-cabeça matemático especial! Foi criado por um matemático chamado John Conway em 1970.",
     "intro2": "A cidade mágica funciona em uma grade onde cada casa segue regras matemáticas simples:",
-    "rule1": "Cada casa pode estar vazia ou ter um amigo morando nela",
+    "rule1": "Cada casa pode estar vazia ou ter um amigo",
     "rule2": "Contamos quantos amigos vivem nas 8 casas ao redor de cada casa",
-    "rule3": "Com base nesse número, decidimos se um amigo fica, vai embora, ou um novo amigo se muda",
-    "automaton": "Isso é chamado de autômato celular - uma maneira elegante de dizer \"células de grade que seguem regras para mudar ao longo do tempo\"!",
-    "patterns": "Mesmo que as regras sejam super simples, elas podem criar padrões incríveis que parecem estar vivos! Cientistas usam matemática semelhante para estudar:",
+    "rule3": "Com base nesse número, decidimos se um amigo fica, vai embora ou um novo amigo chega",
+    "automaton": "Isso é chamado de autômato celular - uma maneira chique de dizer \"células da grade que seguem regras para mudar ao longo do tempo\"!",
+    "patterns": "Mesmo que as regras sejam extremamente simples, elas podem criar padrões surpreendentes que parecem vivos! Cientistas usam matemática semelhante para estudar:",
     "study1": "Como as plantas crescem",
     "study2": "Manchas e listras de animais",
     "study3": "Como os cérebros funcionam",
-    "study4": "Construção de computadores inteligentes"
+    "study4": "Construir computadores inteligentes"
   },
   "patterns": {
     "stillLife": {
-      "title": "Padrões de Natureza Morta",
-      "description": "Estes padrões nunca mudam!"
+      "title": "Padrões de Vida Parada",
+      "description": "Esses padrões nunca mudam!"
     },
     "oscillator": {
-      "title": "Padrões Osciladores",
-      "description": "Estes padrões se repetem várias vezes!"
+      "title": "Padrões Oscilantes",
+      "description": "Esses padrões se repetem de novo e de novo!"
     },
     "spaceship": {
       "title": "Padrões de Nave Espacial",
-      "description": "Estes padrões se movem pela grade!"
+      "description": "Esses padrões se movem pela grade!"
     },
     "gliderGun": {
-      "title": "Padrões de Canhão de Planadores",
-      "description": "Estes padrões incríveis criam novos padrões para sempre!",
+      "title": "Padrões de Canhão de Planador",
+      "description": "Esses padrões incríveis criam novos padrões para sempre!",
       "badge": "Super Legal!"
     }
   },
