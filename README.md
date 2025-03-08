@@ -2,7 +2,7 @@
 
 This is an interactive implementation of Conway's Game of Life, a cellular automaton devised by the British mathematician John Conway in 1970. This version features a kid-friendly interface, special effects, and musical accompaniment.
 
-![Game of Life Screenshot](https://github.com/user/game-of-life/raw/main/screenshot.png)
+![Game of Life Screenshot](https://raw.githubusercontent.com/mlsks/game-of-life/refs/heads/main/screenshot.png)
 
 ## Live Demo
 
