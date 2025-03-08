@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mini Life Explorers</title>
+    <title data-i18n="general.title">Mini Life Explorers</title>
     <!-- Add preconnect for faster font loading -->
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
     <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com" />
@@ -37,20 +37,217 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <style>
+      /* Language selector styles */
+      .language-button-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 15px;
+        width: 100%;
+      }
+      
+      .language-button {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 8px 15px;
+        background-color: #fff;
+        border: 3px solid #4a90e2;
+        border-radius: 15px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        font-size: 16px;
+        font-weight: bold;
+        color: #4a90e2;
+      }
+      
+      .language-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        background-color: #f0f8ff;
+      }
+      
+      .language-button:active {
+        transform: translateY(1px);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      
+      .language-button img {
+        width: 30px;
+        height: 20px;
+        margin-right: 8px;
+        border: 1px solid #eee;
+        border-radius: 4px;
+      }
+      
+      .language-button .button-text {
+        margin-right: 5px;
+      }
+      
+      .language-button .fa-globe {
+        margin-right: 8px;
+        color: #4a90e2;
+        font-size: 18px;
+      }
+      
+      .language-dropdown {
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 280px;
+        background-color: white;
+        border: 3px solid #4a90e2;
+        border-radius: 15px;
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+        z-index: 1000;
+        display: none;
+        padding: 12px;
+        margin-top: 10px;
+        max-height: 350px;
+        overflow-y: auto;
+      }
+      
+      .language-dropdown:before {
+        content: '';
+        position: absolute;
+        top: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0;
+        height: 0;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-bottom: 10px solid #4a90e2;
+      }
+      
+      .language-dropdown.show {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+      }
+      
+      .language-option {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 10px 5px;
+        cursor: pointer;
+        border-radius: 10px;
+        transition: all 0.2s;
+        border: 2px solid transparent;
+      }
+      
+      .language-option:hover {
+        background-color: #f0f8ff;
+        border-color: #4a90e2;
+        transform: scale(1.05);
+      }
+      
+      .language-option img {
+        width: 40px;
+        height: 26px;
+        border: 1px solid #eee;
+        border-radius: 5px;
+        margin-bottom: 6px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      
+      .language-option span {
+        font-size: 12px;
+        text-align: center;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 100%;
+        font-weight: bold;
+        color: #444;
+      }
+      
+      .language-option.active {
+        background-color: #e6f7ff;
+        border-color: #4a90e2;
+      }
+      
+      /* RTL support */
+      [dir="rtl"] .language-button img {
+        margin-right: 0;
+        margin-left: 8px;
+      }
+      
+      [dir="rtl"] .language-button .button-text {
+        margin-right: 0;
+        margin-left: 5px;
+      }
+      
+      [dir="rtl"] .language-button .fa-globe {
+        margin-right: 0;
+        margin-left: 8px;
+      }
+      
+      /* Dark mode support */
+      @media (prefers-color-scheme: dark) {
+        .language-button {
+          background-color: #333;
+          border-color: #5a9aea;
+          color: #5a9aea;
+        }
+        
+        .language-button:hover {
+          background-color: #444;
+        }
+        
+        .language-dropdown {
+          background-color: #333;
+          border-color: #5a9aea;
+        }
+        
+        .language-dropdown:before {
+          border-bottom-color: #5a9aea;
+        }
+        
+        .language-option:hover {
+          background-color: #444;
+          border-color: #5a9aea;
+        }
+        
+        .language-option span {
+          color: #ddd;
+        }
+        
+        .language-option.active {
+          background-color: #1a3f5f;
+          border-color: #5a9aea;
+        }
+      }
+    </style>
   </head>
   <body>
     <div class="container">
-      <h1>Mini Life Explorers <i class="fas fa-home"></i></h1>
+      <h1 data-i18n="general.title">Mini Life Explorers <i class="fas fa-home"></i></h1>
       <div class="controls">
-        <button id="start"><i class="fas fa-play"></i> Start Adventure!</button>
-        <button id="clear"><i class="fas fa-trash"></i> Clear Town</button>
-        <button id="random"><i class="fas fa-random"></i> Magic Town</button>
+        <button id="start" data-i18n="controls.start"><i class="fas fa-play"></i> Start Adventure!</button>
+        <button id="clear" data-i18n="controls.clear"><i class="fas fa-trash"></i> Clear Town</button>
+        <button id="random" data-i18n="controls.random"><i class="fas fa-random"></i> Magic Town</button>
         <button id="mute-toggle" class="mute-button">
           <i class="fas fa-volume-up"></i>
         </button>
-        <div id="empty-grid-message" class="helper-text hidden">
+        <div id="empty-grid-message" class="helper-text hidden" data-i18n="controls.emptyGridMessage">
           <i class="fas fa-info-circle"></i> Adventure needs at least one happy
           friend to start!
+        </div>
+        <div class="language-button-container">
+          <div id="language-selector" class="language-button">
+            <i class="fas fa-globe"></i>
+            <span class="button-text">Change Language</span>
+            <img src="flags/en.png" alt="Current language" id="current-language-flag">
+            <i class="fas fa-caret-down"></i>
+            <div class="language-dropdown" id="language-dropdown">
+              <!-- Language options will be added here dynamically -->
+            </div>
+          </div>
         </div>
       </div>
       <div class="grid-container">
@@ -63,71 +260,74 @@
             <div
               class="stat-item"
               data-tooltip="The number of happy friends in town"
+              data-i18n-title="stats.friendsTooltip"
             >
-              <span class="stat-label">Friends:</span>
+              <span class="stat-label" data-i18n="stats.friends">Friends:</span>
               <span id="population-count">0</span>
             </div>
             <div
               class="stat-item"
               data-tooltip="Each step is a magical moment when the town changes"
+              data-i18n-title="stats.timeTooltip"
             >
-              <span class="stat-label">Time:</span>
+              <span class="stat-label" data-i18n="stats.time">Time:</span>
               <span id="generation-count">0</span>
             </div>
             <div
               class="stat-item season-indicator"
               data-tooltip="Current season in the town"
+              data-i18n-title="stats.seasonTooltip"
             >
-              <span class="stat-label">Season:</span>
-              <span id="season-display">🌸</span>
+              <span class="stat-label" data-i18n="stats.season">Season:</span>
+              <span id="season-display" data-i18n="emojis.spring">🌸</span>
             </div>
           </div>
         </div>
       </div>
       <div class="info">
         <p>
-          <span style="font-size: 28px; display: block; margin-bottom: 10px;">👆 Click on homes to add or remove residents! 👆</span>
-          <span class="keyboard-tip">✨ Magic Keys: 1 (start), 2 (clear), 3 (magic) ✨</span>
+          <span style="font-size: 28px; display: block; margin-bottom: 10px;" data-i18n="instructions.clickHomes">👆 Click on homes to add or remove residents! 👆</span>
+          <span class="keyboard-tip" data-i18n="instructions.magicKeys">✨ Magic Keys: 1 (start), 2 (clear), 3 (magic) ✨</span>
         </p>
         <div class="color-legend">
-          <h3><i class="fas fa-info-circle"></i> Who Lives Here?</h3>
+          <h3 data-i18n="legend.title"><i class="fas fa-info-circle"></i> Who Lives Here?</h3>
           <div class="legend-item">
-            <div class="color-box alive">😊</div>
-            <span>Happy Friend</span>
+            <div class="color-box alive" data-i18n="emojis.happyFriend">😊</div>
+            <span data-i18n="legend.happyFriend">Happy Friend</span>
           </div>
           <div class="legend-item">
-            <div class="color-box dead">🏠</div>
-            <span>Empty Home</span>
+            <div class="color-box dead" data-i18n="emojis.emptyHome">🏠</div>
+            <span data-i18n="legend.emptyHome">Empty Home</span>
           </div>
           <div class="legend-item">
-            <div class="color-box underpopulated">😢</div>
-            <span>Lonely Friend</span>
+            <div class="color-box underpopulated" data-i18n="emojis.lonelyFriend">😢</div>
+            <span data-i18n="legend.lonelyFriend">Lonely Friend</span>
           </div>
           <div class="legend-item">
-            <div class="color-box overpopulated">😫</div>
-            <span>Too Many Friends!</span>
+            <div class="color-box overpopulated" data-i18n="emojis.tooManyFriends">😫</div>
+            <span data-i18n="legend.tooManyFriends">Too Many Friends!</span>
           </div>
           <div class="legend-item">
-            <div class="color-box reproduction">👨‍👩‍👧</div>
-            <span>New Family Moving In</span>
+            <div class="color-box reproduction" data-i18n="emojis.newFamily">👨‍👩‍👧</div>
+            <span data-i18n="legend.newFamily">New Family Moving In</span>
           </div>
         </div>
         <div class="rules-section">
-          <h3><i class="fas fa-book"></i> Magic Town Rules:</h3>
+          <h3 data-i18n="rules.title"><i class="fas fa-book"></i> Magic Town Rules:</h3>
           <ul>
-            <li>
+            <li data-i18n="rules.rule1">
               <i class="fas fa-heart-broken"></i> Friends with fewer than 2
               neighbors get lonely and leave
             </li>
-            <li>
+            <li data-i18n="rules.rule2">
               <i class="fas fa-heart"></i> Friends with 2-3 neighbors are happy
               and stay
             </li>
-            <li>
+            <li data-i18n="rules.rule3">
               <i class="fas fa-users"></i> Friends with more than 3 neighbors
               feel crowded and leave
             </li>
-            <li>
+            <li data-i18n="rules.rule4">
               <i class="fas fa-home"></i> Empty homes with exactly 3 neighbors
               attract new families
             </li>
@@ -135,23 +335,23 @@
         </div>
 
         <div class="rules-section time-explanation">
-          <h3><i class="fas fa-clock"></i> Time in Magic Town</h3>
-          <p>
+          <h3 data-i18n="timeExplanation.title"><i class="fas fa-clock"></i> Time in Magic Town</h3>
+          <p data-i18n="timeExplanation.intro">
             Each time step is like magic! When you press "Start Adventure", time
             moves forward one step at a time. Each step:
           </p>
           <ul>
-            <li>
+            <li data-i18n="timeExplanation.step1">
               <i class="fas fa-magic"></i> All friends decide if they want to
               stay or leave
             </li>
-            <li>
+            <li data-i18n="timeExplanation.step2">
               <i class="fas fa-door-open"></i> New families might move into
               empty homes
             </li>
-            <li><i class="fas fa-sync"></i> The town changes all at once!</li>
+            <li data-i18n="timeExplanation.step3"><i class="fas fa-sync"></i> The town changes all at once!</li>
           </ul>
-          <p>
+          <p data-i18n="timeExplanation.counter">
             The "Time" counter shows how many magical changes have happened in
             your town!
           </p>
@@ -159,87 +359,87 @@
       </div>
 
       <div class="math-explanation">
-        <h3>
+        <h3 data-i18n="mathExplanation.title">
           <i class="fas fa-calculator"></i> The Math Behind Mini Life Explorers
         </h3>
         <div class="math-content">
           <div class="math-text">
-            <p>
+            <p data-i18n="mathExplanation.intro1">
               Conway's Game of Life is like a special math puzzle! It was
               created by a mathematician named John Conway in 1970.
             </p>
-            <p>
+            <p data-i18n="mathExplanation.intro2">
               The magic town works on a grid where each home follows simple math
               rules:
             </p>
             <ul>
-              <li>
+              <li data-i18n="mathExplanation.rule1">
                 <i class="fas fa-equals"></i> Each home can be either
                 <strong>empty</strong> or have a <strong>friend</strong> living
                 in it
               </li>
-              <li>
+              <li data-i18n="mathExplanation.rule2">
                 <i class="fas fa-plus"></i> We count how many friends live in
                 the 8 homes around each home
               </li>
-              <li>
+              <li data-i18n="mathExplanation.rule3">
                 <i class="fas fa-not-equal"></i> Based on that number, we decide
                 if a friend stays, leaves, or a new friend moves in
               </li>
             </ul>
-            <p>
+            <p data-i18n="mathExplanation.automaton">
               This is called a <strong>cellular automaton</strong> - a fancy way
               of saying "grid cells that follow rules to change over time"!
             </p>
-            <p>
+            <p data-i18n="mathExplanation.patterns">
               Even though the rules are super simple, they can create amazing
               patterns that look like they're alive! Scientists use similar math
               to study:
             </p>
             <ul>
-              <li><i class="fas fa-leaf"></i> How plants grow</li>
-              <li><i class="fas fa-paw"></i> Animal spots and stripes</li>
-              <li><i class="fas fa-brain"></i> How brains work</li>
-              <li><i class="fas fa-robot"></i> Building smart computers</li>
+              <li data-i18n="mathExplanation.study1"><i class="fas fa-leaf"></i> How plants grow</li>
+              <li data-i18n="mathExplanation.study2"><i class="fas fa-paw"></i> Animal spots and stripes</li>
+              <li data-i18n="mathExplanation.study3"><i class="fas fa-brain"></i> How brains work</li>
+              <li data-i18n="mathExplanation.study4"><i class="fas fa-robot"></i> Building smart computers</li>
             </ul>
           </div>
           <div class="math-patterns">
             <div class="pattern">
-              <h4>Still Life Patterns</h4>
+              <h4 data-i18n="patterns.stillLife.title">Still Life Patterns</h4>
               <div class="pattern-emoji">
                 <span>🏠🏠</span>
                 <span>🏠🏠</span>
               </div>
-              <p>These patterns never change!</p>
+              <p data-i18n="patterns.stillLife.description">These patterns never change!</p>
             </div>
             <div class="pattern">
-              <h4>Oscillator Patterns</h4>
+              <h4 data-i18n="patterns.oscillator.title">Oscillator Patterns</h4>
               <div class="pattern-emoji">
                 <span>🏠😊🏠</span>
                 <span>🏠😊🏠</span>
                 <span>🏠😊🏠</span>
               </div>
-              <p>These patterns repeat over and over!</p>
+              <p data-i18n="patterns.oscillator.description">These patterns repeat over and over!</p>
             </div>
             <div class="pattern">
-              <h4>Spaceship Patterns</h4>
+              <h4 data-i18n="patterns.spaceship.title">Spaceship Patterns</h4>
               <div class="pattern-emoji">
                 <span>🏠😊🏠</span>
                 <span>😊🏠🏠</span>
                 <span>😊😊😊</span>
               </div>
-              <p>These patterns move across the grid!</p>
+              <p data-i18n="patterns.spaceship.description">These patterns move across the grid!</p>
             </div>
             <div class="pattern special-pattern">
-              <h4>Glider Gun Patterns</h4>
+              <h4 data-i18n="patterns.gliderGun.title">Glider Gun Patterns</h4>
               <div class="pattern-emoji">
                 <span>🏠🏠🏠🏠😊🏠</span>
                 <span>🏠😊🏠🏠🏠🏠</span>
                 <span>😊😊🏠🏠🏠🏠</span>
               </div>
-              <p>These amazing patterns create new patterns forever!</p>
+              <p data-i18n="patterns.gliderGun.description">These amazing patterns create new patterns forever!</p>
               <div class="pattern-badge">
-                <i class="fas fa-star"></i> Super Cool!
+                <i class="fas fa-star"></i> <span data-i18n="patterns.gliderGun.badge">Super Cool!</span>
               </div>
             </div>
           </div>
@@ -247,10 +447,142 @@
       </div>
 
       <footer>
-        <p>A fun community game based on Conway's Game of Life</p>
+        <p data-i18n="general.footer">A fun community game based on Conway's Game of Life</p>
       </footer>
     </div>
   </body>
   <script src="font-awesome-fix.js"></script>
+  <script src="Translations/translations.js"></script>
+  <script>
+    // Initialize the translation system and custom language selector
+    document.addEventListener('DOMContentLoaded', async () => {
+      try {
+        // Initialize the translation system
+        await window.i18n.init();
+        
+        // Set up the custom language selector
+        setupLanguageSelector();
+        
+        // Update the UI with translations
+        window.i18n.updateUI();
+        
+        // Add console logs for debugging
+        console.log('Current Language:', window.i18n.getCurrentLanguage());
+        console.log('Supported Languages:', window.i18n.getSupportedLanguages());
+        console.log('Language Names:', window.i18n.getLanguageNames());
+        
+        // Handle RTL languages
+        window.addEventListener('languageChanged', (event) => {
+          console.log('Language Changed:', event.detail.language);
+          
+          const isRTL = ['ar', 'he', 'fa', 'ur'].includes(event.detail.language);
+          document.documentElement.dir = isRTL ? 'rtl' : 'ltr';
+          
+          // Update the current language flag
+          const flagElement = document.getElementById('current-language-flag');
+          const flagPath = `flags/${event.detail.language}.png`;
+          console.log('Flag Path:', flagPath);
+          
+          if (flagElement) {
+            flagElement.src = flagPath;
+          } else {
+            console.error('Flag element not found');
+          }
+          
+          // Update the language button text
+          const buttonTextElement = document.querySelector('.language-button .button-text');
+          if (buttonTextElement) {
+            const buttonText = window.i18n.translate('language.changeLanguage');
+            console.log('Button Text:', buttonText);
+            buttonTextElement.textContent = buttonText;
+          } else {
+            console.error('Button text element not found');
+          }
+          
+          // Update active class in dropdown
+          const options = document.querySelectorAll('.language-option');
+          options.forEach(option => {
+            if (option.dataset.lang === event.detail.language) {
+              option.classList.add('active');
+            } else {
+              option.classList.remove('active');
+            }
+          });
+        });
+      } catch (error) {
+        console.error('Initialization Error:', error);
+      }
+    });
+    
+    // Set up the custom language selector with flags
+    function setupLanguageSelector() {
+      const languageButton = document.getElementById('language-selector');
+      const dropdown = document.getElementById('language-dropdown');
+      const currentFlag = document.getElementById('current-language-flag');
+      const buttonText = document.querySelector('.language-button .button-text');
+      
+      // Set initial flag
+      const initialLang = window.i18n.getCurrentLanguage();
+      console.log('Initial Language:', initialLang);
+      
+      currentFlag.src = `flags/${initialLang}.png`;
+      
+      // Set initial button text
+      const initialButtonText = window.i18n.translate('language.changeLanguage') || 'Change Language';
+      console.log('Initial Button Text:', initialButtonText);
+      buttonText.textContent = initialButtonText;
+      
+      // Toggle dropdown when clicking the button
+      languageButton.addEventListener('click', (e) => {
+        if (e.target.closest('.language-option')) return;
+        dropdown.classList.toggle('show');
+        e.stopPropagation();
+      });
+      
+      // Close dropdown when clicking outside
+      document.addEventListener('click', () => {
+        dropdown.classList.remove('show');
+      });
+      
+      // Create language options
+      const supportedLanguages = window.i18n.getSupportedLanguages();
+      const languageNames = window.i18n.getLanguageNames();
+      
+      console.log('Creating Language Options');
+      supportedLanguages.forEach(lang => {
+        const option = document.createElement('div');
+        option.className = 'language-option';
+        option.dataset.lang = lang;
+        
+        if (lang === initialLang) {
+          option.classList.add('active');
+        }
+        
+        const flag = document.createElement('img');
+        flag.src = `flags/${lang}.png`;
+        flag.alt = languageNames[lang];
+        
+        const name = document.createElement('span');
+        name.textContent = languageNames[lang].split(' ')[0]; // Just the native name
+        
+        option.appendChild(flag);
+        option.appendChild(name);
+        
+        option.addEventListener('click', async () => {
+          console.log(`Changing language to: ${lang}`);
+          try {
+            await window.i18n.changeLanguage(lang);
+            dropdown.classList.remove('show');
+          } catch (error) {
+            console.error('Language Change Error:', error);
+          }
+        });
+        
+        dropdown.appendChild(option);
+      });
+      
+      console.log('Language Selector Setup Complete');
+    }
+  </script>
   <script src="script.js"></script>
 </html>

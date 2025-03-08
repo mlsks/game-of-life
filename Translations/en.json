@@ -1,0 +1,91 @@
+{
+  "general": {
+    "title": "Mini Life Explorers",
+    "footer": "A fun community game based on Conway's Game of Life"
+  },
+  "controls": {
+    "start": "Start Adventure!",
+    "clear": "Clear Town",
+    "random": "Magic Town",
+    "emptyGridMessage": "Adventure needs at least one happy friend to start!"
+  },
+  "language": {
+    "changeLanguage": "Change Language"
+  },
+  "stats": {
+    "friends": "Friends:",
+    "time": "Time:",
+    "season": "Season:",
+    "friendsTooltip": "The number of happy friends in town",
+    "timeTooltip": "Each step is a magical moment when the town changes",
+    "seasonTooltip": "Current season in the town"
+  },
+  "instructions": {
+    "clickHomes": "👆 Click on homes to add or remove residents! 👆",
+    "magicKeys": "✨ Magic Keys: 1 (start), 2 (clear), 3 (magic) ✨"
+  },
+  "legend": {
+    "title": "Who Lives Here?",
+    "happyFriend": "Happy Friend",
+    "emptyHome": "Empty Home",
+    "lonelyFriend": "Lonely Friend",
+    "tooManyFriends": "Too Many Friends!",
+    "newFamily": "New Family Moving In"
+  },
+  "rules": {
+    "title": "Magic Town Rules:",
+    "rule1": "Friends with fewer than 2 neighbors get lonely and leave",
+    "rule2": "Friends with 2-3 neighbors are happy and stay",
+    "rule3": "Friends with more than 3 neighbors feel crowded and leave",
+    "rule4": "Empty homes with exactly 3 neighbors attract new families"
+  },
+  "timeExplanation": {
+    "title": "Time in Magic Town",
+    "intro": "Each time step is like magic! When you press \"Start Adventure\", time moves forward one step at a time. Each step:",
+    "step1": "All friends decide if they want to stay or leave",
+    "step2": "New families might move into empty homes",
+    "step3": "The town changes all at once!",
+    "counter": "The \"Time\" counter shows how many magical changes have happened in your town!"
+  },
+  "mathExplanation": {
+    "title": "The Math Behind Mini Life Explorers",
+    "intro1": "Conway's Game of Life is like a special math puzzle! It was created by a mathematician named John Conway in 1970.",
+    "intro2": "The magic town works on a grid where each home follows simple math rules:",
+    "rule1": "Each home can be either empty or have a friend living in it",
+    "rule2": "We count how many friends live in the 8 homes around each home",
+    "rule3": "Based on that number, we decide if a friend stays, leaves, or a new friend moves in",
+    "automaton": "This is called a cellular automaton - a fancy way of saying \"grid cells that follow rules to change over time\"!",
+    "patterns": "Even though the rules are super simple, they can create amazing patterns that look like they're alive! Scientists use similar math to study:",
+    "study1": "How plants grow",
+    "study2": "Animal spots and stripes",
+    "study3": "How brains work",
+    "study4": "Building smart computers"
+  },
+  "patterns": {
+    "stillLife": {
+      "title": "Still Life Patterns",
+      "description": "These patterns never change!"
+    },
+    "oscillator": {
+      "title": "Oscillator Patterns",
+      "description": "These patterns repeat over and over!"
+    },
+    "spaceship": {
+      "title": "Spaceship Patterns",
+      "description": "These patterns move across the grid!"
+    },
+    "gliderGun": {
+      "title": "Glider Gun Patterns",
+      "description": "These amazing patterns create new patterns forever!",
+      "badge": "Super Cool!"
+    }
+  },
+  "emojis": {
+    "happyFriend": "😊",
+    "emptyHome": "🏠",
+    "lonelyFriend": "😢",
+    "tooManyFriends": "😫",
+    "newFamily": "👨‍👩‍👧",
+    "spring": "🌸"
+  }
+}

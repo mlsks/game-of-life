@@ -1,0 +1,91 @@
+{
+  "general": {
+    "title": "Mini Esploratori della Vita",
+    "footer": "Un divertente gioco comunitario basato sul Gioco della Vita di Conway"
+  },
+  "controls": {
+    "start": "Inizia l'Avventura!",
+    "clear": "Cancella Città",
+    "random": "Città Magica",
+    "emptyGridMessage": "L'avventura ha bisogno di almeno un amico felice per iniziare!"
+  },
+  "language": {
+    "changeLanguage": "Cambia lingua"
+  },
+  "stats": {
+    "friends": "Amici:",
+    "time": "Tempo:",
+    "season": "Stagione:",
+    "friendsTooltip": "Il numero di amici felici in città",
+    "timeTooltip": "Ogni passo è un momento magico quando la città cambia",
+    "seasonTooltip": "Stagione attuale in città"
+  },
+  "instructions": {
+    "clickHomes": "👆 Clicca sulle case per aggiungere o rimuovere residenti! 👆",
+    "magicKeys": "✨ Tasti Magici: 1 (inizia), 2 (cancella), 3 (magia) ✨"
+  },
+  "legend": {
+    "title": "Chi Vive Qui?",
+    "happyFriend": "Amico Felice",
+    "emptyHome": "Casa Vuota",
+    "lonelyFriend": "Amico Solitario",
+    "tooManyFriends": "Troppi Amici!",
+    "newFamily": "Nuova Famiglia in Arrivo"
+  },
+  "rules": {
+    "title": "Regole della Città Magica:",
+    "rule1": "Gli amici con meno di 2 vicini si sentono soli e se ne vanno",
+    "rule2": "Gli amici con 2-3 vicini sono felici e rimangono",
+    "rule3": "Gli amici con più di 3 vicini si sentono affollati e se ne vanno",
+    "rule4": "Le case vuote con esattamente 3 vicini attirano nuove famiglie"
+  },
+  "timeExplanation": {
+    "title": "Il Tempo nella Città Magica",
+    "intro": "Ogni passo temporale è come magia! Quando premi \"Inizia l'Avventura\", il tempo avanza passo dopo passo. Ogni passo:",
+    "step1": "Tutti gli amici decidono se vogliono restare o andarsene",
+    "step2": "Nuove famiglie potrebbero trasferirsi in case vuote",
+    "step3": "La città cambia tutta in una volta!",
+    "counter": "Il contatore \"Tempo\" mostra quanti cambiamenti magici sono avvenuti nella tua città!"
+  },
+  "mathExplanation": {
+    "title": "La Matematica Dietro Mini Esploratori della Vita",
+    "intro1": "Il Gioco della Vita di Conway è come un puzzle matematico speciale! È stato creato da un matematico di nome John Conway nel 1970.",
+    "intro2": "La città magica funziona su una griglia dove ogni casa segue semplici regole matematiche:",
+    "rule1": "Ogni casa può essere vuota o avere un amico che ci vive",
+    "rule2": "Contiamo quanti amici vivono nelle 8 case intorno a ogni casa",
+    "rule3": "In base a quel numero, decidiamo se un amico resta, se ne va, o se un nuovo amico si trasferisce",
+    "automaton": "Questo si chiama automa cellulare - un modo elegante per dire \"celle di griglia che seguono regole per cambiare nel tempo\"!",
+    "patterns": "Anche se le regole sono super semplici, possono creare modelli sorprendenti che sembrano vivi! Gli scienziati usano matematica simile per studiare:",
+    "study1": "Come crescono le piante",
+    "study2": "Macchie e strisce degli animali",
+    "study3": "Come funzionano i cervelli",
+    "study4": "Costruzione di computer intelligenti"
+  },
+  "patterns": {
+    "stillLife": {
+      "title": "Modelli di Natura Morta",
+      "description": "Questi modelli non cambiano mai!"
+    },
+    "oscillator": {
+      "title": "Modelli Oscillatori",
+      "description": "Questi modelli si ripetono ancora e ancora!"
+    },
+    "spaceship": {
+      "title": "Modelli di Astronave",
+      "description": "Questi modelli si muovono attraverso la griglia!"
+    },
+    "gliderGun": {
+      "title": "Modelli di Cannone Aliante",
+      "description": "Questi incredibili modelli creano nuovi modelli per sempre!",
+      "badge": "Super Figo!"
+    }
+  },
+  "emojis": {
+    "happyFriend": "😊",
+    "emptyHome": "🏠",
+    "lonelyFriend": "😢",
+    "tooManyFriends": "😫",
+    "newFamily": "👨‍👩‍👧",
+    "spring": "🌸"
+  }
+}

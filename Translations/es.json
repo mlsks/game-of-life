@@ -1,0 +1,91 @@
+{
+  "general": {
+    "title": "Mini Exploradores de Vida",
+    "footer": "Un divertido juego comunitario basado en el Juego de la Vida de Conway"
+  },
+  "controls": {
+    "start": "¡Iniciar Aventura!",
+    "clear": "Limpiar Ciudad",
+    "random": "Ciudad Mágica",
+    "emptyGridMessage": "¡La aventura necesita al menos un amigo feliz para comenzar!"
+  },
+  "language": {
+    "changeLanguage": "Cambiar Idioma"
+  },
+  "stats": {
+    "friends": "Amigos:",
+    "time": "Tiempo:",
+    "season": "Estación:",
+    "friendsTooltip": "El número de amigos felices en la ciudad",
+    "timeTooltip": "Cada paso es un momento mágico cuando la ciudad cambia",
+    "seasonTooltip": "Estación actual en la ciudad"
+  },
+  "instructions": {
+    "clickHomes": "👆 ¡Haz clic en las casas para añadir o quitar residentes! 👆",
+    "magicKeys": "✨ Teclas Mágicas: 1 (iniciar), 2 (limpiar), 3 (magia) ✨"
+  },
+  "legend": {
+    "title": "¿Quién Vive Aquí?",
+    "happyFriend": "Amigo Feliz",
+    "emptyHome": "Casa Vacía",
+    "lonelyFriend": "Amigo Solitario",
+    "tooManyFriends": "¡Demasiados Amigos!",
+    "newFamily": "Nueva Familia Mudándose"
+  },
+  "rules": {
+    "title": "Reglas de la Ciudad Mágica:",
+    "rule1": "Los amigos con menos de 2 vecinos se sienten solos y se van",
+    "rule2": "Los amigos con 2-3 vecinos son felices y se quedan",
+    "rule3": "Los amigos con más de 3 vecinos se sienten abarrotados y se van",
+    "rule4": "Las casas vacías con exactamente 3 vecinos atraen a nuevas familias"
+  },
+  "timeExplanation": {
+    "title": "El Tiempo en la Ciudad Mágica",
+    "intro": "¡Cada paso del tiempo es como magia! Cuando presionas \"Iniciar Aventura\", el tiempo avanza paso a paso. Cada paso:",
+    "step1": "Todos los amigos deciden si quieren quedarse o irse",
+    "step2": "Nuevas familias podrían mudarse a casas vacías",
+    "step3": "¡La ciudad cambia toda a la vez!",
+    "counter": "¡El contador de \"Tiempo\" muestra cuántos cambios mágicos han ocurrido en tu ciudad!"
+  },
+  "mathExplanation": {
+    "title": "Las Matemáticas Detrás de Mini Exploradores de Vida",
+    "intro1": "¡El Juego de la Vida de Conway es como un rompecabezas matemático especial! Fue creado por un matemático llamado John Conway en 1970.",
+    "intro2": "La ciudad mágica funciona en una cuadrícula donde cada casa sigue reglas matemáticas simples:",
+    "rule1": "Cada casa puede estar vacía o tener un amigo viviendo en ella",
+    "rule2": "Contamos cuántos amigos viven en las 8 casas alrededor de cada casa",
+    "rule3": "Basado en ese número, decidimos si un amigo se queda, se va, o un nuevo amigo se muda",
+    "automaton": "Esto se llama un autómata celular - ¡una forma elegante de decir \"celdas de cuadrícula que siguen reglas para cambiar con el tiempo\"!",
+    "patterns": "¡Aunque las reglas son súper simples, pueden crear patrones asombrosos que parecen estar vivos! Los científicos usan matemáticas similares para estudiar:",
+    "study1": "Cómo crecen las plantas",
+    "study2": "Manchas y rayas de animales",
+    "study3": "Cómo funcionan los cerebros",
+    "study4": "Construir computadoras inteligentes"
+  },
+  "patterns": {
+    "stillLife": {
+      "title": "Patrones de Vida Estática",
+      "description": "¡Estos patrones nunca cambian!"
+    },
+    "oscillator": {
+      "title": "Patrones Osciladores",
+      "description": "¡Estos patrones se repiten una y otra vez!"
+    },
+    "spaceship": {
+      "title": "Patrones de Nave Espacial",
+      "description": "¡Estos patrones se mueven a través de la cuadrícula!"
+    },
+    "gliderGun": {
+      "title": "Patrones de Cañón de Planeadores",
+      "description": "¡Estos patrones asombrosos crean nuevos patrones para siempre!",
+      "badge": "¡Super Genial!"
+    }
+  },
+  "emojis": {
+    "happyFriend": "😊",
+    "emptyHome": "🏠",
+    "lonelyFriend": "😢",
+    "tooManyFriends": "😫",
+    "newFamily": "👨‍👩‍👧",
+    "spring": "🌸"
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "general": {
+    "title": "Mini Explorateurs de Vie",
+    "footer": "Un jeu communautaire amusant basé sur le Jeu de la Vie de Conway"
+  },
+  "controls": {
+    "start": "Démarrer l'Aventure !",
+    "clear": "Effacer la Ville",
+    "random": "Ville Magique",
+    "emptyGridMessage": "L'aventure a besoin d'au moins un ami heureux pour commencer !"
+  },
+  "language": {
+    "changeLanguage": "Changer de Langue"
+  },
+  "stats": {
+    "friends": "Amis :",
+    "time": "Temps :",
+    "season": "Saison :",
+    "friendsTooltip": "Le nombre d'amis heureux dans la ville",
+    "timeTooltip": "Chaque étape est un moment magique quand la ville change",
+    "seasonTooltip": "Saison actuelle dans la ville"
+  },
+  "instructions": {
+    "clickHomes": "👆 Cliquez sur les maisons pour ajouter ou supprimer des résidents ! 👆",
+    "magicKeys": "✨ Touches Magiques : 1 (démarrer), 2 (effacer), 3 (magie) ✨"
+  },
+  "legend": {
+    "title": "Qui Vit Ici ?",
+    "happyFriend": "Ami Heureux",
+    "emptyHome": "Maison Vide",
+    "lonelyFriend": "Ami Solitaire",
+    "tooManyFriends": "Trop d'Amis !",
+    "newFamily": "Nouvelle Famille Emménage"
+  },
+  "rules": {
+    "title": "Règles de la Ville Magique :",
+    "rule1": "Les amis avec moins de 2 voisins se sentent seuls et partent",
+    "rule2": "Les amis avec 2-3 voisins sont heureux et restent",
+    "rule3": "Les amis avec plus de 3 voisins se sentent à l'étroit et partent",
+    "rule4": "Les maisons vides avec exactement 3 voisins attirent de nouvelles familles"
+  },
+  "timeExplanation": {
+    "title": "Le Temps dans la Ville Magique",
+    "intro": "Chaque étape du temps est comme de la magie ! Quand vous appuyez sur \"Démarrer l'Aventure\", le temps avance pas à pas. Chaque étape :",
+    "step1": "Tous les amis décident s'ils veulent rester ou partir",
+    "step2": "De nouvelles familles peuvent emménager dans des maisons vides",
+    "step3": "La ville change toute en même temps !",
+    "counter": "Le compteur de \"Temps\" montre combien de changements magiques ont eu lieu dans votre ville !"
+  },
+  "mathExplanation": {
+    "title": "Les Mathématiques Derrière Mini Explorateurs de Vie",
+    "intro1": "Le Jeu de la Vie de Conway est comme un puzzle mathématique spécial ! Il a été créé par un mathématicien nommé John Conway en 1970.",
+    "intro2": "La ville magique fonctionne sur une grille où chaque maison suit des règles mathématiques simples :",
+    "rule1": "Chaque maison peut être soit vide, soit avoir un ami y vivant",
+    "rule2": "Nous comptons combien d'amis vivent dans les 8 maisons autour de chaque maison",
+    "rule3": "Selon ce nombre, nous décidons si un ami reste, part, ou si un nouvel ami emménage",
+    "automaton": "Cela s'appelle un automate cellulaire - une façon élégante de dire \"cellules de grille qui suivent des règles pour changer au fil du temps\" !",
+    "patterns": "Même si les règles sont super simples, elles peuvent créer des motifs étonnants qui semblent vivants ! Les scientifiques utilisent des mathématiques similaires pour étudier :",
+    "study1": "Comment les plantes poussent",
+    "study2": "Les taches et rayures des animaux",
+    "study3": "Comment fonctionnent les cerveaux",
+    "study4": "La construction d'ordinateurs intelligents"
+  },
+  "patterns": {
+    "stillLife": {
+      "title": "Motifs de Vie Immobile",
+      "description": "Ces motifs ne changent jamais !"
+    },
+    "oscillator": {
+      "title": "Motifs Oscillateurs",
+      "description": "Ces motifs se répètent encore et encore !"
+    },
+    "spaceship": {
+      "title": "Motifs de Vaisseau Spatial",
+      "description": "Ces motifs se déplacent à travers la grille !"
+    },
+    "gliderGun": {
+      "title": "Motifs de Canon à Planeurs",
+      "description": "Ces motifs étonnants créent de nouveaux motifs pour toujours !",
+      "badge": "Super Cool !"
+    }
+  },
+  "emojis": {
+    "happyFriend": "😊",
+    "emptyHome": "🏠",
+    "lonelyFriend": "😢",
+    "tooManyFriends": "😫",
+    "newFamily": "👨‍👩‍👧",
+    "spring": "🌸"
+  }
+}
