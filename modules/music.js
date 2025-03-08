@@ -11,7 +11,7 @@ class GameMusicPlayer {
     this.scheduledNotes = [];
     this.currentLoop = null;
     this.nextNoteTime = 0;
-    this.tempo = 140; // Slower tempo as requested (160 BPM)
+    this.tempo = 120; // Slower tempo for a more relaxed feel
     this.lookahead = 25.0; // How frequently to call the scheduling function (in milliseconds)
     this.scheduleAheadTime = 0.1; // How far ahead to schedule audio (in seconds)
     this.currentNote = 0;
@@ -346,16 +346,22 @@ class GameMusicPlayer {
     const handleFirstInteraction = () => {
       this.unlockAudio();
       // Remove all event listeners once audio is initialized
-      ["touchstart", "touchend", "mousedown", "keydown", "click"].forEach(event => {
-        document.removeEventListener(event, handleFirstInteraction);
-      });
+      ["touchstart", "touchend", "mousedown", "keydown", "click"].forEach(
+        (event) => {
+          document.removeEventListener(event, handleFirstInteraction);
+        }
+      );
     };
 
     // Add event listeners for the first user interaction
-    ["touchstart", "touchend", "mousedown", "keydown", "click"].forEach(event => {
-      document.addEventListener(event, handleFirstInteraction, { once: false });
-    });
-    
+    ["touchstart", "touchend", "mousedown", "keydown", "click"].forEach(
+      (event) => {
+        document.addEventListener(event, handleFirstInteraction, {
+          once: false,
+        });
+      }
+    );
+
     // Mute button functionality
     const muteButton = document.getElementById("mute-toggle");
     if (muteButton) {
@@ -380,23 +386,23 @@ class GameMusicPlayer {
       try {
         const AudioContext = window.AudioContext || window.webkitAudioContext;
         this.audioContext = new AudioContext();
-        
+
         // Create main gain node for volume control
         this.mainGainNode = this.audioContext.createGain();
         this.mainGainNode.gain.value = this.isMuted ? 0 : this.originalVolume;
         this.mainGainNode.connect(this.audioContext.destination);
-        
+
         // Play a silent sound to unlock audio
         const oscillator = this.audioContext.createOscillator();
         const gainNode = this.audioContext.createGain();
-        
+
         gainNode.gain.value = 0;
         oscillator.connect(gainNode);
         gainNode.connect(this.audioContext.destination);
-        
+
         oscillator.start(0);
         oscillator.stop(0.001);
-        
+
         console.log("Audio context initialized and unlocked for playback");
         this.isAudioInitialized = true;
         return true;
@@ -406,11 +412,14 @@ class GameMusicPlayer {
       }
     } else if (this.audioContext && this.audioContext.state === "suspended") {
       // If already initialized but suspended, just resume
-      this.audioContext.resume().then(() => {
-        console.log("Audio context resumed after user interaction");
-      }).catch(err => {
-        console.error("Failed to resume audio context:", err);
-      });
+      this.audioContext
+        .resume()
+        .then(() => {
+          console.log("Audio context resumed after user interaction");
+        })
+        .catch((err) => {
+          console.error("Failed to resume audio context:", err);
+        });
     }
     return this.isAudioInitialized;
   }
@@ -421,7 +430,7 @@ class GameMusicPlayer {
     if (!this.isAudioInitialized) {
       this.unlockAudio();
     }
-    
+
     this.isMuted = !this.isMuted;
     console.log("Mute state toggled:", this.isMuted);
 
@@ -537,10 +546,10 @@ class GameMusicPlayer {
   // Play a tone optimized for arpeggiated patterns
   playTone(frequency, startTime, duration, type = "sine", volume = 0.3) {
     if (!this.audioContext || frequency === 0) return null;
-    
+
     // Check if audio context is in suspended state and try to resume it
     if (this.audioContext.state === "suspended") {
-      this.audioContext.resume().catch(err => {
+      this.audioContext.resume().catch((err) => {
         console.error("Failed to resume audio context in playTone:", err);
       });
       // If we can't resume immediately, we'll still try to create the oscillator
@@ -596,12 +605,15 @@ class GameMusicPlayer {
 
     // Make sure the audio context is resumed
     if (this.audioContext && this.audioContext.state === "suspended") {
-      this.audioContext.resume().then(() => {
-        console.log("Audio context resumed, starting playback");
-        this.startPlayback();
-      }).catch(err => {
-        console.error("Failed to resume audio context:", err);
-      });
+      this.audioContext
+        .resume()
+        .then(() => {
+          console.log("Audio context resumed, starting playback");
+          this.startPlayback();
+        })
+        .catch((err) => {
+          console.error("Failed to resume audio context:", err);
+        });
     } else {
       this.startPlayback();
     }
