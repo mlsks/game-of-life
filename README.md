@@ -6,7 +6,7 @@ This is an interactive implementation of Conway's Game of Life, a cellular autom
 
 ## Live Demo
 
-You can play with the Game of Life [here](#) (replace with your actual deployment URL).
+The game is live at [Conway's Game of Life Adventure](https://mlsks.github.io/game-of-life/).
 
 ## Features
 
@@ -15,12 +15,14 @@ You can play with the Game of Life [here](#) (replace with your actual deploymen
 - **Visual Effects**: Special animations for stable patterns and population changes
 - **Musical Accompaniment**: Bach-inspired arpeggiated soundtrack that plays during the simulation
 - **Special Events**:
+  - "Seasons change
   - "Perfect Balance" celebration when a stable pattern is detected
   - "Boom Everyone" explosion when the population reaches zero
 - **Keyboard Shortcuts**:
-  - `S` - Start/pause the simulation
-  - `C` - Clear the grid
-  - `R` - Randomize the grid
+  - `1` - Start/pause the simulation
+  - `2` - Clear the grid
+  - `3` - Randomize the grid
+- **Multi-language Support**: Available in 12 languages including Arabic, Spanish, French, and more via a language selector (button)
 
 ## Game Rules
 
@@ -32,6 +34,7 @@ Conway's Game of Life follows these simple rules:
 4. Any dead cell with exactly three live neighbors becomes alive (reproduction)
 
 In this implementation, these rules are visually represented with different colors and emoji:
+
 - 😊 Happy residents (stable live cells)
 - 😢 Lonely residents (cells about to die from underpopulation)
 - 😫 Crowded residents (cells about to die from overpopulation)
@@ -41,9 +44,9 @@ In this implementation, these rules are visually represented with different colo
 ## Technologies Used
 
 - HTML5 Canvas for grid rendering
-- JavaScript for game logic
-- Web Audio API for music generation
-- CSS for animations and styling
+- Modular JavaScript architecture with modules for game logic, animations, and sound effects (`modules/` directory)
+- JSON-based localization system supporting 12+ languages (Translations/)
+- Web Audio API for procedural soundtrack generation
 
 ## Music System
 
@@ -59,7 +62,12 @@ The game includes a procedurally generated musical accompaniment with these feat
 
 ### Game Logic
 
-The core game logic is implemented in `script.js` and follows the classic Conway's Game of Life rules with additional visualization features.
+The core game logic resides in `modules/gameLogic.js`, part of a modular architecture. Key modules include:
+
+- Grid management (`grid.js`)
+- Animation control (`animation.js`)
+- Sound effects (`soundEffects.js`)
+- Music system (`music.js`)
 
 ### Music System
 
@@ -68,6 +76,7 @@ The music system in `music.js` uses the Web Audio API to generate arpeggiated pa
 ### Animations
 
 Special CSS animations are used for events like:
+
 - The "Perfect Balance" achievement (when a stable pattern is detected)
 - The "Boom Everyone" event (when all cells die)
 - Time passing indicators
@@ -86,7 +95,7 @@ This game works best in modern browsers that support the Web Audio API and HTML5
 
 ## License
 
-[MIT License](LICENSE) (or specify your chosen license)
+This project is licensed under the MIT License.
 
 ## Acknowledgements
 
@@ -96,4 +105,4 @@ This game works best in modern browsers that support the Web Audio API and HTML5
 
 ---
 
-Created with ❤️ by [Your Name/Organization]
+Created with ❤️ by Michel Sakkas
