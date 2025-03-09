@@ -1,0 +1,16 @@
+/* Custom button styles */
+
+/* Start/Adventure button with a vibrant teal color to stand out from other buttons */
+#start {
+  background: linear-gradient(to bottom, #00bcd4, #0097a7);
+  box-shadow: 0 5px 0 #006064, 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+#start:hover {
+  background: linear-gradient(to bottom, #26c6da, #00acc1);
+  box-shadow: 0 8px 0 #006064, 0 10px 15px rgba(0, 0, 0, 0.2);
+}
+
+#start:active {
+  box-shadow: 0 3px 0 #006064, 0 4px 6px rgba(0, 0, 0, 0.2);
+}

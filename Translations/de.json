@@ -5,6 +5,7 @@
   },
   "controls": {
     "start": "Abenteuer starten!",
+    "pause": "Abenteuer pausieren!",
     "clear": "Stadt leeren",
     "random": "Magische Stadt",
     "emptyGridMessage": "Das Abenteuer benötigt mindestens einen glücklichen Freund, um zu beginnen!"

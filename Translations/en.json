@@ -5,6 +5,7 @@
   },
   "controls": {
     "start": "Start Adventure!",
+    "pause": "Pause Adventure",
     "clear": "Clear Town",
     "random": "Magic Town",
     "emptyGridMessage": "Adventure needs at least one happy friend to start!"

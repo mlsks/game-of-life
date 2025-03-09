@@ -5,6 +5,7 @@
   },
   "controls": {
     "start": "冒険を始めよう！",
+    "pause": "冒険を一時停止",
     "clear": "街をクリア",
     "random": "魔法の街",
     "emptyGridMessage": "冒険を始めるには、少なくとも1人の幸せな友達が必要です！"

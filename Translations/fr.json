@@ -5,6 +5,7 @@
   },
   "controls": {
     "start": "Commencer l'Aventure !",
+    "pause": "Pause l'Aventure !",
     "clear": "Vider la Ville",
     "random": "Ville Magique",
     "emptyGridMessage": "L'aventure a besoin d'au moins un ami heureux pour commencer !"

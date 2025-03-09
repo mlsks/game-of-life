@@ -5,6 +5,8 @@
   },
   "controls": {
     "start": "Inizia l'Avventura!",
+    "pause": "Pausa l'Avventura",
+    "resume": "Riprendi l'Avventura",
     "clear": "Pulisci la Città",
     "random": "Città Magica",
     "emptyGridMessage": "L'avventura ha bisogno di almeno un amico felice per iniziare!"

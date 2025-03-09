@@ -5,6 +5,7 @@
   },
   "controls": {
     "start": "开始冒险！",
+    "pause": "暂停冒险",
     "clear": "清理城市",
     "random": "魔法城市",
     "emptyGridMessage": "冒险需要至少一个快乐的朋友才能开始！"
