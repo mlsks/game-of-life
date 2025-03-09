@@ -37,13 +37,8 @@ class TranslationManager {
    * @returns {Promise} - A promise that resolves when translations are loaded
    */
   async init(defaultLanguage = "en") {
-    // Set default language based on browser settings if available
-    const browserLang = navigator.language.split("-")[0];
-    if (this.supportedLanguages.includes(browserLang)) {
-      this.currentLanguage = browserLang;
-    } else {
-      this.currentLanguage = defaultLanguage;
-    }
+    // Set default language to English regardless of browser settings
+    this.currentLanguage = defaultLanguage;
 
     // Load the current language translations
     await this.loadTranslation(this.currentLanguage);
@@ -51,6 +46,9 @@ class TranslationManager {
     // Initialize language selector
     this.languageSelector = new LanguageSelector();
     this.languageSelector.init();
+    
+    // Set initial flag in language button (ensure it's English)
+    this.languageSelector.changeLanguage(this.currentLanguage);
 
     // Listen for language change events
     document.addEventListener("languageChanged", async (e) => {
@@ -63,7 +61,7 @@ class TranslationManager {
 
     return this;
   }
-
+  
   /**
    * Update all UI elements with new translations
    */

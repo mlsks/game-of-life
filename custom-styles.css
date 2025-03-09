@@ -1,5 +1,177 @@
 /* Custom styles to improve readability for kids */
 
+/* Language dropdown styling */
+.language-dropdown {
+  position: absolute;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  background: linear-gradient(to bottom right, #e1f5fe, #b3e5fc);
+  border: 5px solid #ff9800;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  z-index: 1000;
+  min-width: 300px;
+  max-width: 500px;
+  padding: 15px;
+}
+
+.language-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 15px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 16px;
+  font-family: 'Comic Neue', cursive;
+  font-weight: 700;
+  color: white;
+  background: linear-gradient(to bottom, #ff9800, #f57c00);
+  box-shadow: 0 5px 0 #e65100, 0 6px 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s;
+  min-width: 120px;
+  position: relative;
+  overflow: hidden;
+}
+
+.language-option:hover {
+  background: linear-gradient(to bottom, #ffa726, #fb8c00);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 0 #e65100, 0 10px 15px rgba(0, 0, 0, 0.2);
+}
+
+.language-option:active {
+  transform: translateY(2px);
+  box-shadow: 0 3px 0 #e65100, 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.language-option img {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.language-option .shine {
+  position: absolute;
+  top: 0;
+  left: -50%;
+  width: 150%;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0) 100%);
+  transform: skewX(-20deg);
+  transition: all 0.6s;
+}
+
+.language-option:hover .shine {
+  left: 100%;
+}
+
+/* Language flag in button */
+#language-toggle .lang-flag {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+.info p {
+  margin-bottom: 20px !important;
+  font-size: 22px !important;
+  line-height: 1.5 !important;
+  font-family: "Comic Neue", cursive !important;
+  color: #5d4037 !important;
+  text-align: center !important;
+  background-color: #fff8e1 !important;
+  padding: 15px !important;
+  border-radius: 15px !important;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1) !important;
+  border: 3px dashed #ffc107 !important;
+  font-weight: bold !important;
+  animation: gentle-bounce 3s infinite !important;
+}
+
+.keyboard-tip {
+  background-color: #e8f5e9 !important;
+  padding: 8px 15px !important;
+  border-radius: 50px !important;
+  font-size: 20px !important;
+  color: #4caf50 !important;
+  margin-left: 10px !important;
+  border: 3px solid #81c784 !important;
+  font-weight: bold !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15) !important;
+  display: inline-block !important;
+  margin-top: 10px !important;
+}
+
+@keyframes gentle-bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+/* Make the rules section more kid-friendly */
+.rules-section {
+  margin-top: 25px !important;
+}
+
+.rules-section h3 {
+  font-size: 28px !important;
+  text-align: center !important;
+  margin-bottom: 20px !important;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.1) !important;
+}
+
+.rules-section li {
+  font-size: 20px !important;
+  margin-bottom: 18px !important;
+  background-color: rgba(255, 255, 255, 0.7) !important;
+  padding: 12px 12px 12px 45px !important;
+  border-radius: 10px !important;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1) !important;
+  transition: transform 0.3s !important;
+}
+
+.rules-section li:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15) !important;
+}
+
+.rules-section li i {
+  font-size: 28px !important;
+  top: 10px !important;
+  left: 10px !important;
+}
+
+/* Add some fun icons to the info section */
+.info::after {
+  content: "🎮";
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  font-size: 40px;
+  opacity: 0.5;
+  animation: spin 10s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 .info p {
   margin-bottom: 20px !important;
   font-size: 22px !important;

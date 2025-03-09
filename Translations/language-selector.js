@@ -3,6 +3,22 @@ export default class LanguageSelector {
     this.languageButton = document.getElementById("language-toggle");
     this.dropdown = null;
     this.isOpen = false;
+    
+    // Add default language names mapping for initial load
+    this.languageNames = {
+      "en": "English",
+      "es": "Español",
+      "fr": "Français",
+      "de": "Deutsch",
+      "zh": "中文",
+      "ja": "日本語",
+      "ar": "العربية",
+      "el": "Ελληνικά",
+      "hi": "हिन्दी",
+      "it": "Italiano",
+      "pt": "Português",
+      "ru": "Русский"
+    };
   }
 
   init() {
@@ -34,7 +50,7 @@ export default class LanguageSelector {
     if (!this.dropdown) {
       this.createDropdown();
     }
-    this.dropdown.style.display = "block";
+    this.dropdown.style.display = "flex";
     this.isOpen = true;
   }
 
@@ -48,13 +64,6 @@ export default class LanguageSelector {
   createDropdown() {
     this.dropdown = document.createElement("div");
     this.dropdown.className = "language-dropdown";
-    this.dropdown.style.position = "absolute";
-    this.dropdown.style.backgroundColor = "#fff";
-    this.dropdown.style.border = "1px solid #ccc";
-    this.dropdown.style.borderRadius = "4px";
-    this.dropdown.style.boxShadow = "0 2px 4px rgba(0,0,0,0.1)";
-    this.dropdown.style.zIndex = "1000";
-    this.dropdown.style.minWidth = "120px";
 
     const languages = [
       { code: "en", name: "English" },
@@ -74,33 +83,36 @@ export default class LanguageSelector {
     languages.forEach((lang) => {
       const option = document.createElement("div");
       option.className = "language-option";
-      option.style.padding = "8px 12px";
-      option.style.cursor = "pointer";
-      option.style.color = "#333";
-      option.style.fontSize = "14px";
-      option.style.transition = "background-color 0.2s";
-
-      option.addEventListener("mouseenter", () => {
-        option.style.backgroundColor = "#f5f5f5";
-      });
-      option.addEventListener("mouseleave", () => {
-        option.style.backgroundColor = "transparent";
-      });
-
-      option.textContent = lang.name;
+      
+      // Add flag image
+      const flagImg = document.createElement("img");
+      flagImg.src = `flags/${lang.code}.png`;
+      flagImg.alt = lang.name;
+      option.appendChild(flagImg);
+      
+      // Add language name
+      const langName = document.createElement("span");
+      langName.textContent = lang.name;
+      option.appendChild(langName);
+      
+      // Add shine effect element
+      const shine = document.createElement("span");
+      shine.className = "shine";
+      option.appendChild(shine);
+      
       option.dataset.lang = lang.code;
       option.addEventListener("click", (e) => {
         e.stopPropagation();
         this.changeLanguage(lang.code);
         this.closeDropdown();
       });
+      
       this.dropdown.appendChild(option);
     });
 
     // Position dropdown below the button
     const buttonRect = this.languageButton.getBoundingClientRect();
-    this.dropdown.style.position = "absolute";
-    this.dropdown.style.top = `${buttonRect.bottom + window.scrollY}px`;
+    this.dropdown.style.top = `${buttonRect.bottom + window.scrollY + 10}px`;
     this.dropdown.style.left = `${buttonRect.left + window.scrollX}px`;
 
     document.body.appendChild(this.dropdown);
@@ -113,12 +125,52 @@ export default class LanguageSelector {
     });
     document.dispatchEvent(event);
 
-    // Update button text
-    const selectedLang = this.dropdown.querySelector(
-      `[data-lang="${langCode}"]`
-    );
-    if (selectedLang) {
-      this.languageButton.textContent = selectedLang.textContent;
+    // Update button with flag and text
+    const span = this.languageButton.querySelector('.button-text');
+    
+    // Find language name from the dropdown, use the pre-defined mapping, or fallback to langCode
+    let langName = this.languageNames[langCode] || langCode;
+    
+    if (this.dropdown) {
+      const langOption = this.dropdown.querySelector(`[data-lang="${langCode}"]`);
+      if (langOption) {
+        // Get just the text content of the span inside the language option
+        const nameSpan = langOption.querySelector('span');
+        if (nameSpan) {
+          langName = nameSpan.textContent;
+        }
+      }
+    }
+    
+    // Create a new flag element if it doesn't exist
+    let flagImg = this.languageButton.querySelector('.lang-flag');
+    if (!flagImg) {
+      flagImg = document.createElement('img');
+      flagImg.className = 'lang-flag';
+      
+      // Check if there's an icon first
+      const icon = this.languageButton.querySelector('i');
+      
+      // Insert the flag image in the appropriate location
+      if (icon) {
+        // Insert after icon if it exists
+        icon.after(flagImg);
+      } else if (span) {
+        // Insert before span if icon doesn't exist but span does
+        span.before(flagImg);
+      } else {
+        // Just append to button if neither icon nor span exists
+        this.languageButton.appendChild(flagImg);
+      }
+    }
+    
+    // Update the flag image source
+    flagImg.src = `flags/${langCode}.png`;
+    flagImg.alt = langName;
+    
+    // Update the span text if it exists
+    if (span) {
+      span.textContent = langName;
     }
   }
 }
