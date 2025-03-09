@@ -118,7 +118,13 @@ window.initGame = function() {
   function startGame() {
     if (!window.GameLogic.isGameRunning()) {
       window.GameLogic.setGameRunning(true);
-      startButton.innerHTML = '<i class="fas fa-pause"></i> Pause Adventure';
+      
+      // Use translation system for the pause button text
+      let pauseText = 'Pause Adventure';
+      if (window.translationManager && typeof window.translationManager.getTranslation === 'function') {
+        pauseText = window.translationManager.getTranslation('controls.pause');
+      }
+      startButton.innerHTML = `<i class="fas fa-pause"></i> ${pauseText}`;
       startButton.classList.add("pause-button");
       animate();
     }
@@ -129,7 +135,13 @@ window.initGame = function() {
    */
   function stopGame() {
     window.GameLogic.setGameRunning(false);
-    startButton.innerHTML = '<i class="fas fa-play"></i> Start Adventure!';
+    
+    // Use translation system for the start button text
+    let startText = 'Start Adventure!';
+    if (window.translationManager && typeof window.translationManager.getTranslation === 'function') {
+      startText = window.translationManager.getTranslation('controls.start');
+    }
+    startButton.innerHTML = `<i class="fas fa-play"></i> ${startText}`;
     startButton.classList.remove("pause-button");
     
     const animationId = window.GameLogic.getAnimationId();
