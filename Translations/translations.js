@@ -72,7 +72,20 @@ class TranslationManager {
       const key = element.getAttribute("data-translate");
       const translation = this.getTranslation(key);
       if (translation) {
+        // Save any Font Awesome icons or other HTML elements
+        const icons = Array.from(element.querySelectorAll('i.fas, i.far, i.fab, i.fa'));
+        
+        // Update text content
         element.textContent = translation;
+        
+        // Re-add the icons to the beginning of the element
+        icons.forEach(icon => {
+          element.insertBefore(icon, element.firstChild);
+          // Add a space after the icon for better formatting
+          if (element.firstChild === icon) {
+            element.insertBefore(document.createTextNode(' '), icon.nextSibling);
+          }
+        });
       }
     });
   }
