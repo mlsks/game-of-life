@@ -356,7 +356,12 @@ window.AnimationModule = {
       // Add a funny message at the bottom
       const message = document.createElement("div");
       message.className = "explosion-message";
-      message.innerHTML = "BOOM! Everyone left! 🎉";
+      // Get the translated message using the translation manager
+      if (window.translationManager && typeof window.translationManager.getTranslation === 'function') {
+        message.innerHTML = window.translationManager.getTranslation("specialEvents.boomEveryone") || "BOOM! Everyone left! 🎉";
+      } else {
+        message.innerHTML = "BOOM! Everyone left! 🎉";
+      }
       explosionContainer.appendChild(message);
 
       // Create and position the particles
@@ -527,7 +532,12 @@ window.AnimationModule = {
       // Add message
       const message = document.createElement("div");
       message.className = "stable-message";
-      message.innerHTML = "Perfect Balance Achieved! ✨";
+      // Get the translated message using the translation manager
+      if (window.translationManager && typeof window.translationManager.getTranslation === 'function') {
+        message.innerHTML = window.translationManager.getTranslation("specialEvents.perfectBalance") || "Perfect Balance Achieved! ✨";
+      } else {
+        message.innerHTML = "Perfect Balance Achieved! ✨";
+      }
       stableContainer.appendChild(message);
 
       // Add trophy
@@ -604,7 +614,9 @@ window.AnimationModule = {
         color: "#F8BBD0", 
         bgColor: "#E8F5E9",
         elements: ["🌱", "🌷", "🌻", "🦋", "🐝", "🐞", "🌈", "☔"],
-        message: "Spring has arrived! New life blooms! 🌱"
+        message: window.translationManager && typeof window.translationManager.getTranslation === 'function'
+                ? window.translationManager.getTranslation("specialEvents.seasons.spring") 
+                : "Spring has arrived! New life blooms! 🌱"
       },
       { 
         name: "Summer", 
@@ -612,7 +624,9 @@ window.AnimationModule = {
         color: "#FFEB3B", 
         bgColor: "#FFF9C4",
         elements: ["🏖️", "🌊", "🍦", "🍉", "🏊", "🌴", "⛱️", "🌞"],
-        message: "Summer is here! Time for fun in the sun! 🌞"
+        message: window.translationManager && typeof window.translationManager.getTranslation === 'function'
+                ? window.translationManager.getTranslation("specialEvents.seasons.summer") 
+                : "Summer is here! Time for fun in the sun! 🌞"
       },
       { 
         name: "Autumn", 
@@ -620,7 +634,9 @@ window.AnimationModule = {
         color: "#FF9800", 
         bgColor: "#FFF3E0",
         elements: ["🍁", "🍄", "🌰", "🎃", "🦊", "🍎", "🥮", "🌫️"],
-        message: "Autumn leaves are falling! 🍁"
+        message: window.translationManager && typeof window.translationManager.getTranslation === 'function'
+                ? window.translationManager.getTranslation("specialEvents.seasons.autumn") 
+                : "Autumn leaves are falling! 🍁"
       },
       { 
         name: "Winter", 
@@ -628,7 +644,9 @@ window.AnimationModule = {
         color: "#90CAF9", 
         bgColor: "#E3F2FD",
         elements: ["☃️", "⛄", "🧣", "🧤", "🎿", "🏂", "🎄", "🎁"],
-        message: "Winter wonderland has arrived! ❄️"
+        message: window.translationManager && typeof window.translationManager.getTranslation === 'function'
+                ? window.translationManager.getTranslation("specialEvents.seasons.winter") 
+                : "Winter wonderland has arrived! ❄️"
       }
     ];
     

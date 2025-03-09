@@ -88,5 +88,15 @@
     "tooManyFriends": "😫",
     "newFamily": "👨‍👩‍👧",
     "spring": "🌸"
+  },
+  "specialEvents": {
+    "perfectBalance": "Perfekte Balance erreicht! ✨",
+    "boomEveryone": "BOOM! Alle sind weg! 🎉",
+    "seasons": {
+      "spring": "Der Frühling ist da! Neues Leben blüht! 🌱",
+      "summer": "Der Sommer ist hier! Zeit für Spaß in der Sonne! 🌞",
+      "autumn": "Herbstblätter fallen! 🍁",
+      "winter": "Winterwunderland ist angekommen! ❄️"
+    }
   }
 }

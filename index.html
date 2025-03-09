@@ -348,6 +348,9 @@
     // Initialize the translation system
     document.addEventListener("DOMContentLoaded", async () => {
       try {
+        // Make translation manager globally available for non-module scripts
+        window.translationManager = translationManager;
+        
         await translationManager.init();
 
         // Handle RTL languages
