@@ -83,11 +83,11 @@
     }
   },
   "emojis": {
-    "happyFriend": "😊",
-    "emptyHome": "🏠",
-    "lonelyFriend": "😢",
-    "tooManyFriends": "😫",
-    "newFamily": "👨‍👩‍👧",
+    "happyFriend": "(^‿^)",
+    "emptyHome": "[🏠]",
+    "lonelyFriend": "(._.)",
+    "tooManyFriends": "(XoX)",
+    "newFamily": "[👨‍👩‍👧‍👦]",
     "spring": "🌸"
   },
   "specialEvents": {

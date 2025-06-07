@@ -63,22 +63,22 @@ window.AnimationModule = {
           // Live cell (resident)
           if (cellStates[i][j] === 1) {
             cellColor = window.GameConfig.UNDERPOPULATED_COLOR; // Leaving due to loneliness
-            emoji = window.GameConfig.LONELY_RESIDENT;
+            emoji = window.GameConfig.LONELY_RESIDENT_SPRITE;
           } else if (cellStates[i][j] === 2) {
             cellColor = window.GameConfig.OVERPOPULATED_COLOR; // Leaving due to overcrowding
-            emoji = window.GameConfig.CROWDED_RESIDENT;
+            emoji = window.GameConfig.CROWDED_RESIDENT_SPRITE;
           } else {
             cellColor = window.GameConfig.ALIVE_CELL_COLOR; // Happy resident
-            emoji = window.GameConfig.HAPPY_RESIDENT;
+            emoji = window.GameConfig.HAPPY_RESIDENT_SPRITE;
           }
         } else {
           // Dead cell (empty home)
           if (cellStates[i][j] === 3) {
             cellColor = window.GameConfig.REPRODUCTION_COLOR; // New family moving in
-            emoji = window.GameConfig.NEW_FAMILY;
+            emoji = window.GameConfig.NEW_FAMILY_SPRITE;
           } else {
             cellColor = window.GameConfig.DEAD_CELL_COLOR; // Empty home
-            emoji = window.GameConfig.EMPTY_HOME;
+            emoji = window.GameConfig.EMPTY_HOME_SPRITE;
           }
         }
 
@@ -102,11 +102,17 @@ window.AnimationModule = {
         );
 
         // Draw emoji
-        ctx.font = "18px Arial";
+        ctx.font = "16px Arial";
         ctx.textAlign = "center";
         ctx.textBaseline = "middle";
         ctx.fillStyle = "#000";
-        ctx.fillText(emoji, x + CELL_SIZE / 2, y + CELL_SIZE / 2);
+        if (emoji === window.GameConfig.HAPPY_RESIDENT_SPRITE) {
+          const time = Date.now();
+          const bounceOffset = Math.sin(time / 200) * 2; // Small vertical bounce
+          ctx.fillText(emoji, x + CELL_SIZE / 2, y + CELL_SIZE / 2 + bounceOffset);
+        } else {
+          ctx.fillText(emoji, x + CELL_SIZE / 2, y + CELL_SIZE / 2);
+        }
       }
     }
   },

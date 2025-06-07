@@ -48,16 +48,16 @@
       </h1>
       <div class="controls">
         <button id="start" data-translate="controls.start">
-          <i class="fas fa-play"></i> Start Adventure!
+          <span>▶️</span> Start Adventure!
         </button>
         <button id="clear" data-translate="controls.clear">
-          <i class="fas fa-trash"></i> Clear Town
+          <span>🗑️</span> Clear Town
         </button>
         <button id="random" data-translate="controls.random">
-          <i class="fas fa-random"></i> Magic Town
+          <span>🪄</span> Magic Town
         </button>
         <button id="mute-toggle" class="mute-button">
-          <i class="fas fa-volume-up"></i>
+          <span id="mute-icon">🔊</span>
         </button>
         <button id="language-toggle" class="language-button">
           <span class="button-text" data-translate="language.changeLanguage"
@@ -69,6 +69,7 @@
           class="helper-text hidden"
           data-translate="controls.emptyGridMessage"
         >
+          <!-- Assuming this icon is decorative and not critical to replace now -->
           <i class="fas fa-info-circle"></i> Adventure needs at least one happy
           friend to start!
         </div>
@@ -124,17 +125,17 @@
         </p>
         <div class="color-legend">
           <h3 data-translate="legend.title">
-            <i class="fas fa-info-circle"></i> Who Lives Here?
+            <span>❓</span> Who Lives Here?
           </h3>
           <div class="legend-item">
             <div class="color-box alive" data-translate="emojis.happyFriend">
-              😊
+              (^‿^)
             </div>
             <span data-translate="legend.happyFriend">Happy Friend</span>
           </div>
           <div class="legend-item">
             <div class="color-box dead" data-translate="emojis.emptyHome">
-              🏠
+              [🏠]
             </div>
             <span data-translate="legend.emptyHome">Empty Home</span>
           </div>
@@ -143,7 +144,7 @@
               class="color-box underpopulated"
               data-translate="emojis.lonelyFriend"
             >
-              😢
+              (._.)
             </div>
             <span data-translate="legend.lonelyFriend">Lonely Friend</span>
           </div>
@@ -152,7 +153,7 @@
               class="color-box overpopulated"
               data-translate="emojis.tooManyFriends"
             >
-              😫
+              (XoX)
             </div>
             <span data-translate="legend.tooManyFriends"
               >Too Many Friends!</span
@@ -163,30 +164,30 @@
               class="color-box reproduction"
               data-translate="emojis.newFamily"
             >
-              👨‍👩‍👧
+              [👨‍👩‍👧‍👦]
             </div>
             <span data-translate="legend.newFamily">New Family Moving In</span>
           </div>
         </div>
         <div class="rules-section">
           <h3 data-translate="rules.title">
-            <i class="fas fa-book"></i> Magic Town Rules:
+            <span>📜</span> Magic Town Rules:
           </h3>
           <ul>
             <li data-translate="rules.rule1">
-              <i class="fas fa-heart-broken"></i> Friends with fewer than 2
+              <span>💔</span> Friends with fewer than 2
               neighbors get lonely and leave
             </li>
             <li data-translate="rules.rule2">
-              <i class="fas fa-heart"></i> Friends with 2-3 neighbors are happy
+              <span>❤️</span> Friends with 2-3 neighbors are happy
               and stay
             </li>
             <li data-translate="rules.rule3">
-              <i class="fas fa-users"></i> Friends with more than 3 neighbors
+              <span>👨‍👩‍👧‍👦</span> Friends with more than 3 neighbors
               feel crowded and leave
             </li>
             <li data-translate="rules.rule4">
-              <i class="fas fa-home"></i> Empty homes with exactly 3 neighbors
+              <span>🏠✨</span> Empty homes with exactly 3 neighbors
               attract new families
             </li>
           </ul>
@@ -194,7 +195,7 @@
 
         <div class="rules-section time-explanation">
           <h3 data-translate="timeExplanation.title">
-            <i class="fas fa-clock"></i> Time in Magic Town
+            <span>⏰</span> Time in Magic Town
           </h3>
           <p data-translate="timeExplanation.intro">
             Each time step is like magic! When you press "Start Adventure", time
@@ -202,15 +203,15 @@
           </p>
           <ul>
             <li data-translate="timeExplanation.step1">
-              <i class="fas fa-magic"></i> All friends decide if they want to
+              <span>✨</span> All friends decide if they want to
               stay or leave
             </li>
             <li data-translate="timeExplanation.step2">
-              <i class="fas fa-door-open"></i> New families might move into
+              <span>🚪</span> New families might move into
               empty homes
             </li>
             <li data-translate="timeExplanation.step3">
-              <i class="fas fa-sync"></i> The town changes all at once!
+              <span>🔄</span> The town changes all at once!
             </li>
           </ul>
           <p data-translate="timeExplanation.counter">
@@ -222,7 +223,7 @@
 
       <div class="math-explanation">
         <h3 data-translate="mathExplanation.title">
-          <i class="fas fa-calculator"></i> The Math Behind Mini Life Explorers
+          <span>🔢</span> The Math Behind Mini Life Explorers
         </h3>
         <div class="math-content">
           <div class="math-text">
@@ -236,16 +237,16 @@
             </p>
             <ul>
               <li data-translate="mathExplanation.rule1">
-                <i class="fas fa-equals"></i> Each home can be either
+                <span>⚖️</span> Each home can be either
                 <strong>empty</strong> or have a <strong>friend</strong> living
                 in it
               </li>
               <li data-translate="mathExplanation.rule2">
-                <i class="fas fa-plus"></i> We count how many friends live in
+                <span>➕</span> We count how many friends live in
                 the 8 homes around each home
               </li>
               <li data-translate="mathExplanation.rule3">
-                <i class="fas fa-not-equal"></i> Based on that number, we decide
+                <span>≠</span> Based on that number, we decide
                 if a friend stays, leaves, or a new friend moves in
               </li>
             </ul>
@@ -260,16 +261,16 @@
             </p>
             <ul>
               <li data-translate="mathExplanation.study1">
-                <i class="fas fa-leaf"></i> How plants grow
+                <span>🌿</span> How plants grow
               </li>
               <li data-translate="mathExplanation.study2">
-                <i class="fas fa-paw"></i> Animal spots and stripes
+                <span>🐾</span> Animal spots and stripes
               </li>
               <li data-translate="mathExplanation.study3">
-                <i class="fas fa-brain"></i> How brains work
+                <span>🧠</span> How brains work
               </li>
               <li data-translate="mathExplanation.study4">
-                <i class="fas fa-robot"></i> Building smart computers
+                <span>🤖</span> Building smart computers
               </li>
             </ul>
           </div>
@@ -325,7 +326,7 @@
                 These amazing patterns create new patterns forever!
               </p>
               <div class="pattern-badge">
-                <i class="fas fa-star"></i>
+                <span>🌟</span>
                 <span data-translate="patterns.gliderGun.badge"
                   >Super Cool!</span
                 >

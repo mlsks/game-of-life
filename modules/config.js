@@ -16,9 +16,9 @@ window.GameConfig = {
   REPRODUCTION_COLOR: "#4287f5", // Blue for new families moving in
 
   // Emoji icons for different states - larger and more kid-friendly
-  HAPPY_RESIDENT: "😊",
-  LONELY_RESIDENT: "😢",
-  CROWDED_RESIDENT: "😫",
-  NEW_FAMILY: "👨‍👩‍👧",
-  EMPTY_HOME: "🏠"
+  HAPPY_RESIDENT_SPRITE: "(^‿^)",
+  LONELY_RESIDENT_SPRITE: "(._.)",
+  CROWDED_RESIDENT_SPRITE: "(XoX)",
+  EMPTY_HOME_SPRITE: "[🏠]",
+  NEW_FAMILY_SPRITE: "[👨‍👩‍👧‍👦]"
 };

@@ -7,8 +7,8 @@
 
 body {
   font-family: "Comic Neue", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(135deg, #ffeb3b 0%, #ffc107 100%);
-  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23FFEE58' fill-opacity='0.3' fill-rule='evenodd'/%3E%3C/svg%3E");
+  background: linear-gradient(135deg, #81d4fa 0%, #4fc3f7 100%); /* Light sky blue */
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23FFFFE0' fill-opacity='0.2' fill-rule='evenodd'/%3E%3C/svg%3E"); /* LightYellow pattern, reduced opacity */
   padding: 20px;
   color: #5d4037;
   min-height: 100vh;
@@ -17,14 +17,14 @@ body {
 .container {
   max-width: 850px;
   margin: 0 auto;
-  background-color: rgba(255, 255, 255, 0.95);
+  background-color: rgba(255, 255, 255, 0.97); /* Slightly more opaque */
   padding: 25px;
   border-radius: 20px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2),
     0 0 0 10px rgba(255, 255, 255, 0.3);
   backdrop-filter: blur(5px);
-  border: 5px solid #ff9800;
-  background-image: url("data:image/svg+xml,%3Csvg width='52' height='26' viewBox='0 0 52 26' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C27B0' fill-opacity='0.05'%3E%3Cpath d='M10 10c0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6h2c0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4v2c-3.314 0-6-2.686-6-6 0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6zm25.464-1.95l8.486 8.486-1.414 1.414-8.486-8.486 1.414-1.414z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  border: 5px solid #0288d1; /* Complementary blue border */
+  background-image: url("data:image/svg+xml,%3Csvg width='52' height='26' viewBox='0 0 52 26' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%234FC3F7' fill-opacity='0.08'%3E%3Cpath d='M10 10c0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6h2c0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4v2c-3.314 0-6-2.686-6-6 0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6zm25.464-1.95l8.486 8.486-1.414 1.414-8.486-8.486 1.414-1.414z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); /* Soft blue pattern */
 }
 
 h1 {
@@ -37,6 +37,12 @@ h1 {
   padding-bottom: 15px;
   font-family: "Comic Neue", cursive;
   letter-spacing: 1px;
+}
+
+/* Styling for button spans (new Unicode icons) */
+button span {
+  margin-right: 8px; /* Space between icon and text */
+  font-size: 1em; /* Adjust if icons are too big/small relative to button text */
 }
 
 h1::after {
@@ -62,18 +68,18 @@ h1::after {
 }
 
 button {
-  padding: 12px 20px;
-  background: linear-gradient(to bottom, #ff9800, #f57c00);
+  padding: 15px 25px;
+  background: linear-gradient(to bottom, #ffb347, #ff9f36);
   color: white;
   border: none;
-  border-radius: 50px;
+  border-radius: 60px; /* Slightly more rounded */
   cursor: pointer;
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 700;
   font-family: "Comic Neue", cursive;
   transition: all 0.3s;
-  box-shadow: 0 5px 0 #e65100, 0 6px 10px rgba(0, 0, 0, 0.2);
-  min-width: 180px;
+  box-shadow: 0 5px 0 #e68a00, 0 6px 10px rgba(0, 0, 0, 0.2);
+  min-width: 200px; /* Adjusted min-width */
   letter-spacing: 0.5px;
   position: relative;
   overflow: hidden;
@@ -97,9 +103,9 @@ button::after {
 }
 
 button:hover {
-  background: linear-gradient(to bottom, #ffa726, #fb8c00);
+  background: linear-gradient(to bottom, #ffbe70, #ffab59); /* Lighter orange for hover */
   transform: translateY(-3px);
-  box-shadow: 0 8px 0 #e65100, 0 10px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 0 #e68a00, 0 10px 15px rgba(0, 0, 0, 0.2);
 }
 
 button:hover::after {
@@ -107,8 +113,8 @@ button:hover::after {
 }
 
 button:active {
-  transform: translateY(2px);
-  box-shadow: 0 3px 0 #e65100, 0 4px 6px rgba(0, 0, 0, 0.2);
+  transform: translateY(4px) scale(0.98); /* Moves further down and shrinks slightly */
+  box-shadow: 0 1px 0 #e68a00, 0 2px 4px rgba(0, 0, 0, 0.2); /* Adjusted shadow for active state */
 }
 
 .pause-button {
@@ -141,61 +147,91 @@ button:active {
 }
 
 #clear {
-  background: linear-gradient(to bottom, #2196f3, #1976d2);
-  box-shadow: 0 5px 0 #0d47a1, 0 6px 10px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(to bottom, #48c9b0, #1abc9c); /* Bright Teal/Green */
+  box-shadow: 0 5px 0 #148f77, 0 6px 10px rgba(0, 0, 0, 0.2);
 }
 
 #clear:hover {
-  background: linear-gradient(to bottom, #42a5f5, #1e88e5);
-  box-shadow: 0 8px 0 #0d47a1, 0 10px 15px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(to bottom, #76d7c4, #48c9b0);
+  box-shadow: 0 8px 0 #148f77, 0 10px 15px rgba(0, 0, 0, 0.2);
+}
+
+#clear:active {
+  transform: translateY(4px) scale(0.98);
+  box-shadow: 0 1px 0 #148f77, 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 #random {
-  background: linear-gradient(to bottom, #9c27b0, #7b1fa2);
-  box-shadow: 0 5px 0 #4a148c, 0 6px 10px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(to bottom, #bb86fc, #a040f0); /* Bright Purple/Pink */
+  box-shadow: 0 5px 0 #7a1fd5, 0 6px 10px rgba(0, 0, 0, 0.2);
 }
 
 #random:hover {
-  background: linear-gradient(to bottom, #ab47bc, #8e24aa);
-  box-shadow: 0 8px 0 #4a148c, 0 10px 15px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(to bottom, #c9a7fc, #bb86fc);
+  box-shadow: 0 8px 0 #7a1fd5, 0 10px 15px rgba(0, 0, 0, 0.2);
 }
 
-.music-button {
-  background: linear-gradient(to bottom, #00bcd4, #0097a7);
-  box-shadow: 0 5px 0 #006064, 0 6px 10px rgba(0, 0, 0, 0.2);
+#random:active {
+  transform: translateY(4px) scale(0.98);
+  box-shadow: 0 1px 0 #7a1fd5, 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.music-button:hover {
-  background: linear-gradient(to bottom, #26c6da, #00acc1);
-  box-shadow: 0 8px 0 #006064, 0 10px 15px rgba(0, 0, 0, 0.2);
+.music-button { /* This is the language button based on HTML, will use yellow/orange */
+  background: linear-gradient(to bottom, #fdd835, #fbc02d); /* Bright Yellow/Orange */
+  box-shadow: 0 5px 0 #f9a825, 0 6px 10px rgba(0, 0, 0, 0.2);
 }
 
-.music-button.music-active {
-  background: linear-gradient(to bottom, #009688, #00796b);
-  box-shadow: 0 5px 0 #004d40, 0 6px 10px rgba(0, 0, 0, 0.2);
-  animation: pulse-glow 2s infinite;
+.music-button:hover { /* Corresponds to language-toggle hover */
+  background: linear-gradient(to bottom, #fde26a, #fdd835);
+  box-shadow: 0 8px 0 #f9a825, 0 10px 15px rgba(0, 0, 0, 0.2);
 }
 
-.mute-button {
-  background: linear-gradient(to bottom, #4caf50, #388e3c);
-  box-shadow: 0 5px 0 #1b5e20, 0 6px 10px rgba(0, 0, 0, 0.2);
-  min-width: 50px;
-  width: 50px;
+.music-button:active { /* Corresponds to language-toggle active */
+  transform: translateY(4px) scale(0.98);
+  box-shadow: 0 1px 0 #f9a825, 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* The .music-button.music-active seems to be for a different button not listed in the prompt for specific re-coloring. */
+/* I will keep its current teal-like active state or adjust if it's meant for the mute/sound button. */
+/* Assuming it's a separate 'music is playing' indicator, its current style is fine or can be a brighter version of its base if desired. */
+/* For now, let's ensure its hover/active states are consistent if it were to use the yellow/orange base. */
+.music-button.music-active { /* If this is for the sound button when active (music on) */
+  background: linear-gradient(to bottom, #ffeb3b, #fdd835); /* Brighter Yellow when active */
+  box-shadow: 0 5px 0 #fbc02d, 0 6px 10px rgba(0, 0, 0, 0.2);
+  animation: pulse-glow 2s infinite; /* Keeping existing animation */
+}
+
+
+.mute-button { /* This is the sound toggle button */
+  background: linear-gradient(to bottom, #76ff03, #5afc03); /* Bright Green for 'unmuted' */
+  box-shadow: 0 5px 0 #38cc00, 0 6px 10px rgba(0, 0, 0, 0.2);
+  min-width: 50px; /* Keeping existing size */
+  width: 50px; /* Keeping existing size */
 }
 
 .mute-button:hover {
-  background: linear-gradient(to bottom, #66bb6a, #43a047);
-  box-shadow: 0 8px 0 #1b5e20, 0 10px 15px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(to bottom, #9cff57, #76ff03);
+  box-shadow: 0 8px 0 #38cc00, 0 10px 15px rgba(0, 0, 0, 0.2);
 }
 
-.mute-button.muted {
-  background: linear-gradient(to bottom, #e53935, #c62828);
+.mute-button:active {
+  transform: translateY(4px) scale(0.98);
+  box-shadow: 0 1px 0 #38cc00, 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.mute-button.muted { /* Red for 'muted' state */
+  background: linear-gradient(to bottom, #e53935, #c62828); /* Keeping existing red */
   box-shadow: 0 5px 0 #b71c1c, 0 6px 10px rgba(0, 0, 0, 0.2);
 }
 
 .mute-button.muted:hover {
-  background: linear-gradient(to bottom, #ef5350, #d32f2f);
+  background: linear-gradient(to bottom, #ef5350, #d32f2f); /* Keeping existing red hover */
   box-shadow: 0 8px 0 #b71c1c, 0 10px 15px rgba(0, 0, 0, 0.2);
+}
+
+.mute-button.muted:active {
+  transform: translateY(4px) scale(0.98);
+  box-shadow: 0 1px 0 #b71c1c, 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 @keyframes pulse-glow {
@@ -213,12 +249,12 @@ button:active {
   justify-content: flex-start;
   margin-bottom: 25px;
   padding: 20px;
-  background: linear-gradient(to bottom right, #e1f5fe, #b3e5fc);
+  background: linear-gradient(to bottom right, #b3e5fc, #81d4fa); /* Slightly more vibrant blue */
   border-radius: 20px;
   box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.1), 0 8px 20px rgba(0, 0, 0, 0.15);
   position: relative;
   overflow: hidden;
-  border: 5px dashed #29b6f6;
+  border: 5px dashed #4dd0e1; /* Brighter cyan dashed border */
 }
 
 .grid-container::before {
@@ -228,8 +264,8 @@ button:active {
   left: 0;
   right: 0;
   bottom: 0;
-  background: url('data:image/svg+xml;utf8,<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h20v20H0V0zm10 10h10v10H10V10z" fill="%23f9f9f9" fill-opacity="0.3"/></svg>');
-  opacity: 0.5;
+  background: url('data:image/svg+xml;utf8,<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h20v20H0V0zm10 10h10v10H10V10z" fill="%23E0F7FA" fill-opacity="0.4"/></svg>'); /* Light cyan pattern, slightly more opaque */
+  opacity: 0.7; /* Increased opacity of the overall before element */
   pointer-events: none;
 }
 
@@ -345,13 +381,13 @@ canvas:hover {
 .info {
   margin-top: 25px;
   padding: 20px;
-  background-color: #f5f5f5;
+  background-color: #fff9e6; /* Light creamy yellow */
   background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23FFC107' fill-opacity='0.1'%3E%3Cpath d='M50 50c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c0 5.523-4.477 10-10 10s-10-4.477-10-10 4.477-10 10-10zM10 10c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c0 5.523-4.477 10-10 10S0 25.523 0 20s4.477-10 10-10zm10 8c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8zm40 40c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   border-radius: 20px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
   position: relative;
   overflow: hidden;
-  border: 5px solid #e0e0e0;
+  border: 6px dashed #ffc107; /* Bright orange-yellow dashed border */
 }
 
 .info::before {
@@ -410,13 +446,42 @@ canvas:hover {
   color: #5d4037;
 }
 
-.info li i {
+.info li span { /* Changed from .info li i */
   position: absolute;
   left: 0;
-  top: 2px;
+  top: 50%; /* Adjust for vertical centering */
+  transform: translateY(-50%); /* Adjust for vertical centering */
   color: #ff9800;
-  font-size: 24px;
+  font-size: 20px; /* Adjusted as emojis might render differently */
+  line-height: 1; /* Ensure consistent line height */
 }
+
+/* Targeting icons in other section headers specifically */
+.rules-section h3 span,
+.time-explanation h3 span,
+.color-legend h3 span,
+.math-explanation h3 span {
+  font-size: 1em; /* Relative to h3 font-size, adjust as needed */
+  margin-right: 8px; /* Space between icon and text */
+  /* Colors will be inherited from h3 or can be set if needed */
+}
+
+/* Specific adjustments if the general span styling is not enough */
+.rules-section li span { /* For list items */
+    color: #ff7043;
+}
+.time-explanation li span {
+    color: #1976d2;
+}
+.math-explanation li span {
+    color: #4caf50;
+}
+.pattern-badge span { /* For the star in glider gun */
+    color: white;
+    margin-right: 5px;
+    font-size: 1em; /* Relative to badge text */
+}
+
 
 @keyframes pulse {
   0% {
@@ -432,22 +497,25 @@ canvas:hover {
 
 .rules-section {
   margin-top: 20px;
-  background-color: #fff8e1;
+  background-color: #e6fffa; /* Light mint */
   border-radius: 20px;
   padding: 20px;
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-  border: 5px solid #ffe082;
+  border: 6px dotted #4dd0e1; /* Bright cyan dotted border */
   position: relative;
   overflow: hidden;
 }
 
 .time-explanation {
-  background-color: #e3f2fd;
-  border-color: #90caf9;
+  background-color: #e3f2fd; /* Keeping specific style for this variant */
+  border-color: #90caf9; /* Keeping specific style for this variant */
+  border-style: dotted;
+  border-width: 6px;
 }
 
 .time-explanation h3 {
   color: #1565c0;
+  border-bottom: 3px dashed #1976d2; /* Dashed border for h3 */
 }
 
 .time-explanation i {
@@ -468,9 +536,9 @@ canvas:hover {
   right: -20px;
   width: 80px;
   height: 80px;
-  background-color: #ffeb3b;
+  background-color: #4dd0e1; /* Adjusted to match new border */
   border-radius: 50%;
-  opacity: 0.3;
+  opacity: 0.2; /* Slightly less opaque */
   z-index: 0;
 }
 
@@ -481,24 +549,27 @@ canvas:hover {
   font-family: "Comic Neue", cursive;
   position: relative;
   z-index: 1;
+  border-bottom: 3px dashed #ff7043; /* Dashed border for h3 */
+  padding-bottom: 5px; /* Add some padding below the border */
 }
 
-.rules-section i {
+/* Removing general .rules-section i as it's too broad now spans are used */
+/* .rules-section i {
   margin-right: 8px;
-  color: #ff9800;
-}
+  color: #ff7043;
+} */
 
 .color-legend {
   margin: 20px 0;
   padding: 20px;
-  background-color: white;
+  background-color: #fffde7; /* Light yellow, similar to .info but distinct */
   border-radius: 20px;
-  border: 5px solid #ffeb3b;
+  border: 6px dashed #ffab40; /* Bright amber dashed border */
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 20px;
-  background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23FFC107' fill-opacity='0.1' fill-rule='evenodd'%3E%3Cpath d='M0 38.59l2.83-2.83 1.41 1.41L1.41 40H0v-1.41zM0 20v-1.41l2.83-2.83 1.41 1.41L1.41 20H0zm20 0v-1.41l2.83-2.83 1.41 1.41L21.41 20H20zM0 0v1.41l2.83 2.83-1.41 1.41L0 2.83V0h1.41l2.83 2.83-1.41 1.41L0 1.41V0h20v1.41l2.83 2.83-1.41 1.41L20 2.83V0h1.41l2.83 2.83-1.41 1.41L20 1.41V0H0zm0 18.59l2.83-2.83 1.41 1.41L1.41 20H0v-1.41zM20 18.59l2.83-2.83 1.41 1.41L21.41 20H20v-1.41zM0 38.59l2.83-2.83 1.41 1.41L1.41 40H0v-1.41zM20 38.59l2.83-2.83 1.41 1.41L21.41 40H20v-1.41zM0 1.41l2.83 2.83-1.41 1.41L0 2.83V1.41h1.41l2.83 2.83-1.41 1.41L0 2.83V1.41h20l2.83 2.83-1.41 1.41L20 2.83V1.41h1.41l2.83 2.83-1.41 1.41L20 2.83V1.41H0z'/%3E%3C/g%3E%3C/svg%3E");
+  /* Removed previous SVG background, will rely on new background-color */
 }
 
 .color-legend h3 {
@@ -510,17 +581,12 @@ canvas:hover {
   padding-bottom: 10px;
   font-family: "Comic Neue", cursive;
   letter-spacing: 1px;
+  border-bottom: 3px dashed #ff8a65; /* Dashed border for h3 */
 }
 
 .color-legend h3::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 80px;
-  height: 3px;
-  background: linear-gradient(to right, #ff9800, #ffeb3b);
-  border-radius: 3px;
+  /* Remove the old underline effect as we now have a border-bottom */
+  content: none;
 }
 
 .legend-item {
@@ -597,11 +663,11 @@ canvas:hover {
 
 .math-explanation {
   margin-top: 30px;
-  background-color: #e8f5e9;
+  background-color: #e0f7fa; /* Light cyan */
   border-radius: 20px;
   padding: 20px;
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-  border: 5px solid #81c784;
+  border: 6px dotted #26c6da; /* Bright cyan dotted border */
   position: relative;
   overflow: hidden;
 }
@@ -613,7 +679,7 @@ canvas:hover {
   left: -30px;
   width: 100px;
   height: 100px;
-  background-color: #4caf50;
+  background-color: #26c6da; /* Match new border */
   border-radius: 50%;
   opacity: 0.1;
   z-index: 0;
@@ -626,7 +692,7 @@ canvas:hover {
   right: -30px;
   width: 120px;
   height: 120px;
-  background-color: #4caf50;
+  background-color: #26c6da; /* Match new border */
   border-radius: 50%;
   opacity: 0.1;
   z-index: 0;
@@ -634,35 +700,30 @@ canvas:hover {
 
 .math-explanation h3 {
   margin-bottom: 20px;
-  color: #2e7d32;
-  font-size: 28px;
+  color: #00796b; /* Darker cyan/teal */
+  font-size: 28px; /* Keeping font size */
   font-family: "Comic Neue", cursive;
   position: relative;
   z-index: 1;
   text-align: center;
   padding-bottom: 10px;
+  border-bottom: 3px dashed #0097a7; /* Dashed border for h3 */
 }
 
 .math-explanation h3::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 150px;
-  height: 4px;
-  background: linear-gradient(to right, #81c784, #4caf50);
-  border-radius: 4px;
+  /* Remove the old underline effect as we now have a border-bottom */
+  content: none;
 }
 
-.math-explanation h3 i {
+.math-explanation h3 span { /* Specifically for the h3 icon if needed */
   margin-right: 10px;
-  color: #4caf50;
-  animation: spin 10s linear infinite;
+  /* color is inherited or can be set to #0097a7 if not */
+  /* animation: spin 10s linear infinite; /* Emojis don't spin well like FA icons */
   display: inline-block;
 }
 
-@keyframes spin {
+/* Removing the spin animation for emoji as it's not typical */
+/* @keyframes spin {
   0% {
     transform: rotate(0deg);
   }
@@ -722,12 +783,14 @@ canvas:hover {
   color: #33691e;
 }
 
-.math-text li i {
+.math-text li span { /* Changed from .math-text li i */
   position: absolute;
   left: 0;
-  top: 2px;
+  top: 50%; /* Adjust for vertical centering */
+  transform: translateY(-50%); /* Adjust for vertical centering */
   color: #4caf50;
-  font-size: 24px;
+  font-size: 20px; /* Adjusted as emojis might render differently */
+  line-height: 1;
 }
 
 .math-text strong {
@@ -788,11 +851,7 @@ canvas:hover {
   animation: badge-pulse 2s infinite;
 }
 
-.pattern-badge i {
-  color: white;
-  margin-right: 5px;
-  animation: star-twinkle 1.5s infinite;
-}
+/* .pattern-badge i is already handled by .pattern-badge span generic rule */
 
 @keyframes badge-pulse {
   0%,
@@ -1164,12 +1223,12 @@ footer {
     transform: translate(-50%, 50px) scale(0);
     opacity: 0;
   }
-  50% {
-    transform: translate(-50%, 0) scale(1.2);
+  60% { /* Adjusted timing and increased scale for more bounce */
+    transform: translate(-50%, 0) scale(1.3);
     opacity: 1;
   }
   80% {
-    transform: translate(-50%, 0) scale(0.9);
+    transform: translate(-50%, 0) scale(0.85); /* Smaller dip */
     opacity: 1;
   }
   100% {

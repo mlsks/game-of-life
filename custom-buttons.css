@@ -12,5 +12,6 @@
 }
 
 #start:active {
-  box-shadow: 0 3px 0 #006064, 0 4px 6px rgba(0, 0, 0, 0.2);
+  transform: translateY(4px) scale(0.98); /* Consistent with other buttons */
+  box-shadow: 0 1px 0 #1a5fbf, 0 2px 4px rgba(0,0,0,0.2); /* Consistent shadow adjustment */
 }
