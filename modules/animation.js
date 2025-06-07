@@ -4,6 +4,37 @@
 
 // Create a global namespace for our animation module
 window.AnimationModule = {
+  clickEffects: [], // Array to store {x, y, startTime, duration, type}
+
+  addClickEffect: function(x, y, type = 'sparkle', duration = 500) {
+      // Check if GridModule and getGridDimensions are available
+      if (window.GridModule && typeof window.GridModule.getGridDimensions === 'function') {
+          const { CELL_SIZE } = window.GridModule.getGridDimensions();
+          if (typeof CELL_SIZE === 'number') {
+              this.clickEffects.push({
+                  x: x * CELL_SIZE + CELL_SIZE / 2, // Convert grid coords to canvas coords
+                  y: y * CELL_SIZE + CELL_SIZE / 2,
+                  startTime: Date.now(),
+                  duration: duration,
+                  type: type
+              });
+          } else {
+              console.error("CELL_SIZE is not a number. Cannot add click effect.");
+          }
+      } else {
+          console.error("GridModule or getGridDimensions not available. Cannot add click effect.");
+          // Fallback or default values if necessary, though better to ensure GridModule is ready
+          // For example, if CELL_SIZE is hardcoded or available via GameConfig as a backup:
+          // const CELL_SIZE_FALLBACK = 30;
+          // this.clickEffects.push({
+          //     x: x * CELL_SIZE_FALLBACK + CELL_SIZE_FALLBACK / 2,
+          //     y: y * CELL_SIZE_FALLBACK + CELL_SIZE_FALLBACK / 2,
+          //     startTime: Date.now(),
+          //     duration: duration,
+          //     type: type
+          // });
+      }
+  },
   /**
    * Draw the grid on the canvas
    * @param {CanvasRenderingContext2D} ctx - Canvas context
@@ -61,23 +92,25 @@ window.AnimationModule = {
 
         if (currentGrid[i][j] === 1) {
           // Live cell (resident)
-          if (cellStates[i][j] === 1) {
-            cellColor = window.GameConfig.UNDERPOPULATED_COLOR; // Leaving due to loneliness
+          // Live cell (resident)
+          if (cellStates[i][j] === 1) { // Leaving due to loneliness
+            cellColor = window.GameConfig.UNDERPOPULATED_COLOR;
             emoji = window.GameConfig.LONELY_RESIDENT_SPRITE;
-          } else if (cellStates[i][j] === 2) {
-            cellColor = window.GameConfig.OVERPOPULATED_COLOR; // Leaving due to overcrowding
+          } else if (cellStates[i][j] === 2) { // Leaving due to overcrowding
+            cellColor = window.GameConfig.OVERPOPULATED_COLOR;
             emoji = window.GameConfig.CROWDED_RESIDENT_SPRITE;
-          } else {
-            cellColor = window.GameConfig.ALIVE_CELL_COLOR; // Happy resident
-            emoji = window.GameConfig.HAPPY_RESIDENT_SPRITE;
+          } else { // Happy resident - This specific 'emoji' assignment will be overridden below for animation
+            cellColor = window.GameConfig.ALIVE_CELL_COLOR;
+            // Placeholder, actual happy sprite is set in the drawing block
+            emoji = window.GameConfig.HAPPY_RESIDENT_SPRITE_FRAME1;
           }
         } else {
           // Dead cell (empty home)
-          if (cellStates[i][j] === 3) {
-            cellColor = window.GameConfig.REPRODUCTION_COLOR; // New family moving in
+          if (cellStates[i][j] === 3) { // New family moving in
+            cellColor = window.GameConfig.REPRODUCTION_COLOR;
             emoji = window.GameConfig.NEW_FAMILY_SPRITE;
-          } else {
-            cellColor = window.GameConfig.DEAD_CELL_COLOR; // Empty home
+          } else { // Empty home
+            cellColor = window.GameConfig.DEAD_CELL_COLOR;
             emoji = window.GameConfig.EMPTY_HOME_SPRITE;
           }
         }
@@ -102,18 +135,54 @@ window.AnimationModule = {
         );
 
         // Draw emoji
-        ctx.font = "16px Arial";
+        ctx.font = "15px Arial"; // Adjusted font size
         ctx.textAlign = "center";
         ctx.textBaseline = "middle";
         ctx.fillStyle = "#000";
-        if (emoji === window.GameConfig.HAPPY_RESIDENT_SPRITE) {
+
+        // Special handling for happy resident animation (frame + bounce)
+        if (currentGrid[i][j] === 1 && cellStates[i][j] !== 1 && cellStates[i][j] !== 2) {
           const time = Date.now();
+          const currentSprite = (Math.floor(time / 500) % 2 === 0) ?
+                                window.GameConfig.HAPPY_RESIDENT_SPRITE_FRAME1 :
+                                window.GameConfig.HAPPY_RESIDENT_SPRITE_FRAME2;
           const bounceOffset = Math.sin(time / 200) * 2; // Small vertical bounce
-          ctx.fillText(emoji, x + CELL_SIZE / 2, y + CELL_SIZE / 2 + bounceOffset);
-        } else {
+          ctx.fillText(currentSprite, x + CELL_SIZE / 2, y + CELL_SIZE / 2 + bounceOffset);
+        } else if (emoji) { // For all other states that have a defined emoji
           ctx.fillText(emoji, x + CELL_SIZE / 2, y + CELL_SIZE / 2);
         }
       }
+    }
+
+    // Render click effects
+    const currentTime = Date.now();
+    for (let i = this.clickEffects.length - 1; i >= 0; i--) {
+        const effect = this.clickEffects[i];
+        const elapsedTime = currentTime - effect.startTime;
+
+        if (elapsedTime >= effect.duration) {
+            this.clickEffects.splice(i, 1); // Remove expired effect
+            continue;
+        }
+
+        const progress = elapsedTime / effect.duration; // 0 to 1
+
+        if (effect.type === 'sparkle') {
+            const alpha = 1 - progress; // Fade out
+            const numSparks = 5;
+            for (let j = 0; j < numSparks; j++) {
+                const angle = (j / numSparks) * Math.PI * 2 + currentTime / 100; // Rotate sparks
+                const distance = (1 - progress) * 15; // Sparks move outwards
+                const sparkX = effect.x + Math.cos(angle) * distance;
+                const sparkY = effect.y + Math.sin(angle) * distance;
+                const size = (1 - progress) * 5 + 2; // Sparks shrink
+
+                ctx.fillStyle = `rgba(255, 223, 0, ${alpha})`; // Gold color
+                ctx.beginPath();
+                ctx.arc(sparkX, sparkY, size / 2, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
     }
   },
 
@@ -848,6 +917,91 @@ window.AnimationModule = {
         seasonEnvironment.appendChild(element);
       }
     }
+    // Call to update dynamic background elements based on season
+    this.updateDynamicBackground(seasonIndex);
+  },
+
+  updateDynamicBackground: function(seasonIndex, gameState = {}) {
+      const environment = document.getElementById('season-environment');
+      if (!environment) return;
+
+      // Clear previous dynamic elements of these specific types
+      environment.querySelectorAll('.twinkling-star, .background-cloud').forEach(el => el.remove());
+
+      // Add elements based on season/state
+      if (seasonIndex === 3) { // Winter (index 3), add twinkling stars
+          for (let i = 0; i < 20; i++) { // Add 20 stars
+              const star = document.createElement('div');
+              star.className = 'twinkling-star';
+              star.style.left = Math.random() * 100 + '%';
+              star.style.top = Math.random() * 60 + '%'; // Position in the upper 60% of the container
+              star.style.animationDelay = Math.random() * 2 + 's'; // Random delay for twinkling
+              environment.appendChild(star);
+          }
+      }
+
+      // Add subtle background clouds for all seasons
+      const numClouds = seasonIndex === 1 ? 2 : 4; // Fewer clouds in Summer (index 1)
+      for (let i = 0; i < numClouds; i++) {
+          const cloud = document.createElement('div');
+          cloud.className = 'background-cloud';
+          // Ensure clouds start off-screen to the left for the drift animation
+          cloud.style.left = '-100px'; // Start off-screen
+          cloud.style.top = Math.random() * 20 + 5 + '%'; // Position in the upper 20% + 5% margin
+
+          // The animation 'slow-drift-fade-in' is defined in CSS for 60s.
+          // Randomize animation delay to make clouds appear at different times.
+          cloud.style.animationDelay = Math.random() * 60 + 's';
+
+          // Optionally change cloud color slightly by season (example for Autumn)
+          if (seasonIndex === 2) { // Autumn (index 2)
+              cloud.style.backgroundColor = 'rgba(220, 220, 220, 0.25)'; // Slightly grayer clouds for autumn
+              // Also update ::before and ::after if their color is different
+              // This direct style change won't affect pseudo-elements.
+              // For pseudo-elements, consider adding a class or using CSS variables if supported.
+          }
+          environment.appendChild(cloud);
+      }
+  },
+
+  createButtonParticleEffect: function(buttonElement) {
+    const numParticles = 10;
+    if (!buttonElement) return;
+    const buttonRect = buttonElement.getBoundingClientRect();
+    // Create a temporary container for particles, or append to button's parent
+    // Appending to document.body is easier for positioning if button is deep
+    const particleContainer = document.body;
+
+    for (let i = 0; i < numParticles; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'button-particle';
+
+        // Position particle initially at the center of the button
+        particle.style.left = (buttonRect.left + window.scrollX + buttonRect.width / 2) + 'px';
+        particle.style.top = (buttonRect.top + window.scrollY + buttonRect.height / 2) + 'px';
+
+        // Random colors for particles
+        const colors = ['#FFD700', '#FFAB00', '#FF6F00', '#FFFFFF']; // Gold, orange, white
+        particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+
+        // Random trajectory
+        const angle = Math.random() * Math.PI * 2;
+        const distance = Math.random() * 60 + 30; // 30px to 90px spread
+        const particleX = Math.cos(angle) * distance;
+        const particleY = Math.sin(angle) * distance;
+
+        particle.style.setProperty('--particle-x', particleX + 'px');
+        particle.style.setProperty('--particle-y', particleY + 'px');
+
+        particleContainer.appendChild(particle);
+
+        // Remove particle after animation
+        particle.addEventListener('animationend', () => {
+            if (particle.parentNode) { // Check if still in DOM
+                particle.remove();
+            }
+        });
+    }
   }
 };
 
@@ -973,7 +1127,7 @@ window.AnimationModule.triggerBigRainbow = function(container) {
     leftCloud.remove();
     rightCloud.remove();
     sun.remove();
-  }, 10000); // 10 seconds matches the animation duration
+  }, 5000); // Changed to 5 seconds
 };
 
 window.AnimationModule.createRainEffect = function(container, count, type) {

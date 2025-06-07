@@ -15,3 +15,27 @@
   transform: translateY(4px) scale(0.98); /* Consistent with other buttons */
   box-shadow: 0 1px 0 #1a5fbf, 0 2px 4px rgba(0,0,0,0.2); /* Consistent shadow adjustment */
 }
+
+/* Particle effect for buttons */
+.button-particle {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background-color: gold; /* Default color, can be overridden by JS */
+    border-radius: 50%;
+    pointer-events: none; /* So they don't interfere with clicks */
+    opacity: 0;
+    animation: particle-burst 0.6s ease-out forwards;
+    z-index: 1000; /* Ensure they are above the button */
+}
+
+@keyframes particle-burst {
+    0% {
+        transform: translate(0, 0) scale(0.5);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(var(--particle-x), var(--particle-y)) scale(0);
+        opacity: 0;
+    }
+}

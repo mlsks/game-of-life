@@ -39,7 +39,13 @@ window.initGame = function() {
   canvas.addEventListener("click", (event) => handleCanvasClick(event, canvas, drawGrid));
 
   // Button event listeners
-  startButton.addEventListener("click", toggleSimulation);
+  startButton.addEventListener("click", function() {
+    toggleSimulation(); // Call existing toggleSimulation logic
+    // Add particle effect for the start button
+    if (window.AnimationModule && typeof window.AnimationModule.createButtonParticleEffect === 'function') {
+      window.AnimationModule.createButtonParticleEffect(this); // 'this' refers to the startButton
+    }
+  });
   clearButton.addEventListener("click", clearGrid);
   randomButton.addEventListener("click", randomizeGrid);
 

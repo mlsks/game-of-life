@@ -446,7 +446,7 @@
   top: 10%;
   left: 10%;
   z-index: 15; /* Above everything */
-  animation: big-rainbow-appear 10s ease-in-out forwards;
+  animation: big-rainbow-appear 5s ease-in-out forwards; /* Shortened duration */
   transform-origin: bottom center;
   box-shadow: 0 0 30px rgba(255, 255, 255, 0.7);
   border: 5px solid white;
@@ -499,4 +499,57 @@
   100% {
     transform: rotate(360deg);
   }
+}
+
+/* Dynamic Background Elements */
+.twinkling-star {
+    position: absolute;
+    background-color: white;
+    width: 2px;
+    height: 2px;
+    border-radius: 50%;
+    box-shadow: 0 0 3px 1px white;
+    animation: twinkle-opacity 2s infinite;
+    opacity: 0; /* Start invisible, animation handles visibility */
+}
+
+@keyframes twinkle-opacity {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 0.8; }
+}
+
+.background-cloud {
+    position: absolute;
+    width: 60px;
+    height: 20px;
+    background-color: rgba(255, 255, 255, 0.3); /* Very subtle */
+    border-radius: 10px;
+    opacity: 0; /* Start transparent, animation handles fade-in */
+    animation: slow-drift-fade-in 60s linear infinite;
+    z-index: -1; /* Ensure they are behind other #season-environment elements if any */
+}
+.background-cloud::before, .background-cloud::after {
+    content: '';
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.3); /* Match parent cloud's subtlety */
+    border-radius: 50%;
+}
+.background-cloud::before {
+    width: 25px;
+    height: 25px;
+    top: -10px;
+    left: 10px;
+}
+.background-cloud::after {
+    width: 35px;
+    height: 35px;
+    top: -15px;
+    right: 5px;
+}
+
+@keyframes slow-drift-fade-in {
+    0% { transform: translateX(-100px); opacity: 0; }
+    10% { opacity: 0.3; } /* Fade in to target opacity */
+    90% { opacity: 0.3; } /* Maintain opacity */
+    100% { transform: translateX(calc(100% + 100px)); opacity: 0; } /* Drift off and fade out */
 }

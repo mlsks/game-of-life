@@ -127,5 +127,48 @@ window.EventHandlers = {
 
       generationCount.textContent = generation;
     }
+  },
+
+  /**
+   * Handle canvas click events to toggle cell states and add click effects.
+   * @param {MouseEvent} event - The click event.
+   * @param {HTMLCanvasElement} canvas - The game canvas.
+   * Assumes GridModule and AnimationModule are available on window.
+   */
+  handleCanvasClick: function(event, canvas) {
+    if (!window.GridModule || !window.AnimationModule) {
+      console.error("Required modules (GridModule or AnimationModule) not available.");
+      return;
+    }
+
+    const rect = canvas.getBoundingClientRect();
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+
+    const { CELL_SIZE, cols, rows } = window.GridModule.getGridDimensions();
+    const iCol = Math.floor(x / CELL_SIZE);
+    const jRow = Math.floor(y / CELL_SIZE);
+
+    if (iCol >= 0 && iCol < cols && jRow >= 0 && jRow < rows) {
+      // Toggle the state of the cell in the grid module
+      window.GridModule.toggleCellState(iCol, jRow);
+
+      // Add a click effect
+      window.AnimationModule.addClickEffect(iCol, jRow, 'sparkle', 500);
+
+      // Redraw the grid to show the cell state change and the effect
+      // This assumes ctx is accessible or that drawGrid can get it.
+      // Ideally, the main game loop handles drawing, or a dedicated draw function is called.
+      // For immediate feedback when paused, a direct redraw might be needed.
+      if (window.ctx && typeof window.AnimationModule.drawGrid === 'function') {
+         // Ensure that if the game is paused, we still redraw for the click feedback.
+         // The main game loop in runGame will handle this if isRunning is true.
+         if (!window.GameLogic || !window.GameLogic.isGameRunning()) {
+            window.AnimationModule.drawGrid(window.ctx, canvas.width, canvas.height);
+         }
+      } else {
+          console.warn("Unable to redraw grid immediately after click effect. Ensure ctx is global or draw function is robust.");
+      }
+    }
   }
 };
